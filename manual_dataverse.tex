@@ -410,9 +410,9 @@
 
         \subsubsection{Preparação do Servidor}
         
-            \qquad O sistema operacional utilizado no servidor será o Debian 9. Esse sistema operacional foi escolhido por ser um dos mais utilizado em servidores de instituições acadêmicas. Os programas são instalados utilizando o programa gestor de pacotes Apt, contudo, por conta de problemas de compatibilidade, alguns programas serão instalados manualmente.
+            \qquad O sistema operacional utilizado no servidor será o Debian 9. Esse sistema operacional foi escolhido por ser um dos mais utilizado em servidores de instituições acadêmicas. Os programas são instalados utilizando o programa gestor de pacotes Apt, contudo, por conta de problemas de compatibilidade, alguns programas serão instalados \\manualmente.
             
-            É necessario a autorização de administrador ou de superusuário(\textit{root}) em algumas etapas da instalação, com isso, recomenda-se estar logado como \textit{root} durante a instalação. Caso seja necessário a mudança de usuário, haverá uma instrução. Para acessar como superusuário, tendo conhecimento da senha, pode-se usar o comando \textbf{su}.
+            É necessário a autorização de administrador ou de superusuário(\textit{root}) em algumas etapas da instalação, com isso, recomenda-se estar logado como \textit{root} durante a instalação. Caso seja necessário a mudança de usuário, haverá uma instrução. Para acessar como superusuário, tendo conhecimento da senha, pode-se usar o comando \textbf{su}.
             \begin{minted}{bash}
     su -
             \end{minted}
@@ -452,7 +452,9 @@
 
         \subsubsection{Java}
             
-             \qquad O pacote Java pode ser instalado utilizando o programa Apt, contudo, por questão de compatibilidade, recomendamos baixar o pacote diretamente da Oracle. Acesse a página de downloads do pacote java pelo endereço https://www.oracle.com/java/technologies/jdk8-downloads.html. Faça o download do pacote jdk-8uxxx-linux-x64.tar.gz e transfira o arquivo para a pasta \textit{/home/dataverse/temp}.
+             \qquad O pacote Java pode ser instalado utilizando o programa Apt, contudo, por questão de compatibilidade, recomendamos baixar o pacote diretamente da Oracle. Acesse a página de downloads do pacote java pelo endereço https://www.oracle.com/java/
+             technologies/jdk8-downloads.html. Faça o download do pacote jdk-8uxxx-linux-x64.
+             tar.gz e transfira o arquivo para a pasta \textit{/home/dataverse/temp}.
              
             Em seguida, crie uma pasta de nome java no diretorio \textit{/usr}.
             \begin{minted}{bash}
@@ -497,20 +499,26 @@
         \begin{minted}{bash}
     chown glassfish:glassfish /usr/local/glassfish4/glassfish/lib
     
-    chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
+    chown -R glassfish:glassfish /usr/local/glassfish4/
+    glassfish/domains/domain1
         \end{minted}
         
-        Dando contiuidade, remova o arquivo \textit{weld-osgi-bundle.jar}, localizado no diretório \textit{/usr/local/glassfish4/glassfish/modules/}
+        Dando continuidade, remova o arquivo \textit{weld-osgi-bundle.jar}, localizado no diretório \textit{/usr/local/glassfish4/glassfish/modules/}
         \begin{minted}{bash}
     rm /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar
         \end{minted}
         baixe o novo arquivo no diretório \textit{/home/dataverse/temp} e 
         \begin{minted}{bash}
+        ARRUMAR
+        
     wget http://central.maven.org/maven2/org/jboss/weld/
-        weld-osgi-bundle/2.2.10.SP1/weld-osgi-bundle-2.2.10.SP1-glassfish4.jar
+        weld-osgi-bundle/2.2.10.SP1/weld-osgi-bundle-2.2.10.SP1-
+        glassfish4.jar
         \end{minted}
         copie o novo arquivo .jar para o diretório \textit{/usr/local/glassfish4/glassfish/modules/}. 
         \begin{minted}{bash}
+        
+        ARRUMAR
     cp /home/dataverse/temp/weld-osgi-bundle-2.2.10.SP1-glassfish4.jar 
         /usr/local/glassfish4/glassfish/modules/
         \end{minted}
@@ -532,12 +540,12 @@
         
         \subsubsection{PostgreSQL(banco de dados)}
         
-        O banco de dados PostgreSQL é instalado, utilizando o programa Apt, 
+        \qquad O banco de dados PostgreSQL é instalado, utilizando o programa Apt, 
         \begin{minted}{bash} 
     apt-get install postgresql postgresql-contrib
         \end{minted}
         
-        Para o funcionamento do Dataverse, devem ser feito algumas alterações na configuração do Postgres. Primeiro, acesse a pasta de arquivos principais do postgres
+        Para o funcionamento do Dataverse, devem ser feito algumas alterações na \\configuração do Postgres. Primeiro, acesse a pasta de arquivos principais do postgres
         \begin{minted}{bash} 
     cd /etc/postgresql/(\textcolor{red}{versão_do_PSQL})/main/
         \end{minted}
@@ -545,7 +553,7 @@
          \begin{minted}{bash}
     vim /etc/postgresql/(versão do PSQL)/main/pg_hba.conf
         \end{minted}
-        Na sessão do texte de configuração \textit{"IPv4 local connection"}, substitua o ultimo termo do trecho(\textit{md5}),
+        Na sessão do script de configuração \textit{"IPv4 local connection"}, substitua o ultimo termo do trecho(\textit{md5}),
         \begin{minted}{bash} 
                 # IPv4 local connections:
                 host all all 127.0.0.1/32 md5
@@ -1904,7 +1912,7 @@ Você pode obter um despejo de campos de metadados dessa forma:
 
 \begin{minted}{bash}
 
-curl http://localhost:8080/api/admin/datasetfield
+    curl http://localhost:8080/api/admin/datasetfield
 
 \end{minted}
 
@@ -1912,33 +1920,30 @@ Para ver detalhes sobre um campo individual como "title" siga o exemplo abaixo:
 
 \begin{minted}{bash}
 
-curl http://localhost:8080/api/admin/datasetfield/title
+    curl http://localhost:8080/api/admin/datasetfield/title
 
 \end{minted}
 
 \subsubsection{Criação de Metadados}
         
-        \qquad Crie sua base de metadados, podendo ter como base os arquivos de metadados padrão.
+        \qquad Crie sua base de metadados, podendo ter como base os arquivos de metadados padrão. Os metadados estão localizados na pastas \textit{/home/dataverse/dataverse-4.16/scripts/api/data/metablocks}. Depois de criado o arquivo de metadados,teste.tsv, transfira para a pasta
         
-    Localização dos metadados, acesse a pastas $/home/dataverse/scripts/api/data/metablocks$
-        
-        
-        Depois de criado o arquivo de metadados(teste.tsv), transfira para a pasta
-        
-         \# cp teste.csv /home/dataverse/scripts/api/data/metablocks/
-    
-        
+        \begin{minted}{bash}
+    cp teste.csv /home/dataverse/dataverse-4.16/scripts/api/data/metablocks/
+        \end{minted}
         em seguinda, recaregue os metadados.
-        
-         \# curl http://localhost:8080/api/admin/datasetfield/load -H "Content-type: text/tab-separated-values" -X POST --upload-file teste.tsv
-        
+        \begin{minted}{bash}
+    curl http://localhost:8080/api/admin/datasetfield/load -H 
+        "Content-type: text/tab-separated-values" 
+            -X POST --upload-file teste.tsv
+        \end{minted}
 
 \subsubsection{Editando arquivos TSV}
 
-\qquad Observe que os campos de metadados compartilham um espaço para nome comum, portanto, eles devem ser exclusivos. O seguinte comando curl imprimirá a lista de campos de metadados já disponíveis no sistema:\\
-
-\textbf{curl http: // localhost: 8080 / api / admin / index / solr / schema}\\
-
+\qquad Observe que os campos de metadados compartilham um espaço para nome comum, portanto, eles devem ser exclusivos. O seguinte comando curl imprimirá a lista de campos de metadados já disponíveis no sistema.
+    \begin{minted}{bash}
+    curl http://localhost:8080/api/admin/index/solr/schema}
+    \end{minted}
 Usaremos este comando novamente abaixo para atualizar o esquema Solr para acomodar os campos de metadados que adicionamos.
 
 \subsubsection{Carregando arquivos TSV no Dataverse}
@@ -1958,9 +1963,10 @@ Se você estiver alterando um bloco de metadados existente, o processo de instal
 
 \end{itemize}
 
-Se você estiver criando um novo bloco de metadados customizados, o processo de instalação do Dataverse não saberá sobre o seu novo arquivo TSV, portanto, você deve carregar manualmente. O script que carrega os arquivos TSV no sistema é \textbf{scripts / api / setup-datasetfields.sh} e contém uma série de comandos curl. Aqui está um exemplo do comando curl necessário com o novo bloco de metadados personalizados no diretório "/ tmp".
-
-\textbf{curl http: // localhost: 8080 / api / admin / datasetfield / load -H "Tipo de conteúdo: texto / valores separados por tabulação" -X POST --upload-file /tmp/new-metadata-block.tsv}
+Se você estiver criando um novo bloco de metadados customizados, o processo de instalação do Dataverse não saberá sobre o seu novo arquivo TSV, portanto, você deve carregar manualmente. O script que carrega os arquivos TSV no sistema é \textit{scripts /api/setup-datasetfields.sh} e contém uma série de comandos curl. Aqui está um exemplo do comando curl necessário com o novo bloco de metadados personalizados no diretório "/ tmp".
+\begin{minted}{bash}
+curl http: // localhost: 8080 / api / admin / datasetfield / load -H "Tipo de conteúdo: texto / valores separados por tabulação" -X POST --upload-file /tmp/new-metadata-block.tsv
+\end{minted}
 
 Para criar um novo ResourceBundle, a seguir serão apresentadas as etapas para gerar o par chave = valor para as três seções principais:
 
@@ -2006,24 +2012,26 @@ controlvocabulary.language.marathi\_ (marathi) = Marathi (Maru0101u1E6Dhu012B)\\
 
 \subsubsection{Habilitando um bloco de metadados}
 
-\qquad A execução de um comando curl como o exemplo "load" acima deve disponibilizar o novo bloco de metadados customizados no sistema, mas para começar a usar os campos, você deve habilitá-lo na GUI ou executando um comando curl como o abaixo, usando um token de API de superusuário. No exemplo abaixo, estamos habilitando os blocos de metadados “diário” e “geoespacial” para o inverso de dados raiz:\\
+\qquad A execução de um comando curl como o exemplo "load" acima deve disponibilizar o novo bloco de metadados customizados no sistema, mas para começar a usar os campos, você deve habilitá-lo na GUI ou executando um comando curl como o abaixo, usando um token de API de superusuário. No exemplo abaixo, estamos habilitando os blocos de metadados “diário” e “geoespacial” para o inverso de dados raiz.
 
-\textbf{curl -H "X-Dataverse-key: \$ API\_TOKEN" -X POST -H "Tipo de conteúdo: application / json" -d "[\" journal \", \" geospatial \ "]" http: // localhost: 8080 / api / dataverses /: root / metadatablocks}
+\begin{minted}{bash}
+    curl -H "X-Dataverse-key: \$ API\_TOKEN" -X POST -H "Tipo de conteúdo: application / json" -d "[\" journal \", \" geospatial \ "]" http: // localhost:8080/api/dataverses/:root/metadatablocks
+\end{minted}
 
 \subsubsection{Atualizando o esquema do Solr}
 
 \qquad Depois de ativar um novo bloco de metadados, você poderá ver os novos campos na GUI, mas antes de salvar o conjunto de dados, adicione campos adicionais ao seu esquema do Solr. Você deve executar o seguinte comando curl para que o Dataverse produza os elementos "nome do campo" e "copyField" para todos os campos de metadados que foram carregados no Dataverse:\\
-
-\textbf{curl http: // localhost: 8080 / api / admin / index / solr / schema}\\
-
-Observe que, se você fizer uma solicitação pull atualizando \textbf{conf / solr / 7.3.1 / schema.xml} com os campos adicionados, primeiro carregue todos os blocos de metadados personalizados nos \textbf{scripts / api / data / metadatablocks} para criar uma lista completa de campos.
+\begin{minted}{bash}
+    curl http://localhost:8080/api/admin/index/solr/schema
+\end{minted}
+Observe que, se você fizer uma solicitação pull atualizando \textit{/home/dataverse/dataverse-4.16/conf/solr/7.3.1/schema.xml} com os campos adicionados, primeiro carregue todos os blocos de metadados personalizados nos \textit{/home/dataverse/dataverse-4.16/scripts/api/data/metadatablocks} para criar uma lista completa de campos.
 
 \subsection{Recarregando um bloco de metadados}
 
 \qquad A sintaxe para recarregar é a mesma que para carregar. Aqui está um exemplo com o bloco de metadados "citation":\\
-
-\textbf{curl http: // localhost: 8080 / api / admin / datasetfield / load -H "Tipo de conteúdo: texto / valores separados por tabulação" -X POST --upload-file citation.tsv}\\
-
+\begin{minted}{bash}
+curl http:// localhost: 8080 / api / admin / datasetfield / load -H "Tipo de conteúdo: texto / valores separados por tabulação" -X POST --upload-file citation.tsv
+\end{minted}
 Muito cuidado deve ser tomado ao recarregar um bloco de metadados. A correspondência é feita em nomes de campos (ou identificadores e, em seguida, em nomes de valores de vocabulário controlados), então é  facil criar acidentalmente campos duplicados.
 
 A capacidade de recarregar blocos de metadados significa que os scripts de atualização SQL não precisam ser gravados para essas alterações.
@@ -2041,15 +2049,11 @@ Um trabalho de timer agendado que será executado todas as noites tentará expor
 \qquad Além das exportações automatizadas, um administrador do Dataverse pode iniciar um trabalho em lotes por meio da API. As 2 chamadas de API a seguir são fornecidas:
 
 \begin{minted}{bash}
-
-/ api / admin / metadados / exportAll
-
+/api/admin/metadados/exportAll
 \end{minted}
 
 \begin{minted}{bash}
-
-/ api / admin / metadata / reExportAll
-
+/api/admin/metadata/reExportAll
 \end{minted}
 
 O primeiro tentará exportar todos os conjuntos de dados locais publicados (não coletados) que ainda não foram exportados. O último forçará a reexportação de todos os conjuntos de dados locais publicados, independentemente de já terem sido exportados ou não.
@@ -2202,6 +2206,7 @@ counter-processor-config.yaml
 
 \end{minted}
 
+\newpage
 para 
 
 \begin{minted}{bash}
@@ -2238,7 +2243,7 @@ cd /usr/local/counter-processor-0.0.1
 
 \begin{minted}{bash}
 
-cd / usr / local / glassfish4 / glassfish / domínios / domain1 / logs
+cd /usr/local/glassfish4/glassfish/domínios/domain1/logs
 
 \end{minted}
 
@@ -2274,8 +2279,8 @@ Um arquivo JSON no formato SUSHI será criado no diretório que você especifico
 
 \begin{minted}{bash}
 
-curl -X POST "http: // localhost: 8080 / api / admin / makeDataCount /
-addUsageMetricsFromSushiReport? reportOnDisk = / tmp /
+curl -X POST "http://localhost:8080/api/admin/makeDataCount/
+addUsageMetricsFromSushiReport? reportOnDisk = /tmp/
 make-data-count-report.json"
 
 \end{minted}
@@ -2306,7 +2311,7 @@ Agora que visualizações e downloads foram gravados no banco de dados Dataverse
 
 \begin{minted}{bash}
 
-export DOI= "doi: 10.5072 / FK2 / BL2IBM"
+export DOI= "doi:10.5072/FK2/BL2IBM"
 
 \end{minted}
 

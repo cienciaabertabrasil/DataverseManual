@@ -10,7 +10,7 @@
 	\usepackage{xcolor}
 	\usepackage{tikz,lipsum,lmodern}
 	\usetikzlibrary{calc}
-	\usepackage[english]{babel}
+	\usepackage[portuges]{babel}
 	\usepackage[utf8]{inputenc}
 	\usepackage{fancyhdr}
 	\usepackage{mathrsfs}
@@ -27,15 +27,16 @@
     \usepackage{enumerate}
 	\usepackage{marginnote}
 	\usepackage{minted}
+	\usepackage{subcaption}
 	\usemintedstyle{borland}
 	\tcbuselibrary{theorems}
 	\tcbuselibrary{breakable, skins}
 	\tcbuselibrary{listings, documentation}
 	\geometry{
 		a4paper,
-		left=33mm,
-		right=33mm,
-		top=20mm}
+		left=30mm,
+		right=20mm,
+		top=30mm}
 % ========= Path to images ============
 %   - Direct the computer on the path 
 % 	  to the folder containg the images
@@ -358,6 +359,9 @@
 	after skip=\medskipamount,
 	fontlower=\footnotesize,
 	listing options={style=tcblatex,texcsstyle=*\color{red!70!black}},}
+	
+
+	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
@@ -387,10 +391,26 @@
 % =================
 	{\large Lucas N. Paganine\\ Vanderlino C. Barreto Neto \\
 		\vspace*{1.2\baselineskip}
-	lucaspaganine@ibict.br\\ vanderlinoneto@ibict.br} \\https://www.overleaf.com/read/vqytysgjbznd
+	lucaspaganine@ibict.br\\ vanderlinoneto@ibict.br} \\https://www.overleaf.com/read/vqytysgjbznd\\
+	\vspace*{1.2\baselineskip}
+	
+	Revisão por:\\
+	\small Luciana dos Santos Nahuz\\
+	
+	
+	
 	\vfill
 \end{titlepage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\listoffigures
+
+\newpage
+
+\listoftables
+
+\newpage
+
 \tableofcontents
 \vfill
 \newpage
@@ -410,7 +430,11 @@
 
         \subsubsection{Preparação do Servidor}
         
-            \qquad O sistema operacional utilizado no servidor será o Debian 9. Esse sistema operacional foi escolhido por ser um dos mais utilizado em servidores de instituições acadêmicas. Os programas são instalados utilizando o programa gestor de pacotes Apt, contudo, por conta de problemas de compatibilidade, alguns programas serão instalados \\manualmente.
+            \qquad O sistema operacional utilizado no servidor será o Debian 9. Esse sistema operacional foi escolhido por ser um dos mais utilizado em 
+ Add comment
+  Recompile
+3
+ servidores de instituições acadêmicas. Os programas são instalados utilizando o programa gestor de pacotes Apt, contudo, por conta de problemas de compatibilidade, alguns programas serão instalados \\manualmente.
             
             É necessário a autorização de administrador ou de superusuário(\textit{root}) em algumas etapas da instalação, com isso, recomenda-se estar logado como \textit{root} durante a instalação. Caso seja necessário a mudança de usuário, haverá uma instrução. Para acessar como superusuário, tendo conhecimento da senha, pode-se usar o comando \textbf{su}.
             \begin{minted}{bash}
@@ -509,17 +533,12 @@
         \end{minted}
         baixe o novo arquivo no diretório \textit{/home/dataverse/temp} e 
         \begin{minted}{bash}
-        ARRUMAR
-        
-    wget http://central.maven.org/maven2/org/jboss/weld/
-        weld-osgi-bundle/2.2.10.SP1/weld-osgi-bundle-2.2.10.SP1-
-        glassfish4.jar
+    wget http://central.maven.org/maven2/org/jboss/weld/weld-osgi-bundle/\
+    2.2.10.SP1/weld-osgi-bundle-2.2.10.SP1-glassfish4.jar
         \end{minted}
         copie o novo arquivo .jar para o diretório \textit{/usr/local/glassfish4/glassfish/modules/}. 
         \begin{minted}{bash}
-        
-        ARRUMAR
-    cp /home/dataverse/temp/weld-osgi-bundle-2.2.10.SP1-glassfish4.jar 
+    cp /home/dataverse/temp/weld-osgi-bundle-2.2.10.SP1-glassfish4.jar\
         /usr/local/glassfish4/glassfish/modules/
         \end{minted}
     %Finalizando a parte de configuração do glassfish, copie o arquivo cacerts do diretorio java \textit{/usr/java/jdk1.8.0_221/jre/lib/security/} para o diretorio de configuração do glassfish \textit{/usr/local/glassfish4/glassfish/domains/domain1/config/}.
@@ -824,7 +843,7 @@ Para criar uma conta do Dataverse associada à opção de login da sua institui�
 2. No canto superior direito da página da sua conta, clique no botão "Edit Account (Editar conta)" e, a partir daí, você pode optar por editar as informações ou a senha da conta.\\\\
 3. Selecione "Save Changes (Salvar alterações)" quando terminar.\\
 
-Observe que você não pode editar as informações da sua conta no Dataverse se usar a opção Login institucional. Em vez disso, você deve entrar em contato com sua \\instituição para alterar seu nome, e-mail, etc. Depois que a alteração for feita por sua instituição, ela será refletida no Dataverse na próxima vez que você fizer login. Os usuários da opção Log In Institutional  não precisam verificar seu endereço de e-mail porque a instituição que fornece o endereço de e-mail é confiável.
+Observe que você não pode editar as informações da sua conta no Dataverse se usar a opção Login institucional. Em vez disso, você deve entrar em contato com sua instituição para alterar seu nome, e-mail, etc. Depois que a alteração for feita por sua instituição, ela será refletida no Dataverse na próxima vez que você fizer login. Os usuários da opção Log In Institutional  não precisam verificar seu endereço de e-mail porque a instituição que fornece o endereço de e-mail é confiável.
         
         \subsubsection{Conversão de contas}
         
@@ -865,7 +884,7 @@ As notificações serão enviadas por e-mail apenas uma vez, mesmo que você nã
 
 	\subsection{Encontrado dados}
 	
-\qquad Sem fazer login no Dataverse, os usuários podem navegar, procurar dados, conjuntos de dados e arquivos, visualizar descrições e arquivos de conjuntos de dados publicados e subconjunto, analisar e visualizar dados de arquivos de dados publicados \\(restritos e não restritos). Para visualizar um dataverse, conjunto de dados ou arquivo não publicado, será necessário que o usuário tenha permissão do administrador do administrador de dados para acessá-lo.
+\qquad Sem fazer login no Dataverse, os usuários podem navegar, procurar dados, conjuntos de dados e arquivos, visualizar descrições e arquivos de conjuntos de dados publicados e subconjunto, analisar e visualizar dados de arquivos de dados publicados (restritos e não restritos). Para visualizar um dataverse, conjunto de dados ou arquivo não publicado, será necessário que o usuário tenha permissão do administrador do administrador de dados para acessá-lo.
 
 Um usuário pode pesquisar dentro de um Dataverse específico os conjuntos de dados e arquivos que ele contém, usando a barra de pesquisa e as facetas exibidas na página desse Dataverse.
 	
@@ -919,23 +938,26 @@ Quando estiver na página do conjunto de dados, você verá o título, a citaç�
 \qquad Os arquivos no Dataverse têm sua própria página que pode ser acessada pelos resultados da pesquisa ou pela tabela Arquivos na página do conjunto de dados pai. A página do conjunto de dados e a página do arquivo oferecem a mesma funcionalidade em termos de exibição e edição de arquivos, com algumas exceções. A página do arquivo inclui o identificador persistente do arquivo (DOI ou identificador), que pode ser encontrado na guia Metadados [1]. Além disso, a guia Versões [2] da página do arquivo fornece um histórico de versões mais focado no arquivo individual e não no conjunto de dados como um todo.
 	    
 \begin{figure}[H]
+\caption{Página principal}
 \centering
-    \includegraphics[width=1.0\textwidth]{Prints/p111.jpg}
-    \caption{Fonte:Dataverse IBICT CARINIANA}
+    \includegraphics[width=1.0\textwidth]{USAAAA.png}
     \label{print1}
 \end{figure}
+\noindent  {\small Fonte: Elaboração própria}
    
-	    \subsubsection{Citar Dados}
+	    \subsubsection{Citar Dados, versões e metadados}
 	   
 \qquad Você pode encontrar a citação para o conjunto de dados na parte superior da página do conjunto de dados em uma caixa azul. Além disso, há um botão Citar Dados [3] que oferece a opção de baixar a citação como EndNote XML, RIS Format ou BibTeX Format.
 	    
 \begin{figure}[H]
+\caption{Citar dados}
 \centering
-    \includegraphics[width=1.0\textwidth]{Prints/p222.png}
-    \caption{Fonte:Dataverse IBICT CARINIANA}
+    \includegraphics[width=1.0\textwidth]{PFVFU.png}
     \label{print2}
 \end{figure}
-	    
+
+\noindent  {\small Fonte: Elaboração própria}
+
     	\subsubsection{Download de arquivos}
     	
 \qquad Na guia Arquivos em uma página de conjunto de dados, você pode fazer o download dos arquivos nesse conjunto de dados. Para baixar mais de um arquivo por vez, selecione os arquivos que você deseja baixar e clique no botão Download [1] acima dos arquivos. Os arquivos selecionados serão baixados no formato .zip que preserva qualquer estrutura de pastas que o proprietário do conjunto de dados configurou.
@@ -943,12 +965,13 @@ Quando estiver na página do conjunto de dados, você verá o título, a citaç�
 Um arquivo da página do dataset, pode ser baixado, clicando no botão Download [2] no canto superior direito da página ou Fazendo o download via URL na guia Metadados na metade inferior da página.
 
 \begin{figure}[H]
+\caption{Arquivos}
 \centering
     \includegraphics[width=1.0\textwidth]{Prints/p3.png}
-    \caption{Fonte:Dataverse IBICT CARINIANA}
     \label{print3}
 \end{figure}
-    	
+\noindent {\small Fonte: Elaboração própria}
+
     	    \begin{enumerate}[a]
 	            \item Dados Tabulares\\
 	            
@@ -997,16 +1020,14 @@ Que podem ser configurados para pesquisadores, departamentos, periódicos e orga
 
 Depois que um usuário cria um dataverse, por padrão, ele se torna o administrador desse dataverse. O administrador do dataverse tem acesso para gerenciar as configurações.
 
-\newpage
 
-\begin{figure}
+\begin{figure}[H]
+\caption{Diagrama esquemático}
 \centering
-    \includegraphics[width=0.80\textwidth]{Dataverse-Diagram.png}
-    \caption{Fonte:http://guides.dataverse.org/en/4.14/\_images/Dataverse-Diagram.png}
+    \includegraphics[width=0.8\textwidth]{Dataverse-Diagram.png}
     \label{Diagrama dataverse}
 \end{figure}
-
-\newpage
+\noindent {\small Fonte: DATAVERSE PROJECT, 2019}
 
 \subsection{Criação de um Dataverse (Dentro do Dataverse “Root”)}
     
@@ -1029,11 +1050,12 @@ Depois que um usuário cria um dataverse, por padrão, ele se torna o administra
  \end{itemize}
  
  \begin{figure}[H]
+ \caption{Facetas}
 \centering
     \includegraphics[width=1.0\textwidth]{Prints/p4.png}
-    \caption{Fonte:Elaboração própria}
     \label{print4}
 \end{figure}
+\noindent {\small Fonte: Elaboração própria}\\
  
 3. Os elementos de metadados selecionados também são usados para escolher quais campos de metadados você gostaria de usar para criar modelos para seus conjuntos de dados. Os campos de metadados podem ser ocultos ou selecionados conforme necessário ou opcional. Depois de selecionar todos os campos que gostaria de usar, você poderá criar seu (s) modelo (s) depois de terminar de criar seu dataverse.\\
 
@@ -1053,7 +1075,7 @@ Os campos obrigatórios são indicados por um asterisco vermelho.
     \item Permissões: conceda aos usuários do Dataverse permissões para o seu dataverse, ou seja, pode editar conjuntos de dados e ver quais usuários já possuem quais permissões para quais dataverse;
     \item Modelos de conjunto de dados: são úteis quando você tem vários conjuntos de dados com as mesmas informações em vários campos de metadados que você não precisará digitar manualmente toda vez;
     \item Livros de visitas do conjunto de dados: permite coletar dados sobre quem está baixando os arquivos dos seus conjuntos de dados;
-    \item Dataverses em destaque: se você tiver um ou mais dataverses, poderá usar esta opção para mostrá-los na parte superior da página do dataverse para ajudar \\outras pessoas a encontrar facilmente dataverses interessantes ou importantes;
+    \item Dataverses em destaque: se você tiver um ou mais dataverses, poderá usar esta opção para mostrá-los na parte superior da página do dataverse para ajudar outras pessoas a encontrar facilmente dataverses interessantes ou importantes;
     \item Excluir o Dataverse: você pode excluir o seu dataverse desde que não seja publicado e não possua nenhum rascunho de conjuntos de dados.
     
 \end{itemize}
@@ -1065,11 +1087,12 @@ Os campos obrigatórios são indicados por um asterisco vermelho.
 Os campos de metadados que você selecionar conforme necessário aparecerão no formulário Criar conjunto de dados quando alguém adicionar um conjunto de dados ao dataverse.
 
  \begin{figure}[H]
+ \caption{Campos}
 \centering
     \includegraphics[width=1.0\textwidth]{Prints/p5.png}
-    \caption{Fonte: Elaboração própria}
     \label{print5}
 \end{figure}
+\noindent {\small Fonte: Elaboração própria}
 
     \subsection{Tema}
     
@@ -1093,23 +1116,26 @@ Os campos de metadados que você selecionar conforme necessário aparecerão no 
 
 Funções e permissões também podem ser concedidas a grupos. Grupos podem ser definidos como uma coleção de contas de usuário do Dataverse, uma coleção de endereços IP (por exemplo, todos os usuários dos computadores de uma biblioteca) ou uma coleção de todos os usuários que efetuam login usando um login institucional específico (por exemplo, todos que efetuam login com um determinado credenciais de conta da universidade).
 
-Os administradores de um dataverse podem atribuir funções e permissões aos \\usuários desse dataverse. Se você é um administrador em um dataverse, encontrará o link para a página "Permissões", no menu suspenso Editar, na página inversa de dados.
+Os administradores de um dataverse podem atribuir funções e permissões aos usuários desse dataverse. Se você é um administrador em um dataverse, encontrará o link para a página "Permissões", no menu suspenso Editar, na página do dataverse.
 
 \newpage
 
 \begin{figure}[H]
+\caption{Permissões}
 \centering
     \includegraphics[width=1.0\textwidth]{prt1.png}
-    \caption{Fonte: http://guides.dataverse.org/en/4.14/\_images/dvperms1.png}
+    
     \label{Permissões}
 \end{figure}
+\noindent {\small Fonte: DATAVERSE PROJECT, 2019}
 
-\begin{figure}
+\begin{figure}[H]
+\caption{Página permissões}
 \centering
-    \includegraphics[width=1.0\textwidth]{prt1.png}
-    \caption{Fonte: http://guides.dataverse.org/en/4.14/\_images/dv2.png}
+    \includegraphics[width=1.0\textwidth]{NOVOTIR.png}
     \label{Permissões 2}
 \end{figure}
+\noindent {\small Fonte: DATAVERSE PROJECT, 2019}\\
 
 Ao acessar a página de permissões de um dataverse, você visualizará três seções:\\
 
@@ -1117,20 +1143,19 @@ Ao acessar a página de permissões de um dataverse, você visualizará três se
 
 \textbf{Usuários / Grupos:} Atribui funções a usuários ou grupos específicos, determinando quais ações eles têm permissão para executar no seu dataverse. Poderá também pode fazer referência a uma lista de todos os usuários que têm funções atribuídas a eles para o seu dataverse e remover as funções, se desejar.\\
 
-\textbf{Funções:} Elabora uma lista completa de funções que podem ser atribuídas aos usuários do seu dataverse. Cada função lista as permissões que oferece.
-
-Observe que, mesmo em um dataverse recém-criado, você poderá ver que usuários e grupos já receberam funções, se sua instalação tiver: Conjunto de InheritParentRoleAssignments.
+\textbf{Funções:} Elabora uma lista completa de funções que podem ser atribuídas aos usuários do seu dataverse. Cada função lista as permissões que oferece. Observe que, mesmo em um dataverse recém-criado, você poderá ver que usuários e grupos já receberam funções, se sua instalação tiver: Conjunto de InheritParentRoleAssignments.
 
         \subsubsection{Definindo Configurações de Acesso}
         
 \qquad Na guia Permissões, você pode clicar no botão "Edit Access (Editar acesso)" para abrir uma caixa onde você pode definir quem irá adicionar itens ao seu dataverse e quais permissões são concedidas àqueles que os adicionam.
         
   \begin{figure}[H]
-                \centering
-                \includegraphics[scale=0.4]{prt3.png}
-                \caption{Fonte: http://guides.dataverse.org/en/4.14/\_images/dv3.png}
-            \label{Acesso}
-        \end{figure}
+  \caption{Tipos de permissão}
+         \centering
+    \includegraphics[scale=0.4]{prt3.png}
+    \label{Acesso}
+    \end{figure}
+  \noindent {\small Fonte: DATAVERSE PROJECT, 2019}\\
   
  A primeira pergunta nesta página permite determinar como é aberto o seu dataverse para novas adições - você pode definir se a base de usuários inteira (todos os usuários logados) tem ou não a capacidade de adicionar conjuntos de dados ou sub-dataverses ao seu dataverse.
 
@@ -1138,51 +1163,54 @@ A segunda pergunta nesta página permite escolher a função (e, portanto, as pe
         
         \subsubsection{Definindo papéis para Usuários e Grupos}
         
-\qquad Na guia Usuários / Grupos, você pode adicionar, editar ou remover as funções concedidas a usuários e grupos no seu dataverse. Uma função é um conjunto de \\permissões concedidas a um usuário ou grupo que estiver usando seu dataverse. Por exemplo, atribuir ao seu assistente de pesquisa a função "Colaborador" lhe daria as seguintes permissões autoexplicativas no seu dataverse e em todos os conjuntos de dados dentro do dataverser: "ViewUnpublishedDataset", "DownloadFile", "EditDataset" e "DeleteDatasetDraft". 
+\qquad Na guia Usuários / Grupos, você pode adicionar, editar ou remover as funções concedidas a usuários e grupos no seu dataverse. Uma função é um conjunto de permissões concedidas a um usuário ou grupo que estiver usando seu dataverse. Por exemplo, atribuir ao seu assistente de pesquisa a função "Colaborador" lhe daria as seguintes permissões autoexplicativas no seu dataverse e em todos os conjuntos de dados dentro do dataverser: "ViewUnpublishedDataset", "DownloadFile", "EditDataset" e "DeleteDatasetDraft". 
 
 Essa função, no entanto, não teria a permissão "PublishDataset" e, portanto, seria incapaz de publicar conjuntos de dados no seu dataverse. Se você quisesse dar a ela essa permissão, você daria a ela um papel com essa permissão, como por exemplo o papel de Curador. Usuários e grupos podem ter várias funções ao mesmo tempo, se necessário. As funções podem ser removidas a qualquer momento. Todas as funções e suas permissões associadas são listadas na guia "Funções" da mesma página.
         
 \begin{figure}[H]
-                \centering
-                \includegraphics[scale=0.4]{prt4.png}
-                \caption{Fonte: http://guides.dataverse.org/en/4.14/\_images/dv4.png}
+  \caption{Papéis}
+        \centering
+     \includegraphics[scale=0.4]{prt4.png}
             \label{Acesso 2}
         \end{figure}
+\noindent {\small Fonte: DATAVERSE PROJECT, 2019}\\
         
 Observe que a função Criador do conjunto de dados e a função Colaborador às vezes são confusas. A função Criador do conjunto de dados é atribuída no nível do dataverse e permite que um usuário crie novos conjuntos de dados nesse dataverse. A função Colaborador pode ser atribuída no nível do conjunto de dados, concedendo ao usuário a capacidade de editar esse conjunto de dados específico. Como alternativa, a função Colaborador pode ser atribuída no nível do dataverse, concedendo ao usuário a capacidade de editar todos os conjuntos de dados nesse dataverse.
 
 \begin{figure}[H]
-                \centering
-                \includegraphics[scale=0.4]{prt5.png}
-                \caption{Fonte: http://guides.dataverse.org/en/4.14/\_images/dv5.png}
+ \caption{Designando papéis}
+                \centering           \includegraphics[scale=0.4]{prt5.png}
             \label{Acesso 3}
         \end{figure}
+\noindent {\small Fonte: DATAVERSE PROJECT, 2019}\\
 
 Se você precisar atribuir uma função a TODAS as contas de usuário do Dataverse, poderá atribuir a função ao grupo: "usuários autenticados”.
         
     \subsection{Templates de Dataset}
     
-\qquad Os modelos são úteis quando você tem vários conjuntos de dados com as mesmas informações em vários campos de metadados que você prefere não continuar \\digitando manualmente ou se deseja usar um conjunto personalizado de "Termos de Uso e Acesso" para vários conjuntos de dados em um dataverse. 
+\qquad Os modelos são úteis quando você tem vários conjuntos de dados com as mesmas informações em vários campos de metadados que você prefere não continuar digitando manualmente ou se deseja usar um conjunto personalizado de "Termos de Uso e Acesso" para vários conjuntos de dados em um dataverse. 
 
 No Dataverse, os modelos são criados no nível do dataverse, podem ser excluídos (para que não sejam exibidos para futuros conjuntos de dados), definidos como padrão (não obrigatório) ou podem ser copiados para que você não precise recomeçar ao criar um novo modelo com metadados semelhantes de outro modelo. Quando um modelo é excluído, ele não afeta os conjuntos de dados que já o usaram, ou seja, os conjuntos de dados que já utilizam um modelo não terão seu modelo trocado ou excluído.\\
 
  \begin{figure}[H]
+  \caption{Termos de uso}
 \centering
     \includegraphics[width=1.0\textwidth]{Prints/pn1.png}
-    \caption{Fonte:Elaboração própria}
     \label{print6}
 \end{figure}
+\noindent {\small Fonte: Elaboração própria}\\
 
 Para criar um modelo:\\
 
 \qquad 1. Navegue para o seu daverse, clique no botão Editar dataverso e selecione Modelos de conjunto de dados.\\
 
  \begin{figure}[H]
+ \caption{Livros de visita}
 \centering
     \includegraphics[width=1.0\textwidth]{Prints/pn2.png}
-    \caption{Fonte: Elaboração própria}
     \label{print7}
 \end{figure}
+\noindent {\small Fonte: Elaboração própria}\\
 
 \qquad 2. Depois de clicar em Modelos de conjunto de dados, você será levado à página Modelos de conjunto de dados. Nesta página, você pode primeiro decidir usar os modelos de conjunto de dados do seu dataverse pai depois criar um novo modelo de conjunto de dados ou fazer as duas coisas.\\
 
@@ -1198,7 +1226,7 @@ Para criar um modelo:\\
     
     \subsection{Livro de visitas de Datasets}
     
-\qquad Os livros de visitas permitem coletar dados sobre quem está baixando os arquivos dos seus conjuntos de dados. Você pode decidir coletar informações da conta (nome de usuário, nome e sobrenome, afiliação etc.), além de criar perguntas personalizadas (por exemplo, para o que planeja usar esses dados?). Você também pode fazer o download dos dados coletados dos livros de visitas ativados como arquivos do Excel para armazenar e usar fora do Dataverse.\\
+\qquad Os livros de visitas permitem coletar dados sobre quem está baixando os arquivos dos seus conjuntos de dados. Você pode decidir coletar informações da conta (nome de usuário, nome e sobrenome, afiliação, etc.), além de criar perguntas personalizadas (por exemplo, para o que planeja usar esses dados?). Você também pode fazer o download dos dados coletados dos livros de visitas ativados como arquivos do Excel para armazenar e usar fora do Dataverse.\\
 
 Para criar um livro de visitas:\\
 
@@ -1222,25 +1250,23 @@ Depois que alguém fizer o download de um arquivo em um conjunto de dados em que
     
 \qquad Os Dataverses em destaque são uma maneira de exibir sub-dataverses no seu dataverse que você deseja destacar para que as pessoas vejam facilmente quando o visitam.
 
-Clique em Dataverses em destaque e um pop-up aparecerá. Selecione quais sub dataverses você gostaria que fossem exibidos. Dataverses em destaque podem ser usados apenas com dataverses publicados.
+Clique em Dataverses em destaque e um pop-up aparecerá. Selecione quais sub-dataverses você gostaria que fossem exibidos. Dataverses em destaque podem ser usados apenas com dataverses publicados.
     
     \subsection{Vinculação de Datasets}
     
 \qquad A vinculação de conjunto de dados permite que um proprietário do dataverse "vincule" seu dataverse a um conjunto de dados que exista fora desse dataverse, para que apareça na lista de conteúdos do dataverse sem realmente estar nesse dataverse. Você pode vincular os conjuntos de dados de outros usuários ao seu dataverse, mas isso não transfere a edição ou outras permissões especiais para você. O conjunto de dados vinculado ainda estará sob o controle do usuário original.
 
-Por exemplo, os pesquisadores que trabalham em um estudo colaborativo entre instituições podem cada um vincular seus próprios dados institucionais individuais ao conjunto de dados colaborativo, facilitando a localização do estudo pelas partes \\interessadas de cada instituição.
+Por exemplo, os pesquisadores que trabalham em um estudo colaborativo entre instituições podem cada um vincular seus próprios dados institucionais individuais ao conjunto de dados colaborativo, facilitando a localização do estudo pelas partes interessadas de cada instituição.
 
 Para vincular um conjunto de dados, você precisará da sua conta com a permissão "Adicionar conjunto de dados" no Dataverse que está fazendo o link. Se você criou o dataverse, já deve ter essa permissão, mas, caso contrário, precisará solicitar ao administrador desse dataverse que atribua essa permissão à sua conta. Você não precisa de permissões especiais no conjunto de dados que está sendo vinculado.
 
-Para vincular um conjunto de dados ao seu dataverse, você deve navegar até esse conjunto de dados e clicar no botão branco "Link" no canto superior direito da página do conjunto de dados. Isso abrirá uma janela na qual você pode digitar o nome do dataverse que deseje vincular o conjunto de dados. Selecione seu dataverse e clique no botão Salvar. Isso estabelecerá o link, e o conjunto de dados aparecerá agora no seu dataverse.
-
-Atualmente, não há como remover links estabelecidos na interface do usuário.
+Para vincular um conjunto de dados ao seu dataverse, você deve navegar até esse conjunto de dados e clicar no botão branco "Link" no canto superior direito da página do conjunto de dados. Isso abrirá uma janela na qual você pode digitar o nome do dataverse que deseje vincular o conjunto de dados. Selecione seu dataverse e clique no botão Salvar. Isso estabelecerá o link, e o conjunto de dados aparecerá agora no seu dataverse. Atualmente, não há como remover links estabelecidos na interface do usuário.
     
     \subsection{Vinculação de Dataverses}
     
 \qquad A vinculação de conjunto de dados permite que um proprietário do dataverse "vincule" seu dataverse a um conjunto de dados que exista fora desse dataverse, para que ele apareça na lista de conteúdos do dataverse sem realmente estar nesse dataverse. Você pode vincular os conjuntos de dados de outros usuários ao seu dataverse, mas isso não transfere a edição ou outras permissões especiais para você. O conjunto de dados vinculado ainda estará sob o controle do usuário original.
 
-Da mesma forma que a vinculação de conjuntos de dados, a vinculação de inversão de dados permite que um proprietário de inversão de dados "vincule" seu dataverse a outro dataverse, para que o dataverse que está sendo vinculado apareça na lista de conteúdos do vinculador de dados sem realmente estar nesse dataverse. Atualmente, a capacidade de vincular um dataverse a outro dataverse é um recurso exclusivo do superusuário.
+Da mesma forma que a vinculação de conjuntos de dados, a vinculação de dataverses permite que um proprietário de um dataverse "vincule" seu dataverse a outro dataverse, para que o dataverse que está sendo vinculado apareça na lista de conteúdos do vinculador de dados sem realmente estar nesse dataverse. Atualmente, a capacidade de vincular um dataverse a outro dataverse é um recurso exclusivo do superusuário.
 
     \subsection{Publique seu Dataverse}
     
@@ -1254,12 +1280,12 @@ Da mesma forma que a vinculação de conjuntos de dados, a vinculação de inver
 \qquad Um conjunto de dados no Dataverse é um contêiner para seus dados, documentação, código e os metadados que descrevem esse conjunto de dados.
 
 \begin{figure}[H]
+ \caption{Esquema de um Dataset}
                 \centering
-                \includegraphics[scale=0.5]{dtset.png}
-                \caption{Fonte: http://guides.dataverse.org/en/4.14/\_images/DatasetDiagram.png}
+             \includegraphics[scale=0.5]{dtset.png}
             \label{Dataset}
         \end{figure}
-
+\noindent {\small Fonte: DATAVERSE PROJECT, 2019}
 
     \subsection{Metadata suportados}
     
@@ -1269,7 +1295,7 @@ Da mesma forma que a vinculação de conjuntos de dados, a vinculação de inver
 
 \textbf{2. Metadados específicos de domínio:} atualmente, com suporte específico para conjuntos de dados de Ciências Sociais, Ciências da Vida, Geoespaciais e Astronomia; e\\
 
-\textbf{3. Metadados no nível do arquivo} varia de acordo com o tipo de arquivo de dados.
+\textbf{3. Metadados no nível do arquivo:} varia de acordo com o tipo de arquivo de dados.
 
     
         \subsubsection{Formatos de exportação de metadados}
@@ -1295,7 +1321,7 @@ Da mesma forma que a vinculação de conjuntos de dados, a vinculação de inver
 
 3. Para começar rapidamente, insira no mínimo todos os campos obrigatórios com um asterisco (por exemplo, título do conjunto de dados, autor, descrição, e-mail de contato e assunto) para obter uma citação de dados com um DOI.\\
 
-4. Role para baixo até a seção "Arquivos" e clique em "Select Files to Add (Selecionar arquivos a serem adicionados)" para adicionar todos os arquivos relevantes ao seu conjunto de dados. Você também pode enviar seus arquivos diretamente do seu Dropbox. Você pode arrastar e soltar ou selecionar vários arquivos de uma vez da área de trabalho diretamente no widget de upload. Seus arquivos aparecerão abaixo do botão "Select Files to Add (Selecionar arquivos a serem adicionados)", onde você pode adicionar uma descrição e tags (através do botão " Edit tag (Editar tag)") para cada arquivo. Além disso, uma soma de verificação MD5 será adicionada para cada arquivo. Se você enviar um arquivo tabular, uma Impressão Digital Numérica Universal (UNF) será adicionada a esse arquivo.\\
+4. Role para baixo até a seção "Arquivos", e clique em "Select Files to Add (Selecionar arquivos a serem adicionados)" para adicionar todos os arquivos relevantes ao seu conjunto de dados. Você também pode enviar seus arquivos diretamente do seu Dropbox. Você pode arrastar e soltar ou selecionar vários arquivos de uma vez da área de trabalho diretamente no widget de upload. Seus arquivos aparecerão abaixo do botão "Select Files to Add (Selecionar arquivos a serem adicionados)", onde você pode adicionar uma descrição e tags (através do botão " Edit tag (Editar tag)") para cada arquivo. Além disso, uma soma de verificação MD5 será adicionada para cada arquivo. Se você enviar um arquivo tabular, uma Impressão Digital Numérica Universal (UNF) será adicionada a esse arquivo.\\
 
 5. Clique no botão "Save Dataset (Salvar conjunto de dados)" quando terminar. Seu conjunto de dados não publicado será criado.\\
 
@@ -1310,7 +1336,7 @@ Se houver várias opções de upload disponíveis, você deverá escolher qual d
 
 Você pode fazer upload de arquivos para um conjunto de dados enquanto cria esse conjunto de dados. Você também pode fazer upload de arquivos depois de criar um conjunto de dados, clicando no botão "Edit (Editar)" na parte superior da página do conjunto de dados e na lista suspensa selecionando "Arquivos (Upload)" ou clicando no botão "Upload files) Upload de arquivos" acima da tabela de arquivos em Arquivos aba. Em qualquer uma das opções, você será direcionado para a página Carregar arquivos para esse conjunto de dados.
 
-Certos tipos de arquivo no Dataverse são suportados por funcionalidades adicionais, que podem incluir o download em diferentes formatos, subconjuntos, preservação de metadados no nível do arquivo, citação de dados no nível do arquivo; e exploração através da visualização e análise de dados.
+Certos tipos de arquivo no Dataverse são suportados por funcionalidades adicionais, que podem incluir o download em diferentes formatos, subconjuntos, preservação de metadados no nível do arquivo, citação de dados no nível do arquivo, e exploração através da visualização e análise de dados.
     
     \subsection{Manuseio de Arquivo}
     
@@ -1334,12 +1360,12 @@ Opções de download adicionais disponíveis para dados tabulares (encontradas n
 \end{itemize}
     
 \begin{figure}[H]
+\caption{Download}
                 \centering
-                \includegraphics[scale=0.3]{dttab.png}
-                \caption{Fonte: http://guides.dataverse.org/en/4.14/\_images/data-download.png}
+             \includegraphics[scale=0.3]{dttab.png}
             \label{Tabulares}
         \end{figure}
-    
+    \noindent {\small Fonte: DATAVERSE PROJECT, 2019}
     
     \subsection{Arquivos compactados}
     
@@ -1347,7 +1373,7 @@ Opções de download adicionais disponíveis para dados tabulares (encontradas n
 
 Se o arquivo .zip carregado contiver uma estrutura de pastas, o Dataverse acompanhará essa estrutura. A localização de um arquivo nessa estrutura de pastas é exibida nos metadados do arquivo como o Caminho do arquivo. Quando você baixa o conteúdo do conjunto de dados, essa estrutura de pastas é preservada e os arquivos aparecem em seus locais originais.
 
-Esses nomes de pasta estão sujeitos a regras estritas de validação. Somente os seguintes caracteres são permitidos: alfanuméricos, '\_', '-', '.' E '(espaço em branco). Quando um arquivo zip é carregado, os nomes das pastas são limpos automaticamente, com os caracteres inválidos substituídos pelo caractere '.' Quaisquer seqüências de pontos são substituídas por um único ponto. Por exemplo, o nome da pasta data \& info / code = \@ 137 será convertido em data.info/code.137. Ao fazer o upload pela interface da Web, o usuário pode alterar ainda mais os valores no formulário de edição apresentado antes de clicar no botão "Save (Salvar)".
+Esses nomes de pasta estão sujeitos a regras estritas de validação. Somente os seguintes caracteres são permitidos: alfanuméricos, '\_', '-', '.' E '(espaço em branco). Quando um arquivo zip é carregado, os nomes das pastas são limpos automaticamente, com os caracteres inválidos substituídos pelo caractere '.' Quaisquer sequências de pontos são substituídas por um único ponto. Por exemplo, o nome da pasta data \& info / code = \@ 137 será convertido em data.info/code.137. Ao fazer o upload pela interface da Web, o usuário pode alterar ainda mais os valores no formulário de edição apresentado antes de clicar no botão "Save (Salvar)".
 
 Se você carregar vários arquivos .zip em um conjunto de dados, todos os subdiretórios idênticos entre vários .zips serão mesclados quando o usuário fizer o download do conjunto de dados completo.
     
@@ -1364,33 +1390,34 @@ Arquivos SPSS: os arquivos SPSS podem ser marcados com o idioma em que foram ori
 
 \begin{itemize}
 
-    \item Excluir os arquivos selecionados
-    \item Editar os metadados do arquivo (nome do arquivo, descrição) para os arquivos selecionados
-    \item Restringir os arquivos selecionados
-    \item Retirar restrições dos arquivos selecionados (somente se os arquivos selecionados forem restritos)
-    \item Adicionar tags aos arquivos selecionados
+    \item Excluir os arquivos selecionados;
+    \item Editar os metadados do arquivo (nome do arquivo, descrição) para os arquivos selecionados;
+    \item Restringir os arquivos selecionados;
+    \item Retirar restrições dos arquivos selecionados (somente se os arquivos selecionados forem restritos);
+    \item Adicionar tags aos arquivos selecionados.
 
 \end{itemize}
 
 Você não precisará sair da página do conjunto de dados para concluir essas ações, exceto a edição de metadados do arquivo, que o levará à página Editar Arquivos. Lá, você terá que clicar no botão "Save Changes (Salvar alterações)" para aplicar suas edições e retornar à página do conjunto de dados.
 
-Se você restringir os arquivos, também será surgirá um pop-up solicitando que você preencha os Termos de acesso dos arquivos. Se os Termos de acesso já existirem, você será solicitado a confirmá-los. Observe que algumas instalações do Dataverse não permitem restrições de arquivo.
+Se você restringir os arquivos, também surgirá um pop-up solicitando que você preencha os Termos de acesso dos arquivos. Se os Termos de acesso já existirem, você será solicitado a confirmá-los. Observe que algumas instalações do Dataverse não permitem restrições de arquivo.
         
         \subsubsection{Caminho do Arquivo}
         
 \qquad O campo de metadados do caminho do arquivo é a maneira da Dataverse de representar a localização de um arquivo em uma estrutura de pastas. Quando um usuário carrega um arquivo .zip que contém uma estrutura de pastas, o Dataverse preenche automaticamente as informações do Caminho do arquivo para cada arquivo contido no arquivo .zip. Se um usuário fizer o download do conjunto de dados completo ou de uma seleção de arquivos, ele receberá uma estrutura de pastas com cada arquivo posicionado de acordo com o caminho do arquivo.
 
-O caminho do arquivo de um arquivo pode ser adicionado ou editado manualmente na página Editar arquivos. Alterar o caminho do arquivo de um arquivo altera sua localização na estrutura de pastas criada quando um usuário baixa o conjunto de dados completo ou uma seleção de arquivos dele.
+O caminho do arquivo de um arquivo pode ser adicionado ou editado manualmente na página Editar arquivos. Alterar o caminho do arquivo de um arquivo altera sua localização na estrutura de pastas criadas quando um usuário baixa o conjunto de dados completo ou uma seleção de arquivos dele.
 
 Se houver mais de um arquivo no conjunto de dados e uma vez que pelo menos um deles tiver um caminho de diretório não vazio, a Página do Conjunto de Dados apresentará uma opção para alternar entre a exibição de tabela tradicional e a exibição em árvore dos arquivos mostrando a estrutura da pasta, como no exemplo abaixo:
 
-\begin{figure}[!htp]
+\begin{figure}[H]
+             \caption{Visualização}
                 \centering
-                \includegraphics[scale=0.5]{cam.png}
-                \caption{Fonte: http://guides.dataverse.org/en/4.14/\_images/file-tree-view.png}
+         \includegraphics[scale=0.5]{cam.png}
             \label{Caminho}
         \end{figure}
-        
+  \noindent {\small Fonte: DATAVERSE PROJECT, 2019}
+  
         \subsubsection{Tags do Arquivo}
         
 \qquad As tags de arquivo são compostas por tags personalizadas de categoria, (documentação, dados, código) e de tabela (evento, genômica, geoespacial, rede, painel, pesquisa, série temporal). Use os menus suspensos de seleção e a entrada de tag de arquivo personalizada para aplicar essas tags aos arquivos selecionados. Há também um recurso Excluir Tags que, se marcado, permitirá que você exclua as tags de arquivo não utilizadas dentro desse conjunto de dados.
@@ -1419,7 +1446,7 @@ Se um proprietário de dados achar que CC0 não é adequado para seus dados, pod
         
         \subsubsection{Arquivos Restritos + Termos de Acesso}
         
-\qquad Se você restringir qualquer arquivo no seu conjunto de dados, será solicitado um pop-up para inserir os Termos de Acesso para os dados. Isso também pode ser editado na guia Termos ou selecionando Termos no botão suspenso "Edit (Editar)" no conjunto de dados. Você também pode permitir que os usuários solicitem acesso aos seus arquivos restritos, ativando "Solicitar acesso". Para adicionar mais informações sobre os Termos de acesso, fornecemos campos como Local de acesso a dados, Status de disponibilidade, Contato para acesso etc.
+\qquad Se você restringir qualquer arquivo no seu conjunto de dados, será solicitado um pop-up para inserir os Termos de Acesso para os dados. Isso também pode ser editado na guia Termos ou selecionando Termos no botão suspenso "Edit (Editar)" no conjunto de dados. Você também pode permitir que os usuários solicitem acesso aos seus arquivos restritos, ativando "Solicitar acesso". Para adicionar mais informações sobre os Termos de acesso, fornecemos campos como Local de acesso a dados, Status de disponibilidade, Contato para acesso, etc.
         
         \subsubsection{Livro de Visitas}
         
@@ -1431,13 +1458,13 @@ Se um proprietário de dados achar que CC0 não é adequado para seus dados, pod
 
 Ao acessar a página de permissões de um conjunto de dados, você verá duas seções:\\
 
-\textbf{Usuários / grupos:} aqui você pode atribuir funções a usuários ou grupos específicos, determinando quais ações eles têm permissão para executar no seu conjunto de dados. Você também pode fazer referência a uma lista de todos os usuários que têm funções atribuídas a eles para o seu conjunto de dados e remover as funções, se desejar. Alguns dos usuários listados podem ter funções atribuídas no nível do dataverse; nesse caso, essas funções podem ser removidas apenas da página de permissões do dataverse.\\
+\textbf{Usuários / grupos:} aqui você pode atribuir funções a usuários ou grupos específicos, determinando quais ações eles têm permissão para executar no seu conjunto de dados. Você também pode fazer referência a uma lista de todos os usuários que têm funções atribuídas a eles para o seu conjunto de dados e remover as funções, se desejar. Alguns dos usuários listados podem ter funções atribuídas no nível do dataverse, nesse caso, essas funções podem ser removidas apenas da página de permissões do dataverse.\\
 
 \textbf{Funções:} Aqui você pode fazer referência a uma lista completa de funções que podem ser atribuídas aos usuários do seu conjunto de dados. Cada função lista as permissões que oferece.
         
         \subsubsection{Nível de Arquivo}
         
-\qquad Se arquivos específicos no seu conjunto de dados tiverem acesso restrito, você \\poderá conceder acesso a usuários ou grupos específicos a esses arquivos, mantendo-os restritos ao público em geral. Se você é administrador ou curador de um conjunto de dados, pode acessar a página de permissões no nível do arquivo clicando no botão "Edit (Editar)", realçando "Permissões" na lista suspensa e clicando em "Arquivo".
+\qquad Se arquivos específicos no seu conjunto de dados tiverem acesso restrito, você poderá conceder acesso a usuários ou grupos específicos a esses arquivos, mantendo-os restritos ao público em geral. Se você é administrador ou curador de um conjunto de dados, pode acessar a página de permissões no nível do arquivo clicando no botão "Edit (Editar)", realçando "Permissões" na lista suspensa e clicando em "Arquivo".
 
 Ao acessar a página de permissões no nível do arquivo de um conjunto de dados, você verá duas seções:\\
 
@@ -1451,24 +1478,24 @@ Ao acessar a página de permissões no nível do arquivo de um conjunto de dados
 
 O Dataverse aceita informações de proveniência de duas formas: um Arquivo de proveniência ou uma Descrição de proveniência de texto livre. Você pode anexar essas informações de proveniência aos seus arquivos de dados no Dataverse como parte do processo de upload do arquivo, clicando em Editar -> Proveniência:
    
-  \begin{figure}[!htp]
+  \begin{figure}[H]
+     \caption{Proveniência}
                 \centering
-                \includegraphics[scale=0.5]{prov.png}
-                \caption{Fonte: http://guides.dataverse.org/en/4.14/\_images/prov0.png}
+         \includegraphics[scale=0.5]{prov.png}
             \label{Proveniência}
         \end{figure}
-   \newpage
+   \noindent {\small Fonte: DATAVERSE PROJECT, 2019}\\
+
 Isso abrirá uma janela onde você pode adicionar seu arquivo de proveniência e / ou descrição da proveniência:
     
-    
- \begin{figure}[!htp]
-                \centering
-                \includegraphics[scale=0.7]{prov1.png}
-                \caption{Fonte: http://guides.dataverse.org/en/4.14/\_images/prov1.png}
+ \begin{figure}[H]
+                 \caption{Arquivo de proveniência}
+                \centering                \includegraphics[scale=0.7]{prov1.png}
             \label{Proveniência1}
         \end{figure}
-    
-Depois de fazer o upload de um arquivo de proveniência, o Dataverse precisará de algumas informações adicionais para conectá-lo com precisão ao seu arquivo de dados. Quando o upload do arquivo de origem terminar, uma caixa de entrada chamada “Connect entity” aparecerá sob o arquivo. Os arquivos de proveniência contêm uma lista de "entidades", que incluem seu arquivo de dados e quaisquer objetos associados a ele (por exemplo, um gráfico, um corretor ortográfico etc.). Você precisará informar ao Dataverse qual entidade no arquivo de proveniência representa seu arquivo de dados. Você pode digitar o nome da entidade na caixa ou clicar na seta ao lado da caixa e selecionar a entidade em uma lista de todas as entidades no arquivo de proveniência.
+\noindent {\small Fonte: DATAVERSE PROJECT, 2019}\\
+
+Depois de fazer o upload de um arquivo de proveniência, o Dataverse precisará de algumas informações adicionais para conectá-lo com precisão ao seu arquivo de dados. Quando o upload do arquivo de origem terminar, uma caixa de entrada chamada “Connect entity” aparecerá sob o arquivo. Os arquivos de proveniência contêm uma lista de "entidades", que incluem seu arquivo de dados e quaisquer objetos associados a ele (por exemplo, um gráfico, um corretor ortográfico, etc.). Você precisará informar ao Dataverse qual entidade no arquivo de proveniência representa seu arquivo de dados. Você pode digitar o nome da entidade na caixa ou clicar na seta ao lado da caixa e selecionar a entidade em uma lista de todas as entidades no arquivo de proveniência.
 
 Depois de fazer o upload do seu arquivo de proveniência e conectar a entidade adequada, você pode clicar no botão "Visualizar" para visualizar o JSON bruto do arquivo de proveniência. Isso pode ajudar a confirmar que você enviou o arquivo certo. Verifique-o novamente, porque o arquivo de proveniência será permanente assim que for finalizado. Nesse ponto, você não poderá substituir, remover ou editar o arquivo de proveniência. Isso garante que o arquivo de proveniência mantenha um registro estável e imutável do histórico do arquivo de dados. 
 
@@ -1490,7 +1517,7 @@ Nesta página, na guia Miniatura, você verá três ações possíveis.\\
 
 \textbf{Selecionar arquivo disponível:} clique no botão "Selecionar miniatura" para \\escolher uma imagem do seu conjunto de dados para usá-la como miniatura do conjunto de dados.\\
 
-\textbf{Carregar novo arquivo:} carregue um arquivo de imagem do seu computador para usá-lo como miniatura do conjunto de dados. Embora, por padrão, sua imagem em miniatura seja desenhada a partir de um arquivo no seu conjunto de dados, isso permitirá que você envie um arquivo de imagem separado para usar como miniatura do conjunto de dados. Este arquivo de imagem enviado será usado apenas como miniatura do conjunto de dados; ele não será armazenado como um arquivo de dados no seu conjunto de dados.\\
+\textbf{Carregar novo arquivo:} carregue um arquivo de imagem do seu computador para usá-lo como miniatura do conjunto de dados. Embora, por padrão, sua imagem em miniatura seja desenhada a partir de um arquivo no seu conjunto de dados, isso permitirá que você envie um arquivo de imagem separado para usar como miniatura do conjunto de dados. Este arquivo de imagem enviado será usado apenas como miniatura do conjunto de dados, ele não será armazenado como um arquivo de dados no seu conjunto de dados.\\
 
 \textbf{Remover miniatura:} se você clicar no botão "Remove (Remover)" abaixo da imagem em miniatura, removerá a miniatura atual do conjunto de dados. O conjunto de dados será revertido para exibir um ícone padrão básico como miniatura do conjunto de dados.
 
@@ -1522,11 +1549,11 @@ Antes de publicar seu conjunto de dados, a Citação de dados indicará que este
     
     \subsection{Submeter à Revisão}
     
-\qquad Se você tiver uma função de Colaborador (pode editar metadados, fazer upload e editar arquivos, editar Termos, Livro de Visitas e Enviar conjuntos de dados para revisão) em um Dataverse, poderá enviar seu conjunto de dados para revisão quando terminar de enviar e preencher todos os dados. dos campos de metadados relevantes. Para enviar para revisão, vá para o seu conjunto de dados e clique no botão "Submit for Review (Enviar para revisão)", localizado ao lado do botão "Edit (Editar)" no canto superior direito. Depois de enviado para revisão: o administrador ou o curador deste Dataverse será notificado para revisar esse conjunto de dados antes de decidir "Publicar" o conjunto de dados ou "Retornar ao autor". Se o conjunto de dados for publicado, o colaborador receberá uma notificação dizendo que o mesmo agora se encontra publicado. Se o conjunto de dados for retornado ao autor, o colaborador desse conjunto de dados será notificado de que precisa fazer modificações antes de poder ser enviado para revisão novamente.
+\qquad Se você tiver uma função de Colaborador (pode editar metadados, fazer upload e editar arquivos, editar Termos, Livro de Visitas e Enviar conjuntos de dados para revisão) em um Dataverse, poderá enviar seu conjunto de dados para revisão quando terminar de enviar e preencher todos os dados. dos campos de metadados relevantes. Para enviar para revisão, vá para o seu conjunto de dados e clique no botão "Submit for Review (Enviar para revisão)", localizado ao lado do botão "Edit (Editar)" no canto superior direito. Depois de enviado para revisão: o administrador ou o curador deste Dataverse será notificado para revisar esse conjunto de dados antes de decidir "Publicar" o conjunto de dados ou "Retornar ao autor". Se o conjunto de dados for publicado, o colaborador receberá uma notificação dizendo que o mesmo agora se encontra publicado. Se o conjunto de dados for retornado ao autor, o colaborador desse conjunto de dados será notificado que precisa fazer modificações antes de poder ser enviado para revisão novamente.
     
     \subsection{URL Privada para Revisão de Datasets Não publicados}
     
-\qquad A criação de uma URL privada para o seu conjunto de dados permite que você compartilhe seu conjunto de dados (para visualização e download de arquivos) antes de ser publicado para um amplo grupo de indivíduos que podem não ter uma conta de usuário no Dataverse. Qualquer pessoa para quem você enviar o URL privado não precisará fazer login no Dataverse para visualizar o conjunto de dados.\\
+\qquad A criação de uma URL privada para o seu conjunto de dados permite que você compartilhe seu conjunto de dados (para visualização e download de arquivos) antes de ser publicado para um amplo grupo de indivíduos que podem não ter uma conta de usuário no Dataverse. Qualquer pessoa para quem você enviar o URL privado não precisará fazer login no Dataverse para visualizar o conjunto de dados:\\
 
 1. Vá para o seu conjunto de dados não publicado\\
 
@@ -1544,17 +1571,17 @@ Para desativar um URL privado e revogar o acesso, siga as mesmas etapas acima at
     
 \qquad O controle de versão é importante para o gerenciamento de dados de pesquisa de longo prazo, onde os metadados e / ou arquivos são atualizados ao longo do tempo. É usado para rastrear quaisquer metadados ou alterações de arquivo (por exemplo, fazendo upload de um novo arquivo, alterando metadados de arquivo, adicionando ou editando metadados) após a publicação do conjunto de dados.
 
-\begin{figure}[!htp]
+\begin{figure}[H]
+    \caption{Versões}
     \centering
-      \includegraphics[scale=0.5]{ver.png}
-        \caption{Fonte: http://guides.dataverse.org/en/4.14/\_images/data\_publishing\_
-        version\_workflow.png}
+      \includegraphics[scale=0.4]{ver.png}
     \label{Versão}
  \end{figure}
+\noindent Fonte: DATAVERSE PROJECT\\
     
-Depois de editar seu conjunto de dados publicado, uma nova versão de rascunho desse conjunto de dados será criada. Para publicar esta nova versão do seu conjunto de dados, selecione o botão "Publish Dataset (Publicar conjunto de dados)" no canto superior direito da página. Se você estivesse na versão 1 do seu conjunto de dados, dependendo dos tipos de alterações feitas, seria solicitado a publicar seu rascunho como versão 1.1 ou versão 2.0.
+Depois de editar seu conjunto de dados publicado, uma nova versão de rascunho desse conjunto de dados será criada. Para publicar esta nova versão do seu conjunto de dados, selecione o botão "Publish Dataset (Publicar conjunto de dados)" no canto superior direito da página. Se você estivesse na versão 1 do seu conjunto de dados, dependendo dos tipos de alterações feitas, seria solicitado publicar seu rascunho como versão 1.1 ou versão 2.0.
 
-Se você adicionar um arquivo, seu conjunto de dados será automaticamente \\atualizado para uma versão principal (por exemplo, se você estivesse na versão 1.0, irá para a versão 2.0).
+Se você adicionar um arquivo, seu conjunto de dados será automaticamente atualizado para uma versão principal (por exemplo, se você estivesse na versão 1.0, irá para a versão 2.0).
 
 Na guia Versões de uma página de conjunto de dados, há uma tabela de versões que exibe o histórico de versões do conjunto de dados. Você pode usar os links do número da versão nesta tabela para navegar entre as diferentes versões do conjunto de dados, incluindo a versão de rascunho não publicada, se tiver permissão para acessá-lo.
 
@@ -1584,20 +1611,86 @@ Uma página de lápide com os metadados básicos de citação sempre estará ace
 \section{Manual do administrador}
 \vspace{10.5cm}
 
+\newpage
+
     \subsection{Painel de controle}
     
-\qquad O Dataverse oferece um painel de ferramentas administrativas apenas para  \\superusuários. Se você é um superusuário logado, pode acessá-lo clicando no seu nome de usuário na barra de navegação e, em seguida, clicando em "Painel" no menu suspenso. Você pode verificar se é um superusuário, verificando a cor do seu nome de usuário na barra de navegação. Se estiver vermelho, você tem as permissões corretas para usar o Painel. Os superusuários podem fornecer a outros usuários o status de superusuário via Administração do Usuário.
+\qquad O Dataverse oferece um painel de ferramentas administrativas apenas para  superusuários. Se você é um superusuário logado, pode acessá-lo clicando no seu nome de usuário na barra de navegação e, em seguida, clicando em "Dashboard" no menu suspenso, fig. \ref{img01.png}.
+
+
+\begin{figure}[!htp]
+    \centering
+      \includegraphics[scale=0.2]{imagens/01.png}
+        \caption{Dashboard}
+    \label{img01.png}
+ \end{figure}
+
+Você pode verificar se é um superusuário, verificando a cor do seu nome de usuário na barra de navegação. Se estiver vermelho, você tem as permissões corretas para usar o Painel. Os superusuários podem fornecer a outros usuários o status de superusuário via Administração do Usuário.
 
 \subsubsection{Harvest}
 
 \qquad\textbf{Coletando Clientes}\\
 
-Essa ferramenta de painel permite configurar de quais outros repositórios sua \\instalação do Dataverse coleta registros de metadados. Você pode visualizar uma lista de clientes de coleta e adicioná-los, editar ou removê-los.\\
+Essa ferramenta de painel permite configurar de quais outros repositórios sua instalação do Dataverse coleta registros de metadados. Você pode visualizar uma lista de clientes de coleta e adicioná-los, editar ou removê-los.\\
+
+
 
 \textbf{Coletando Servidores}\\
 
 Essa ferramenta de painel permite definir conjuntos de conjuntos de dados locais para disponibilizar aos clientes de coleta remota. Você pode ver uma lista de conjuntos e adicioná-los, editar ou removê-los.
 
+Depois de clicar na opção Dashboard, fig.\ref{img01.png}, o site abrirá uma janela com as opções, clique no \textit{Manager Server}, do item \textit{Harvest Server}, figura \ref{img02.png}. Na janela \textit{Harvest Server}, figura \ref{img04.png}, estão as informações básicas sobre o colate. 
+
+Na parte logo acima da descrição tem o item \textit{OAI Server}. Este item estará desabilitado, agora, modifique sua opção para \textit{Enable}.
+ 
+ \begin{figure}[ht]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include first image
+  \includegraphics[width=.9\linewidth]{imagens/02.png}  
+  \caption{Janela Dashboard}
+  \label{img02.png}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include second image
+  \includegraphics[width=.9\linewidth]{imagens/04.png}  
+  \caption{Janela para habilitar o servidor OAI}
+  \label{img03.png}
+\end{subfigure}
+\caption{Harvest server}
+\label{img0203}
+\end{figure}
+
+Para verificar se foi modificado, acesse o endereço \textit{http://\color[red]{URL DO DATAVERSE}/oai}. Caso a página seja parecida com a figura \ref{img06.png}, o OAI server está habilitado.
+
+\begin{figure}[!htp]
+    \centering
+      \includegraphics[scale=0.2]{imagens/06.png}
+        \caption{Dashboard}
+    \label{img06.png}
+ \end{figure}
+
+ \begin{figure}[ht]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include first image
+  \includegraphics[width=.9\linewidth]{imagens/03.png}  
+  \caption{Adicionar uma coleta}
+  \label{img04.png}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include second image
+  \includegraphics[width=.9\linewidth]{imagens/05.png}  
+  \caption{Configurar coleta}
+  \label{img05.png}
+\end{subfigure}
+\caption{Criar um critério de coleta}
+\label{img0405}
+\end{figure}
+ 
+\newpage
 \subsubsection{Usuários}
 
 \qquad Essa ferramenta de painel permite pesquisar uma lista de todos os usuários da sua instalação do Dataverse. Você pode remover funções das contas de usuário e atribuir ou remover o status de superusuário.
@@ -1626,14 +1719,14 @@ O processo de criação de um novo cliente ou edição de um cliente existente �
 
 \subsubsection{Como funciona?}
 
-\qquad Somente os conjuntos de dados publicados e irrestritos no seu Dataverse podem ser colhidos. Os clientes remotos normalmente mantêm seus registros sincronizados por meio de atualizações incrementais agendadas, diariamente ou semanalmente, \\minimizando a carga no servidor. Observe que são apenas os metadados que são coletados. Os harvesters remotos geralmente não tentam baixar os arquivos de dados associados aos conjuntos de dados coletados.
+\qquad Somente os conjuntos de dados publicados e irrestritos no seu Dataverse podem ser colhidos. Os clientes remotos normalmente mantêm seus registros sincronizados por meio de atualizações incrementais agendadas, diariamente ou semanalmente, minimizando a carga no servidor. Observe que são apenas os metadados que são coletados. Os harvesters remotos geralmente não tentam baixar os arquivos de dados associados aos conjuntos de dados coletados.
 O servidor de coleta pode ser ativado ou desativado na página "Servidor de coleta", acessível através do Painel. Por padrão, o servidor de coleta está desativado em um Dataverse novo e "pronto para uso".
 
 \subsubsection{Conjuntos OAI}
 
 \qquad Depois que o serviço é ativado, você define coleções de conjuntos de dados locais que estarão disponíveis para Harvester remotos como Conjuntos OAI. Os conjuntos são definidos por search queries. Qualquer consulta que encontre qualquer número de conjuntos de dados locais publicados (não coletados) pode ser usada para criar um conjunto OAI. Os conjuntos podem se sobrepor a locais de dados locais e podem incluir o número mínimo ou máximo de conjuntos de dados locais que você desejar.
 
-Depois de inserir a search queries e clicar em Avançar, o número de resultados encontrados será mostrado na próxima tela. Dessa forma, se você vir um número diferente do esperado, poderá voltar e tentar redefinir a consulta.\\
+Depois de inserir a search queries e clicar em Avançar, o número de resultados encontrados será mostrado na próxima tela. Dessa forma, se você perceber um número diferente do esperado, poderá voltar e tentar redefinir a consulta.\\
 
 Alguns exemplos úteis de consultas de pesquisa para definir conjuntos OAI:
 
@@ -1718,7 +1811,7 @@ keywordValue: censura
 
 \subsubsection{Atualizações do conjunto OAI}
 
-\qquad Sempre que um novo conjunto de coleta é criado ou são feitas alterações em um conjunto existente, o conteúdo do conjunto é atualizado automaticamente - o aplicativo Dataverse encontrará os conjuntos de dados definidos pela consulta e tentará \\executar a exportação de metadados nos que ainda não foram exportados. Somente os conjuntos de dados para os quais a exportação foi concluída com êxito e os resultados armazenados em cache no sistema de arquivos são incluídos nos conjuntos OAI anunciados aos clientes da coleta.
+\qquad Sempre que um novo conjunto de coleta é criado ou são feitas alterações em um conjunto existente, o conteúdo do conjunto é atualizado automaticamente - o aplicativo Dataverse encontrará os conjuntos de dados definidos pela consulta e tentará executar a exportação de metadados nos que ainda não foram exportados. Somente os conjuntos de dados para os quais a exportação foi concluída com êxito e os resultados armazenados em cache no sistema de arquivos são incluídos nos conjuntos OAI anunciados aos clientes da coleta.
 
 Observe, no entanto, que as alterações feitas nos metadados reais do conjunto de dados não acionam automaticamente nenhum conjunto OAI correspondente para ser atualizado imediatamente. Por exemplo: digamos que você criou um conjunto OAI definido pela consulta de pesquisa
 
@@ -1740,25 +1833,25 @@ Ainda é possível, no entanto, fazer alterações como essa serem imediatamente
 
 \subsubsection{Introdução}
 
-\qquad Antes de iniciar a personalização de metadados no Dataverse, verifique a possibilidade de customização disponível na interface da web do Dataverse. É possível ocultar os campos e torná-los necessários, clicando em "Editar" no nível do inversor de dados, clicando em "Informações gerais" e fazendo ajustes em "Campos de metadados".\\
+\qquad Antes de iniciar a personalização de metadados no Dataverse, verifique a possibilidade de customização disponível na interface da web do Dataverse. É possível ocultar os campos e torná-los necessários, clicando em "Editar" no nível do dataverse, clicando em "Informações gerais" e fazendo ajustes em "Campos de metadados".\\
 
 As possibilidades de personalização incluem:
 
 \begin{itemize}
 
-\item Editar e adicionar campos de metadados
+\item Editar e adicionar campos de metadados;
 
-\item Edição e adição de texto instrucional (dicas de ferramentas de rótulos de campo e marcas d'água de caixa de texto)
+\item Edição e adição de texto instrucional (dicas de ferramentas de rótulos de campo e marcas d'água de caixa de texto);
 
-\item Editar e adicionar vocabulários controlados
+\item Editar e adicionar vocabulários controlados;
 
-\item Alterar os campos que os depositantes devem usar para salvar os conjuntos de dados
+\item Alterar os campos que os depositantes devem usar para salvar os conjuntos de dados;
 
-\item Alterar como os valores salvos dos metadados são exibidos na interface do usuário
+\item Alterar como os valores salvos dos metadados são exibidos na interface do usuário.
 
 \end{itemize}
 
-De um modo geral, é mais seguro criar seu próprio bloco de metadados \\personalizado em vez de editar os blocos de metadados fornecidos com o Dataverse. Observe que os blocos de metadados enviados com o Dataverse são baseados em padrões (por exemplo, DDI para ciências sociais). O dataverse é enviado com um bloco de metadados de citação, que inclui campos obrigatórios necessários para atribuir IDs persistentes a conjuntos de dados e blocos de metadados específicos do domínio. As definições desses blocos são carregadas em uma instalação do Dataverse em valor \\separado por tabulação (TSV). Embora seja tecnicamente possível definir mais de um bloco de metadados em um arquivo TSV, é uma boa prática organizacional definir apenas um em cada arquivo.
+De um modo geral, é mais seguro criar seu próprio bloco de metadados personalizado em vez de editar os blocos de metadados fornecidos com o Dataverse. Observe que os blocos de metadados enviados com o Dataverse são baseados em padrões (por exemplo, DDI para Ciências Sociais). O dataverse é enviado com um bloco de metadados de citação, que inclui campos obrigatórios necessários para atribuir IDs persistentes a conjuntos de dados e blocos de metadados específicos do domínio. As definições desses blocos são carregadas em uma instalação do Dataverse em valor separado por tabulação (TSV). Embora seja tecnicamente possível definir mais de um bloco de metadados em um arquivo TSV, é uma boa prática organizacional definir apenas um em cada arquivo.
 
 \subsubsection{Sobre o bloco de metadados TSV}
 
@@ -1796,57 +1889,66 @@ De um modo geral, é mais seguro criar seu próprio bloco de metadados \\persona
 
 \end{itemize}
 
-Cada uma das três seções principais possui conjuntos de propriedades:
-
-\newpage
+Cada uma das três seções principais possui conjuntos de propriedades:\\
 
 \textbf{Propriedades dos \#metadataBlock}\\
 
-\begin{table}[h]
+\begin{table}[H]
+\caption{metadataBlock}
+\label{tab:my-table}
 \begin{tabular}{|l|l|l|}
 \hline
 Propriedade    & Próposito                                                                                                                                                                                                   & Valores e restrições permitidos                                                                                                                                                                                                                                                                                                                     \\ \hline
 name           & \begin{tabular}[c]{@{}l@{}}Uma sequência definida pelo \\ usuário usada\\  para identificar um \\ \#metadataBlock\end{tabular}                                                                              & \begin{tabular}[c]{@{}l@{}}Sem espaços ou pontuação, exceto sublinhado. \\ Por convenção, deve começar com uma letra e \\ usar letras minúsculas em camelo. Não deve \\ colidir com um campo com o mesmo nome na \\ mesma ou em qualquer outra definição \\ \#datasetField, incluindo blocos de metadados \\ definidos em outro local.\end{tabular} \\ \hline
-dataverseAlias & \begin{tabular}[c]{@{}l@{}}Se especificado, esse bloco de \\ metadados estará disponível \\ apenas para o dataverse \\ designado aqui por seu alias \\ e para filhos desse inverso de \\ dados\end{tabular} & Texto livre                                                                                                                                                                                                                                                                                                                                         \\ \hline
+dataverseAlias & \begin{tabular}[c]{@{}l@{}}Se especificado, esse bloco de \\ metadados estará disponível \\ apenas para o dataverse \\ designado aqui por seu alias \\ e para filhos desse dataverse \end{tabular} & Texto livre                                                                                                                                                                                                                                                                                                                                         \\ \hline
 displayName    & \begin{tabular}[c]{@{}l@{}}Atua como um breve rótulo para \\ exibição relacionada a este \\ \#metadataBlock\end{tabular}                                                                                    & \begin{tabular}[c]{@{}l@{}}Deve ser relativamente breve. O limite é de 256 \\ caracteres, mas nomes muito longos podem \\ causar problemas de exibição.\end{tabular}                                                                                                                                                                                \\ \hline
 \end{tabular}
 \end{table}
 
+\noindent {\small Fonte: DATAVERSE PROJECT, 2019, adaptado}
+
+\newpage
+
 \textbf{Propriedades \#datasetField (field)}
 
-\begin{table}[!]
+\begin{table}[H]
+\caption{datasetField}
+\label{tab:my-table}
 \begin{tabular}{|l|l|l|}
 \hline
-Propriedade & Próposito                                                                                                                                                                                       & Valores e restrições permitidos                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       \\ \hline
-name        & \begin{tabular}[c]{@{}l@{}}Uma sequência definida \\ pelo usuário \\ usada para identificar um \\ \#datasetField. Mapeia \\ diretamente para o nome \\ do campo usado pelo \\ Solr\end{tabular} & \begin{tabular}[c]{@{}l@{}}(de DatasetFieldType.java) O nome interno do \\ tipo DDI, sem espaços, etc. (do Solr) Os nomes \\ dos campos devem consistir apenas em caracteres \\ alfanuméricos ou sublinhados e não começar com \\ um dígito. No momento, isso não é rigorosamente \\ imposto, mas outros nomes de campo não terão \\ suporte de primeira classe de todos os componentes \\ e a compatibilidade com versões anteriores não é \\ garantida. Os nomes com sublinhados iniciais e \\ finais (por exemplo, \_version\_) são reservados. Não \\ deve colidir com um campo com o mesmo nome em \\ outra definição \#metadataBlock ou com qualquer \\ nome já incluído como campo no índice Solr\end{tabular} \\ \hline
-title       & \begin{tabular}[c]{@{}l@{}}Atua como um breve \\ rótulo para exibição \\ relacionada a esse \\ \#datasetField\end{tabular}                                                                      & Deve ser relativamente breve                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          \\ \hline
-\end{tabular}
-\end{table}
-
-\begin{table}
-\begin{tabular}{|l|l|l|}
-\hline
-description               & \begin{tabular}[c]{@{}l@{}}Usado para fornecer uma \\ descrição do campo.\end{tabular}                                                                                                                                                                                                                                                      & Texto livre                                                                                              \\ \hline
-watermark                 & \begin{tabular}[c]{@{}l@{}}Uma sequência a ser exibida \\ inicialmente em um campo \\ como um prompt para o que \\ o usuário deve inserir\end{tabular}                                                                                                                                                                                      & Texto                                                                                                    \\ \hline
-fieldType                 & \begin{tabular}[c]{@{}l@{}}Define o tipo de conteúdo \\ que o campo, se não \\ estiver vazio, deve conter\end{tabular}                                                                                                                                                                                                                      & \begin{tabular}[c]{@{}l@{}}Nenhum, data, o e-mail, texto, \\ caixa de texto, URL, int, float\end{tabular} \\ \hline
-displayOrder              & \begin{tabular}[c]{@{}l@{}}Controla a sequência na qual \\ os campos são exibidos, para \\ entrada e apresentação\end{tabular}                                                                                                                                                                                                              & Inteiro não negativo                                                                                     \\ \hline
-displayFormat             & \begin{tabular}[c]{@{}l@{}}Controla como o conteúdo é \\ exibido para apresentação. O \\ valor desse campo pode \\ conter uma ou mais variáveis \\ especiais. As tags HTML, \\ provavelmente em conjunto \\ com um ou mais desses \\ valores, podem ser usadas \\ para controlar a exibição do \\ conteúdo na interface da web\end{tabular} &                                                                                                          \\ \hline
-advancedSearchField       & \begin{tabular}[c]{@{}l@{}}Especifique se este campo \\ está disponível na pesquisa \\ avançada\end{tabular}                                                                                                                                                                                                                                & \begin{tabular}[c]{@{}l@{}}TRUE (disponível) ou\\ FALSE (não disponível)\end{tabular}                    \\ \hline
-allowControlledVocabulary & \begin{tabular}[c]{@{}l@{}}Especifique se os possíveis \\ valores desse campo são \\ determinados por valores na \\ seção \#controlledVocabulary\end{tabular}                                                                                                                                                                               & \begin{tabular}[c]{@{}l@{}}TRUE (controlado) ou \\ FALSE (não controlado)\end{tabular}                   \\ \hline
-allowmultiples            & \begin{tabular}[c]{@{}l@{}}Especifique se este campo é \\ repetitivo\end{tabular}                                                                                                                                                                                                                                                           & \begin{tabular}[c]{@{}l@{}}TRUE (repetível) ou \\ FALSE (não repetível)\end{tabular}                     \\ \hline
+Propriedade  & Próposito                                                                                                                                                                              & Valores e restrições permitidos                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             \\ \hline
+name         & \begin{tabular}[c]{@{}l@{}}Uma sequência definida pelo\\ usuário usada para identificar\\ um \#datasetField. Mapeia \\ diretamente para o nome do \\ campo usado pelo Solr\end{tabular} & \begin{tabular}[c]{@{}l@{}}(de DatasetFieldType.java) O nome interno \\ do tipo DDI, sem espaços, etc. (do Solr) \\ Os nomes dos campos devem consistir \\ apenas em caracteres alfanuméricos ou \\ sublinhados e não começar com um dígito. \\ No momento, isso não é rigorosamente \\ imposto, mas outros nomes de campo não \\ terão suporte de primeira classe de todos os \\ componentes e a compatibilidade com \\ versões anteriores não é garantida. Os \\ nomes com sublinhados iniciais e finais \\ (por exemplo, \_version\_) são reservados. \\ Não deve colidir com um campo com o \\ mesmo nome em outra definição \\ \#metadataBlock ou com qualquer nome \\ já incluído como campo no índice Solr\end{tabular} \\ \hline
+title        & \begin{tabular}[c]{@{}l@{}}Atua como um breve rótulo \\ para exibição relacionada a \\ esse \#datasetField\end{tabular}                                                                 & Deve ser relativamente breve                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                \\ \hline
+description  & \begin{tabular}[c]{@{}l@{}}Usado para fornecer uma \\ descrição do campo\end{tabular}                                                                                                  & Texto livre                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 \\ \hline
+watermark    & \begin{tabular}[c]{@{}l@{}}Uma sequência a ser exibida \\ inicialmente em um campo \\ como um prompt para o que \\ o usuário deve inserir\end{tabular}                                 & Texto livre                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 \\ \hline
+fieldType    & \begin{tabular}[c]{@{}l@{}}Define o tipo de conteúdo \\ que o campo, se não estiver \\ vazio, deve conter\end{tabular}                                                                 & \begin{tabular}[c]{@{}l@{}}Nenhum, data, o email, texto, caixa de \\ texto, URL, int, float\end{tabular}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    \\ \hline
+displayOrder & \begin{tabular}[c]{@{}l@{}}Controla a sequência na \\ qual os campos são exibidos,\\  para entrada e apresentação\end{tabular}                                                         & Inteiro não negativo                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        \\ \hline
 \end{tabular}
 \end{table}
 
 \newpage
 
-\begin{table}[h!]
+
+\begin{table}[H]
 \begin{tabular}{|l|l|l|}
 \hline
-facetable         & \begin{tabular}[c]{@{}l@{}}Especifique se o campo é facetável. Se \\ um campo é facetável,  ele aparece em \\ "Procurar / pesquisar facetas" quando \\ você edita "Informações gerais" para um \\ dataverse. Definir esse valor como \\ TRUE geralmente faz sentido para \\ campos de vocabulário enumerados ou \\ controlados, campos que representam \\ identificadores e outros campos que \\ provavelmente compartilham valores \\ entre as entradas. É menos provável \\ que faça sentido para campos que \\ contenham descrições, números de \\ ponto flutuante e outros valores que \\ provavelmente sejam únicos\end{tabular} & \begin{tabular}[c]{@{}l@{}}TRUE (controlado) ou \\ FALSE (não controlado)\end{tabular}                                                                                                               \\ \hline
-displayoncreate   & \begin{tabular}[c]{@{}l@{}}Designe campos que devem ser exibidos \\ durante a criação de um novo conjunto de \\ dados, mesmo antes de o conjunto de \\ dados ser salvo. Os campos não tão \\ designados não serão exibidos até que o \\ conjunto de dados seja salvo\end{tabular}                                                                                                                                                                                                                                                                                                                                                     & \begin{tabular}[c]{@{}l@{}}TRUE (exibir na criação) ou \\ FALSE (não exibir na criação)\end{tabular}                                                                                                 \\ \hline
-required          & \begin{tabular}[c]{@{}l@{}}Especifique se o campo é obrigatório ou \\ não. Isso significa que pelo menos uma \\ instância do campo deve estar presente. \\ Mais de um campo pode ser permitido, \\ dependendo do valor de allowmultiples\end{tabular}                                                                                                                                                                                                                                                                                                                                                                                 & \begin{tabular}[c]{@{}l@{}}TRUE (requerido) or FALSE \\ (não requerido)\end{tabular}                                                                                                                 \\ \hline
-parent            & \begin{tabular}[c]{@{}l@{}}Para subcampos, especifique o nome do \\ pai ou campo contendo\end{tabular}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                & \begin{tabular}[c]{@{}l@{}}Não deve resultar em uma \\ referência cíclica. Deve fazer \\ referência a um campo \\ existente no mesmo \\ \#metadataBlock.\end{tabular}                                \\ \hline
-metadatablock\_id & \begin{tabular}[c]{@{}l@{}}Especifique o nome do \#metadataBlock \\ que contém esse campo\end{tabular}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                & \begin{tabular}[c]{@{}l@{}}Deve fazer referência a um \\ \#metadataBlock existente. \\ Como prática recomendada, \\ o valor deve referenciar o \\ \#metadataBlock na \\ definição atual\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}l@{}}displayFor\\ mat\end{tabular}                & \begin{tabular}[c]{@{}l@{}}Controla como o conteúdo \\ é exibido para apresentação. \\ O valor desse campo pode \\ conter uma ou mais \\ variáveis especiais. As tags \\ HTML, provavelmente em \\ conjunto com um ou mais \\ desses valores, podem ser \\ usadas para controlar a \\ exibição do conteúdo na \\ interface da web\end{tabular}                                                                                                                                                                                                                                                                                                       &                                                                                        \\ \hline
+\begin{tabular}[c]{@{}l@{}}advanced\\ SearchField\end{tabular}          & \begin{tabular}[c]{@{}l@{}}Especifique se este campo \\ stá disponível na pesquisa \\ avançada\end{tabular}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          & \begin{tabular}[c]{@{}l@{}}TRUE (disponível) or FALSE (não \\ disponível)\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}l@{}}allow\\ ControlledVo\\ cabulary\end{tabular} & \begin{tabular}[c]{@{}l@{}}Especifique se os possíveis \\ valores desse campo são \\ determinados por valores na \\ seção \#controlledVocabulary\end{tabular}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        & \begin{tabular}[c]{@{}l@{}}TRUE (controlado) or FALSE (não controla\\ do)\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}l@{}}allowmulti\\ ples\end{tabular}               & \begin{tabular}[c]{@{}l@{}}Especifique se este campo \\ é repetitivo\end{tabular}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    & \begin{tabular}[c]{@{}l@{}}TRUE (repetível) or FALSE (não \\ repetível)\end{tabular}   \\ \hline
+facetable                                                               & \begin{tabular}[c]{@{}l@{}}Especifique se o campo é \\ facetável. Se um campo é \\ facetável,  ele aparece em \\ "Procurar / pesquisar facetas" \\ quando você edita \\ "Informações gerais" para \\ umdataverse. Definir esse \\ valor como TRUE \\ geralmente faz sentido para \\ campos de vocabulário \\ enumerados ou controlados, \\ campos que representam \\ identificadores e outros \\ campos que provavelmente \\ compartilham valores entre \\ as entradas. É menos \\ provável que faça sentido \\ para campos que contenham\\ descrições, números de ponto\\ flutuante e outros valores que\\  provavelmente sejam únicos\end{tabular} & \begin{tabular}[c]{@{}l@{}}TRUE (controlado) or FALSE (não \\ controlado)\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+\begin{tabular}[c]{@{}l@{}}displayoncre\\ ate\end{tabular}   & \begin{tabular}[c]{@{}l@{}}Designe campos que devem \\ ser exibidos durante a criação\\ de um novo conjunto de \\ dados, mesmo antes de o \\ conjunto de dados ser salvo.\\ Os campos nãotão \\ designados não serão \\ exibidos até que o conjunto\\ de dados seja salvo\end{tabular} & \begin{tabular}[c]{@{}l@{}}TRUE (exibir na criação) or FALSE (não\\ exibir na criação)\end{tabular}                                                                                            \\ \hline
+required                                                     & \begin{tabular}[c]{@{}l@{}}Especifique se o campo é \\ obrigatório ou não. Isso \\ significa que pelo menos \\ uma instância do campo \\ deveestar presente. Mais de \\ um campo pode ser \\ permitido, dependendo do \\ valor de allowmultiples\end{tabular}                          & TRUE (requerido) or FALSE (não requerido)                                                                                                                                                      \\ \hline
+parent                                                       & \begin{tabular}[c]{@{}l@{}}Para subcampos, especifique\\ o nome do pai ou campo \\ contendo\end{tabular}                                                                                                                                                                               & \begin{tabular}[c]{@{}l@{}}Não deve resultar em uma referência cíclica.\\ Deve fazer referência a um campo\\ existente no mesmo \#metadataBlock\end{tabular}                                   \\ \hline
+\begin{tabular}[c]{@{}l@{}}metadata\\ block\_id\end{tabular} & \begin{tabular}[c]{@{}l@{}}Especifique o nome do \\ \#metadataBlock que contém \\ esse campo\end{tabular}                                                                                                                                                                              & \begin{tabular}[c]{@{}l@{}}Deve fazer referência a um \#metadataBlock\\  existente. Como prática recomendada, o \\ valor deve referenciar o \#metadataBlock na\\  definição atual\end{tabular} \\ \hline
 \end{tabular}
 \end{table}
 
@@ -1855,6 +1957,8 @@ metadatablock\_id & \begin{tabular}[c]{@{}l@{}}Especifique o nome do \#metadataB
 \textbf{Propriedades do \#controlledVocabulary (enumeradas)}
 
 \begin{table}[h]
+\caption{controlledVocabulary}
+\label{tab:my-table}
 \begin{tabular}{|l|l|l|}
 \hline
 Propriedade  & Propósito                                                                                                                                                                                                                   & Valores permitidos e restrições                                                                                                                                                                                        \\ \hline
@@ -1868,6 +1972,8 @@ displayOrder & \begin{tabular}[c]{@{}l@{}}Controlar a ordem em que os valores \\
 \textbf{Definições FieldType}
 
 \begin{table}[h!]
+\caption{FieldType}
+\label{tab:my-table}
 \begin{tabular}{|l|l|}
 \hline
 Fieldtype & Definição                                                                                                                                                                                                                                                                              \\ \hline
@@ -1889,6 +1995,8 @@ float     & Um número de ponto flutuante destinado a um campo numérico        
 Essas são maneiras comuns de usar o displayFormat para controlar como os valores são exibidos na interface do usuário.
 
 \begin{table}[h]
+\caption{displayFormat}
+\label{tab:my-table}
 \begin{tabular}{|l|l|}
 \hline
 Variável                                                                                                                                              & Descrição                                                                                                                                                                                        \\ \hline
@@ -1926,16 +2034,16 @@ Para ver detalhes sobre um campo individual como "title" siga o exemplo abaixo:
 
 \subsubsection{Criação de Metadados}
         
-        \qquad Crie sua base de metadados, podendo ter como base os arquivos de metadados padrão. Os metadados estão localizados na pastas \textit{/home/dataverse/dataverse-4.16/scripts/api/data/metablocks}. Depois de criado o arquivo de metadados,teste.tsv, transfira para a pasta
+        \qquad Crie sua base de metadados, podendo ter como base os arquivos de metadados padrão. Os metadados estão localizados na pastas $/home/dataverse/dataverse-4.16/scripts/api/data/metablocks$. Depois de criado o arquivo de metadados,teste.tsv, transfira para a pasta
         
         \begin{minted}{bash}
     cp teste.csv /home/dataverse/dataverse-4.16/scripts/api/data/metablocks/
         \end{minted}
-        em seguinda, recaregue os metadados.
+        em seguinda, recarregue os metadados.
         \begin{minted}{bash}
-    curl http://localhost:8080/api/admin/datasetfield/load -H 
-        "Content-type: text/tab-separated-values" 
-            -X POST --upload-file teste.tsv
+    curl http://localhost:8080/api/admin/datasetfield/load -H\
+        "Content-type: text/tab-separated-values"\ 
+        -X POST --upload-file teste.tsv
         \end{minted}
 
 \subsubsection{Editando arquivos TSV}
@@ -1951,7 +2059,7 @@ Usaremos este comando novamente abaixo para atualizar o esquema Solr para acomod
 \qquad Vários arquivos TSV são carregados no Dataverse a cada nova instalação, que se tornam os blocos de metadados que você vê na interface do usuário.
 
 Junto com o arquivo TSV, há arquivos de propriedades ResourceBundle correspondentes com o par chave = valor.lang.directory e inclua um arquivo, por exemplo: “citation\_lang.properties” no caminho especificado para a opção da JVM 
-\textbf{dataverse.lang.\\directory} e, em seguida, reinicie o Glassfish.
+\textbf{dataverse.lang.directory} e, em seguida, reinicie o Glassfish.
 
 Se você estiver alterando um bloco de metadados existente, o processo de instalação do Dataverse carregará o TSV para você, assumindo que você editou o arquivo TSV no local. O arquivo TSV para o bloco de metadados Citation, por exemplo, pode ser encontrado em  \textbf{scripts / api / data / metadatablocks / citation.tsv}. Se algum dos valores de propriedade mencionados abaixo for alterado, o arquivo de propriedade ResourceBundle correspondente deverá ser editado e armazenado no local \textbf{dataverse.lang.directory}
 
@@ -1965,7 +2073,9 @@ Se você estiver alterando um bloco de metadados existente, o processo de instal
 
 Se você estiver criando um novo bloco de metadados customizados, o processo de instalação do Dataverse não saberá sobre o seu novo arquivo TSV, portanto, você deve carregar manualmente. O script que carrega os arquivos TSV no sistema é \textit{scripts /api/setup-datasetfields.sh} e contém uma série de comandos curl. Aqui está um exemplo do comando curl necessário com o novo bloco de metadados personalizados no diretório "/ tmp".
 \begin{minted}{bash}
-curl http: // localhost: 8080 / api / admin / datasetfield / load -H "Tipo de conteúdo: texto / valores separados por tabulação" -X POST --upload-file /tmp/new-metadata-block.tsv
+curl http://localhost:8080 / api / admin / datasetfield / load -H\
+    "Tipo de conteúdo: texto / valores separados por tabulação" -X\
+    POST --upload-file /tmp/new-metadata-block.tsv
 \end{minted}
 
 Para criar um novo ResourceBundle, a seguir serão apresentadas as etapas para gerar o par chave = valor para as três seções principais:
@@ -2000,7 +2110,7 @@ datasetfieldtype.title.watermark = Digite o título ...
 
 \subsubsection{Propriedades \#controlledVocabulary (enumeradas)}
 
-\qquad controladovocabulary. (o valor da propriedade \textbf{DatasetField} de \#controlledVocabulary). (o valor da propriedade \textbf{Value} de \#controlledVocabulary) = (o valor da propriedade \textbf{Value} de \#controlledVocabulary)\\
+\qquad Controladovocabulary. (o valor da propriedade \textbf{DatasetField} de \#controlledVocabulary). (o valor da propriedade \textbf{Value} de \#controlledVocabulary) = (o valor da propriedade \textbf{Value} de \#controlledVocabulary)\\
 
 Como a propriedade \textbf{Value} de \#controlledVocabulary é um texto livre, ao criar a chave, ela deve ser convertida para minúscula, substituir espaço por sublinhado e remover acentos.\\
 
@@ -2012,10 +2122,13 @@ controlvocabulary.language.marathi\_ (marathi) = Marathi (Maru0101u1E6Dhu012B)\\
 
 \subsubsection{Habilitando um bloco de metadados}
 
-\qquad A execução de um comando curl como o exemplo "load" acima deve disponibilizar o novo bloco de metadados customizados no sistema, mas para começar a usar os campos, você deve habilitá-lo na GUI ou executando um comando curl como o abaixo, usando um token de API de superusuário. No exemplo abaixo, estamos habilitando os blocos de metadados “diário” e “geoespacial” para o inverso de dados raiz.
+\qquad A execução de um comando curl como o exemplo "load" acima deve disponibilizar o novo bloco de metadados customizados no sistema, mas para começar a usar os campos, você deve habilitá-lo na GUI ou executando um comando curl como o abaixo, usando um token de API de superusuário. No exemplo abaixo, estamos habilitando os blocos de metadados “diário” e “geoespacial” para o dataverse raiz.
 
 \begin{minted}{bash}
-    curl -H "X-Dataverse-key: \$ API\_TOKEN" -X POST -H "Tipo de conteúdo: application / json" -d "[\" journal \", \" geospatial \ "]" http: // localhost:8080/api/dataverses/:root/metadatablocks
+    curl -H "X-Dataverse-key: \$ API\_TOKEN" -X POST -H\
+    "Tipo de conteúdo: application / json" -d\ 
+    "[\" journal \", \" geospatial \ "]"\
+    http: // localhost:8080/api/dataverses/:root/metadatablocks
 \end{minted}
 
 \subsubsection{Atualizando o esquema do Solr}
@@ -2024,13 +2137,16 @@ controlvocabulary.language.marathi\_ (marathi) = Marathi (Maru0101u1E6Dhu012B)\\
 \begin{minted}{bash}
     curl http://localhost:8080/api/admin/index/solr/schema
 \end{minted}
-Observe que, se você fizer uma solicitação pull atualizando \textit{/home/dataverse/dataverse-4.16/conf/solr/7.3.1/schema.xml} com os campos adicionados, primeiro carregue todos os blocos de metadados personalizados nos \textit{/home/dataverse/dataverse-4.16/scripts/api/data/metadatablocks} para criar uma lista completa de campos.
+
+Observe que, se você fizer uma solicitação pull atualizando \textit{/home/dataverse/ dataverse-4.16/conf/ solr/7.3.1/schema.xml} com os campos adicionados, primeiro carregue todos os blocos de metadados personalizados nos \textit{/home/dataverse/dataverse-4.16/ scripts/api/data/metadatablocks} para criar uma lista completa de campos.
 
 \subsection{Recarregando um bloco de metadados}
 
 \qquad A sintaxe para recarregar é a mesma que para carregar. Aqui está um exemplo com o bloco de metadados "citation":\\
 \begin{minted}{bash}
-curl http:// localhost: 8080 / api / admin / datasetfield / load -H "Tipo de conteúdo: texto / valores separados por tabulação" -X POST --upload-file citation.tsv
+    curl http:// localhost: 8080 / api / admin / datasetfield / load -H\ 
+    "Tipo de conteúdo: texto / valores separados por tabulação" -X\ 
+    POST --upload-file citation.tsv
 \end{minted}
 Muito cuidado deve ser tomado ao recarregar um bloco de metadados. A correspondência é feita em nomes de campos (ou identificadores e, em seguida, em nomes de valores de vocabulário controlados), então é  facil criar acidentalmente campos duplicados.
 
@@ -2166,7 +2282,7 @@ upload_to_hub
 
 \end{minted}
 
-\subsubsection{Habilitar o log para o MAke data count}
+\subsubsection{Habilitar o log para o Make data count}
 
 \qquad Para fazer uso do conjunto de dados de log do Dataverse (visualizações e downloads) para Make Data Count, você deve definir a configuração do banco de dados
 
@@ -2279,8 +2395,8 @@ Um arquivo JSON no formato SUSHI será criado no diretório que você especifico
 
 \begin{minted}{bash}
 
-curl -X POST "http://localhost:8080/api/admin/makeDataCount/
-addUsageMetricsFromSushiReport? reportOnDisk = /tmp/
+curl -X POST "http://localhost:8080/api/admin/makeDataCount/\
+addUsageMetricsFromSushiReport? reportOnDisk = /tmp/\
 make-data-count-report.json"
 
 \end{minted}
@@ -2307,7 +2423,7 @@ Agora que visualizações e downloads foram gravados no banco de dados Dataverse
 
 \subsubsection{Configurando o Dataverse para fazer citações do Make Data Count}
 
-\qquad Observe que no exemplo curl, as variáveis de ambiente Bash são usadas com a ideia de que você pode definir algumas variáveis de ambiente e copiar e colar os \\exemplos como estão. Por exemplo, "\$ DOI" pode se tornar "doi: 10.5072 / FK2 / BL2IBM" emitindo o seguinte comando de exportação do Bash:
+\qquad Observe que no exemplo curl, as variáveis de ambiente Bash são usadas com a ideia de que você pode definir algumas variáveis de ambiente e copiar e colar os exemplos como estão. Por exemplo, "\$ DOI" pode se tornar "doi: 10.5072 / FK2 / BL2IBM"  emitindo o seguinte comando de exportação do Bash:
 
 \begin{minted}{bash}
 
@@ -2327,8 +2443,8 @@ Em alguma base periódica (talvez semanalmente), você deve chamar o seguinte co
 
 \begin{minted}{bash}
 
-curl -X POST "http: // localhost: 8080 / api / admin / makeDataCount /
-: persistentId / updateCitationsForDataset? persistentId = $ DOI"
+curl -X POST "http://localhost:8080/api/admin/makeDataCount/\
+:persistentId/updateCitationsForDataset? persistentId = $ DOI"
 
 \end{minted}
 
@@ -2340,11 +2456,11 @@ As citações serão recuperadas para cada conjunto de dados publicado e registr
 
 \begin{itemize}
 
-    \item Total de visualizações para um conjunto de dados
-    \item Visualizações exclusivas para um conjunto de dados
-    \item Total de downloads para um conjunto de dados
-    \item Downloads para um conjunto de dados
-    \item Citações de um conjunto de dados (via Crossref)
+    \item Total de visualizações para um conjunto de dados;
+    \item Visualizações exclusivas para um conjunto de dados;
+    \item Total de downloads para um conjunto de dados;
+    \item Downloads para um conjunto de dados;
+    \item Citações de um conjunto de dados (via Crossref).
 
 \end{itemize}
 
@@ -2358,7 +2474,7 @@ Observe que também é possível recuperar métricas do próprio hub DataCite vi
 
 \subsubsection{Obtendo dados}
 
-\qquad Uma variedade de integrações é é existente para tornar mais fácil para seus pesquisadores depositar dados em sua instalação do Dataverse, incluindo:Dropbox, Estrutura de Ciência Aberta (OSF), RSpace e Sistemas de periódicos abertos (OJS). Acerca da Preservação de Dados de Pesquisa encontramos o Archivematica e
+\qquad Uma variedade de integrações é existente para tornar mais fácil para seus pesquisadores depositar dados em sua instalação do Dataverse, incluindo:Dropbox, Estrutura de Ciência Aberta (OSF), RSpace e Sistemas de periódicos abertos (OJS). Acerca da Preservação de Dados de Pesquisa encontramos o Archivematica e
 DuraCloud / Chronopolis.
 
 \subsection{Administração do usuário}
@@ -2379,7 +2495,7 @@ Se você deseja remover todas as funções / permissões da conta de um usuário
 
 \begin{minted}{bash}
 
-curl -H "Chave X do Dataverse: $ API_TOKEN" http: // localhost: 8080 / 
+curl -H "Chave X do Dataverse: $ API_TOKEN" http: // localhost: 8080 /\ 
 api / admin / authenticatedUsers
  
 
@@ -2389,7 +2505,7 @@ Se você possui muitos usuários e deseja pesquisar e paginar pelos resultados, 
 
 \begin{minted}{bash}
 
-curl -H "Chave X do Dataverse: $ API_TOKEN" http: // localhost: 8080 / 
+curl -H "Chave X do Dataverse: $ API_TOKEN" http: // localhost: 8080 /\ 
 api / admin / list-users
 
 \end{minted}
@@ -2398,9 +2514,9 @@ Com o formulário list-users, você pode incluir os seguintes parâmetros de con
 
 \begin{itemize}
    
- \item searchTerm: Uma sequência que corresponde ao início de um identificador de usuário, nome, sobrenome ou endereço de e-mail.
+ \item searchTerm: Uma sequência que corresponde ao início de um identificador de usuário, nome, sobrenome ou endereço de e-mail;
  
- \item itemsPerPage: O número de resultados detalhados a serem retornados. O padrão é 25. Este número não tem limite. por exemplo. Você pode configurá-lo para 1000 para retornar 1.000 resultados
+ \item itemsPerPage: O número de resultados detalhados a serem retornados. O padrão é 25. Este número não tem limite. por exemplo. Você pode configurá-lo para 1000 para retornar 1.000 resultados;
  
  \item selectedPage: A página de resultados a retornar. O padrão é 1.
 
@@ -2456,7 +2572,7 @@ api / dataverses / $ id / move / $ destination-id
 
 \textbf{Vincular um Dataverse}\\
 
-Cria um link entre um dataverse e outro dataverse. Acessível apenas para superusuários.
+Cria um link entre um dataverse e outro dataverse. Acessível apenas para \\superusuários.
 
 \begin{minted}{bash}
 
@@ -2775,7 +2891,7 @@ fi
  
 \subsection{Solução de problemas}
 
-\subsubsection{Peixe de vidro}
+\subsubsection{Glass fish}
 
 \qquad server.log é o principal local para procurar quando você encontrar problemas. Provavelmente uma mensagem de erro tenha sido registrada. Se houver um rastreamento de stack, pode ser do interesse dos desenvolvedores, especialmente eles podem rastrear os números de linha de volta para uma versão marcada. Para fins de debugging, você pode achar útil aumentar os níveis de log.
 
@@ -2792,11 +2908,11 @@ Aqui está uma solução alternativa conhecida:
     \item Pare o Glassfish;
     \item Remova os diretórios gerados e osgi-cache;
     \item Exclua todas as linhas da tabela EJB\_\_TIMER\_\_TBL no banco de dados;
-    \item Iniciar Glassfish
+    \item Iniciar Glassfish.
 
 \end{itemize}
 
-O script de shell abaixo executa as etapas acima. Além dos valores de configuração que precisam ser alterados para refletir seu ambiente (o diretório Glassfish, nome do banco de dados etc.), o script depende do banco de dados ser configurado de uma certa maneira para acesso.
+O script de shell abaixo executa as etapas acima. Além dos valores de configuração que precisam ser alterados para refletir seu ambiente (o diretório Glassfish, nome do banco de dados, etc.), o script depende do banco de dados ser configurado de uma certa maneira para acesso.
 
 \begin{minted}{bash}
 
@@ -2871,14 +2987,14 @@ A seguir, são detalhados os esquemas de metadados que oferecemos suporte para c
 \item Geoespaciais: compatível com DDI Lite, DDI 2.5 Codebook, DataCite e Dublin Core (consulte a versão .tsv). O campo País / Nação usa vocabulário controlado pela ISO 3166-1.
 \item Ciências Sociais e Humanas: compatível com DDI Lite, DDI 2.5 Codebook e Dublin Core (consulte a versão .tsv).
 \item Astronomia e astrofísica: esses elementos de metadados podem ser mapeados / exportados para o formato de esquema VOResource da International Virtual Observatory Alliance (IVOA) e são baseados nos metadados de descoberta e proveniência do Virtual Observatory (VO) (consulte versão .tsv).
-\item Ciências da vida: com base na especificação ISA-Tab, juntamente com o vocabulário controlado de subconjuntos da ontologia do OBI e da taxonomia para organismos do NCBI.
+\item Ciências da vida: com base na especificação ISA-Tab, juntamente com o \\vocabulário controlado de subconjuntos da ontologia do OBI e da taxonomia para organismos do NCBI.
     \end{itemize}
     
      \subsection{OpenAIRE}
      
 \qquad O projeto Digital Repository Infrastructure Vision for European Research  (DRIVER) em 2007 publicou as Guidelines for content providers: Exposing textual resources with OAI-PMH, que contêm recomendações que permitem interoperabilidade entre repositórios. Desde então essas recomendações foram evoluindo e estão atualmente em sua versão 4.0 sendo chamadas de OpenAIRE Guidelines for Literature Repository Managers v4. A partir de 2013 a Comissão Européia com a publicação do Guidelines on Open Access to Scientific Publications and Research Data está de acordo com os requerimentos do Horizon 2020 abrangendo desde repositórios de literatura à repositórios de dados e sistemas CRIS.
 	
-	As diferentes versões das diretrizes estão apresentadas em \hyperlink{https://guidelines.openaire.eu/en/latest/}{ link} e versão mais recente em \hyperlink{https://openaire-guidelines-for-literature-repository-managers.readthedocs.io/en/v4.0.0/index.html}{ link}. A diretriz é dividida em três partes: Uma introdução onde ela pe apresentada; Uso do OAI-PMH, onde são apresentadas algumas explicações sobre o uso do protocolo OAI-PMH e; por fim uma visão de um perfil de aplicação, que pode ser encontrado em  \hyperlink{https://openaire-guidelines-for-literature-repository-managers.readthedocs.io/en/v4.0.0/application\_profile.html}{ link}. A aplicação é baseada em quatro padrões de metadados: Dublin Core; Dublin Core qualificado; Datacite e; Oaire (um padrão de metadados próprio desenvolvido pela OpenAIRE), além de serem utilizados diversos vocabulários controlados.\\
+	As diferentes versões das diretrizes estão apresentadas em \hyperlink{https://guidelines.openaire.eu/en/latest/}{ link} e versão mais recente em \hyperlink{https://openaire-guidelines-for-literature-repository-managers.readthedocs.io/en/v4.0.0/index.html}{ link}. A diretriz é dividida em três partes: Uma introdução, onde ela é apresentada; Uso do OAI-PMH, na qual são apresentadas algumas explicações sobre o uso do protocolo OAI-PMH e; por fim uma visão de um perfil de aplicação, que pode ser encontrado em  \hyperlink{https://openaire-guidelines-for-literature-repository-managers.readthedocs.io/en/v4.0.0/application\_profile.html}{ link}. A aplicação é baseada em quatro padrões de metadados: Dublin Core; Dublin Core qualificado; Datacite e; Oaire (um padrão de metadados próprio desenvolvido pela OpenAIRE), além de serem utilizados diversos vocabulários controlados.\\
 	
 	\textbf{Aplicação}\\
 	
@@ -2893,17 +3009,16 @@ A seguir, são detalhados os esquemas de metadados que oferecemos suporte para c
 	
 	É apresentado no perfil de aplicação uma tabela  com os campos, elementos e vocabulários utilizados. São 32 campos no total, com seis mandatórios, oito mandatórios se aplicáveis, quinze recomendados e três opcionais. Para melhor visualização essa tabela foi reformulada e dividida de acordo com os níveis de obrigatoriedade a seguir. Os primeiros campos apresentados serão os mandatórios (M):
 	
-	\newpage
-
 \begin{table}[H]
+\caption{Metadados mandatórios}
+\label{tab:my-table}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
-Campo                                                                                           & Metadado                                                       & Definição                                                                                                                                              & Exemplo                                                                               & \begin{tabular}[c]{@{}l@{}}Exemplo de \\ aplicação\end{tabular}                                                                                                                                                                                            & \begin{tabular}[c]{@{}l@{}}Vocabulário \\ controlado\end{tabular}              \\ \hline
-\begin{tabular}[c]{@{}l@{}}Title \\ (Título)\end{tabular}                                       & datacite:title                                                 & \begin{tabular}[c]{@{}l@{}}Nome ou \\ título pelo \\ qual o recurso\\ é conhecido\end{tabular}                                                         & \begin{tabular}[c]{@{}l@{}}National \\ Institute\end{tabular}                         & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:title\\  xml:lang="\\ en-US"\textgreater\\ National \\ Institute\\ \textless{}/datacite:title\textgreater{}\end{tabular}                                                                                    & title type                                                                     \\ \hline
-\begin{tabular}[c]{@{}l@{}}Creator \\ (Criador)\end{tabular}                                    & \begin{tabular}[c]{@{}l@{}}datacite:creat\\ or\end{tabular}    & \begin{tabular}[c]{@{}l@{}}Autor do \\ recurso, pode\\ ser uma \\ instituição ou\\ nome pessoal\end{tabular}                                           & Evans, R.J.                                                                           & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:\\ creator\textgreater{}\textless\\ datacite:creator\\ Name\textgreater{}Evans,\\  R.J.\textless{}/datacite\\ :creatorName\textgreater\\   \textless{}/datacite:\\ creator\textgreater{}\end{tabular}       & name type                                                                      \\ \hline
-\begin{tabular}[c]{@{}l@{}}Publication \\ Date \\ (Data de \\ Publicação)\end{tabular}          & datacite:date                                                  & \begin{tabular}[c]{@{}l@{}}Data com \\ alguma \\ associação \\ com o ciclo de\\ vida do \\ recurso, deve\\ ser utilizado o \\ formato W3C\end{tabular} & 2000-12-25                                                                            & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:date\\  dateType="\\ Issued"\textgreater{}2000\\ -12-25\textless{}/\\ datacite:date\textgreater{}\end{tabular}                                                                                              & date type                                                                      \\ \hline
-\begin{tabular}[c]{@{}l@{}}Resource \\ Type (Tipo \\ de Recurso)\end{tabular}                   & \begin{tabular}[c]{@{}l@{}}oaire:resource\\ Type\end{tabular}  & \begin{tabular}[c]{@{}l@{}}O gênero do \\ recurso, tipo \\ de produto \\ científico.\end{tabular}                                                      & \begin{tabular}[c]{@{}l@{}}Journal \\ Article \\ (Artigo de\\ periódico)\end{tabular} & \begin{tabular}[c]{@{}l@{}}\textless{}oaire:resource\\ Type resource\\ TypeGeneral="\\ literature" uri="\\ http://purl.org/\\ coar/resource\_\\ type/c\_6501"\textgreater\\ journal article\textless{}/\\ oaire:resource\\ Type\textgreater{}\end{tabular} & \begin{tabular}[c]{@{}l@{}}COAR \\ Resource \\ Type \\ Vocabulary\end{tabular} \\ \hline
-\begin{tabular}[c]{@{}l@{}}Resource \\ Identifier \\ (Identificador \\ do Recurso)\end{tabular} & \begin{tabular}[c]{@{}l@{}}datacite:identi\\ fier\end{tabular} & \begin{tabular}[c]{@{}l@{}}Identificador \\ único do \\ recurso.\end{tabular}                                                                          & \begin{tabular}[c]{@{}l@{}}http://hdl.\\ handle.net\\ /1234/5628\end{tabular}         & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:\\ identifier\\  identifierType=\\ "Handle"\textgreater{}http:\\ //hdl.handle.net/\\ 1234/5628\textless{}/\\ datacite:\\ identifier\textgreater{}\end{tabular}                                              & \begin{tabular}[c]{@{}l@{}}identifier \\ type\end{tabular}                     \\ \hline
+Campo                                                                                  & Metadado                                                         & Definição                                                                                                                                         & Exemplo                                                                               & \begin{tabular}[c]{@{}l@{}}Exemplo de \\ aplicação\end{tabular}                                                                                                                                                                                                 & \begin{tabular}[c]{@{}l@{}}Vocabulário \\ controlado\end{tabular}              \\ \hline
+\begin{tabular}[c]{@{}l@{}}Title \\ (Título)\end{tabular}                              & \begin{tabular}[c]{@{}l@{}}datacite:\\ title\end{tabular}        & \begin{tabular}[c]{@{}l@{}}Nome ou título pelo\\ qual o recurso é \\ conhecido\end{tabular}                                                       & \begin{tabular}[c]{@{}l@{}}National \\ Institute\end{tabular}                         & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:title\\  xml:lang="\\ en-US"\textgreater\\ National \\ Institute\\ \textless{}/datacite:title\\ \textgreater{}\end{tabular}                                                                                      & title type                                                                     \\ \hline
+\begin{tabular}[c]{@{}l@{}}Creator \\ (Criador)\end{tabular}                           & \begin{tabular}[c]{@{}l@{}}datacite:\\ creator\end{tabular}      & \begin{tabular}[c]{@{}l@{}}Autor do recurso, \\ podeser uma \\ instituição ou \\ nome pessoal\end{tabular}                                        & Evans, R.J.                                                                           & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:\\ creator\textgreater{}\textless\\ datacite:creato\\ rName\textgreater{}Evans,\\  R.J.\textless{}/datacite\\ :creatorName\textgreater\\   \textless{}/datacite:\\ creator\textgreater{}\end{tabular}            & name type                                                                      \\ \hline
+\begin{tabular}[c]{@{}l@{}}Publication \\ Date \\ (Data de \\ Publicação)\end{tabular} & \begin{tabular}[c]{@{}l@{}}datacite:\\ date\end{tabular}         & \begin{tabular}[c]{@{}l@{}}Data com alguma \\ associação com o\\ ciclo de vida do \\ recurso, deve ser \\ utilizado o \\ formato W3C\end{tabular} & 2000-12-25                                                                            & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:date\\  dateType="\\ Issued"\textgreater{}2000\\ -12-25\textless{}/\\ datacite:date\textgreater{}\end{tabular}                                                                                                   & date type                                                                      \\ \hline
+\begin{tabular}[c]{@{}l@{}}Resource \\ Type (Tipo \\ de Recurso)\end{tabular}          & \begin{tabular}[c]{@{}l@{}}oaire:\\ resource\\ Type\end{tabular} & \begin{tabular}[c]{@{}l@{}}O gênero do \\ recurso, tipo de \\ produto científico\end{tabular}                                                     & \begin{tabular}[c]{@{}l@{}}Journal \\ Article \\ (Artigo de\\ periódico)\end{tabular} & \begin{tabular}[c]{@{}l@{}}\textless{}oaire:resourc\\ eType resourc\\ eTypeGeneral\\ ="literature" \\ uri="http://pu\\ rl.org/coar/res\\ ource\_type/c\_\\ 6501"\textgreater{}journa\\ l article\textless{}/oai\\ re:resourceT\\ ype\textgreater{}\end{tabular} & \begin{tabular}[c]{@{}l@{}}COAR \\ Resource \\ Type \\ Vocabulary\end{tabular} \\ \hline
 \end{tabular}
 \end{table}
 
@@ -2912,18 +3027,33 @@ Campo                                                                           
 \begin{table}[H]
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
-\begin{tabular}[c]{@{}l@{}}Access \\ Rights \\ (Direitos de \\ Acesso)\end{tabular} & datacite:rights & \begin{tabular}[c]{@{}l@{}}Informações \\ sobre como o\\ recurso pode \\ ser acessado, \\ utilizado e \\ disseminado.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Open \\ Access \\ (Acesso \\ Aberto)\end{tabular} & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:rights\\  rightsURI="\\ http://purl.org/\\ coar/access\_right\\ /c\_abf2"\textgreater{}open \\ access\textless{}/datacite:\\ rights\textgreater{}\end{tabular} & \begin{tabular}[c]{@{}l@{}}COAR \\ Access \\ Right \\ Vocabulary\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Resource \\ Identifier \\ (\\ Identificador\\ do Recurso)\end{tabular} & \begin{tabular}[c]{@{}l@{}}datacite:\\ identifier\end{tabular} & \begin{tabular}[c]{@{}l@{}}Identificador \\ único do recurso\end{tabular}                                                       & \begin{tabular}[c]{@{}l@{}}http://hdl.\\ handle.net\\ /1234/5628\end{tabular} & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:ident\\ ifier identifier\\ Type="Handle\\ "\textgreater{}http://hdl.ha\\ ndle.net/1234/\\ 5628\textless{}/datacite\\ :identifier\textgreater{}\end{tabular}       & \begin{tabular}[c]{@{}l@{}}identifier \\ type\end{tabular}                \\ \hline
+\begin{tabular}[c]{@{}l@{}}Access\\ Rights\\ (Direitos de\\ Acesso)\end{tabular}                  & \begin{tabular}[c]{@{}l@{}}datacite:    \\ rights\end{tabular} & \begin{tabular}[c]{@{}l@{}}Informações sobre \\ como o recurso \\ pode ser acessado, \\ utilizado e \\ disseminado\end{tabular} & \begin{tabular}[c]{@{}l@{}}Open \\ Access \\ (Acesso \\ Aberto)\end{tabular}  & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:rig\\ hts rightsURI\\ ="http://purl.\\ org/coar/acce\\ ss\_right/c\_ab\\ f2"\textgreater{}open ac\\ cess\textless{}/datacit\\ e:rights\textgreater{}\end{tabular} & \begin{tabular}[c]{@{}l@{}}COAR \\ Access Right\\ Vocabulary\end{tabular} \\ \hline
 \end{tabular}
 \end{table}
 
 A seguir na próxima tabela aborda-se o nível de obrigatoriedade Mandatório se aplicável (MA):
 
 \begin{table}[H]
+\caption{Metadados mandatórios se aplicáveis}
+\label{tab:my-table}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
-Campo                                                                                            & Metadado                                                             & Definição                                                                                                                                                                                                                                                                                              & Exemplo                                                                                & \begin{tabular}[c]{@{}l@{}}Exemplo de \\ aplicação\end{tabular}                                                                                                                                                                                                                & \begin{tabular}[c]{@{}l@{}}Vocabulário \\ controlado\end{tabular}         \\ \hline
-\begin{tabular}[c]{@{}l@{}}Contributor\\ (Colaborador)\end{tabular}                              & \begin{tabular}[c]{@{}l@{}}datacite:\\ contributor\end{tabular}      & \begin{tabular}[c]{@{}l@{}}Pessoa ou \\ instituição que \\ tenha tido algum \\ tipo de colaboração\\ na elaboração do \\ recurso, faz ser \\ obrigatório o uso \\ do atributo \\ contributorType \\ como demonstrado\\ no exemplo \\ (contributorType \\ possui vocabulário\\ controlado)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Evans, R.\\ \\  J.\end{tabular}                             & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:\\ contributor\textgreater \\ \textless{}datacite:\\ contributor\\ Name\textgreater{}Evans\\ , R. J.\textless{}/\\ datacite:\\ contributor\\ Name\textgreater  \\ \textless{}datacite:\\ contributor\textgreater{}\end{tabular} & \begin{tabular}[c]{@{}l@{}}name type e\\ contributor \\ type\end{tabular} \\ \hline
-\begin{tabular}[c]{@{}l@{}}Funding\\ Reference\\ (Referência\\ de \\ financiamento)\end{tabular} & \begin{tabular}[c]{@{}l@{}}oaire:\\ funding\\ Reference\end{tabular} & \begin{tabular}[c]{@{}l@{}}Informações sobre \\ apoio financeiro \\ recebido. \\ Subpropriedade \\ funderName \\ obrigatória\end{tabular}                                                                                                                                                              & \begin{tabular}[c]{@{}l@{}}European\\ Commission\\ (Comissão \\ Euripéia)\end{tabular} & \begin{tabular}[c]{@{}l@{}}\textless{}oaire:\\ funding\\ Reference\textgreater{}\textless\\ oaire:funder\\ Name\textgreater\\ European \\ Commission\\ \textless{}/datacite:\\ funderName\\ \textgreater \textless{}/oaire:\\ funding\\ Reference\textgreater{}\end{tabular}   & \begin{tabular}[c]{@{}l@{}}funder\\ Identifier \\ type\end{tabular}       \\ \hline
+Campo                                                                  & Metadado                                                           & Definição                                                                                                                                                                                                                                                                                                      & Exemplo      & \begin{tabular}[c]{@{}l@{}}Exemplo de \\ aplicação\end{tabular}                                                                                                                        & \begin{tabular}[c]{@{}l@{}}Vocabulário \\ controlado\end{tabular}         \\ \hline
+\begin{tabular}[c]{@{}l@{}}Contributor\\ (Colaborador\\ )\end{tabular} & \begin{tabular}[c]{@{}l@{}}datacite:\\ contribut\\ or\end{tabular} & \begin{tabular}[c]{@{}l@{}}Pessoa ou \\ instituição que \\ tenha tido algum \\ tipo de \\ colaboração na \\ elaboração do \\ recurso, faz ser \\ obrigatório o uso \\ do atributo \\ contributorType \\ como \\ demonstrado no \\ exemplo \\ (contributorType \\ possui vocabulário\\ controlado)\end{tabular} & Evans, R. J. & \begin{tabular}[c]{@{}l@{}}<datacite:\\ contributor> \\ <datacite:\\ contributor\\ Name>Evans, R\\ . J.</\\ datacite:\\ contributor\\ Name>  \\ <datacite:\\ contributor>\end{tabular} & \begin{tabular}[c]{@{}l@{}}name type e\\ contributor \\ type\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[H]
+
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\begin{tabular}[c]{@{}l@{}}Funding\\ Reference\\ (Referência\\ de \\ financiamento\\ )\end{tabular} & \begin{tabular}[c]{@{}l@{}}oaire:\\ funding\\ Reference\end{tabular} & \begin{tabular}[c]{@{}l@{}}Informações \\ sobre apoio \\ financeiro \\ recebido. \\ Subpropriedade \\ funderName \\ obrigatória\end{tabular}                                                                                                                                                    & \begin{tabular}[c]{@{}l@{}}European\\ Commissi\\ on\\ (Comissão \\ Euripéia)\end{tabular} & \begin{tabular}[c]{@{}l@{}}<oaire:\\ funding\\ Reference>\\ < oaire:fun\\ derName>\\ European \\ Commission\\ </datacite:\\ funderName\\ > </oaire:\\ funding\\ Reference>\end{tabular}                                                            & \begin{tabular}[c]{@{}l@{}}funder\\ Identifier ty\\ pe\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Embargo \\ Period Date \\ (Período de \\ embago)\end{tabular}            & \begin{tabular}[c]{@{}l@{}}datacite:\\ date\end{tabular}             & \begin{tabular}[c]{@{}l@{}}Datas relevantes\\ para descrever o\\ período de \\ embargo. O campo \\ direitos de acesso \\ deve estar como \\ “embargoed \\ access” e devem \\ ser utilizados as \\ datas de início e \\ fim do período de \\ embargo além dos \\ atributos dateType\end{tabular} & \begin{tabular}[c]{@{}l@{}}2011-12-01\\ 2012-12-01\end{tabular}                           & \begin{tabular}[c]{@{}l@{}}<datacite:\\ dates> <d\\ atacite:date \\ dateType="\\ Accepted">\\ 2011-12-01<\\ /datacite:date\\ ><datacite:\\ date date\\ Type="Avai\\ lable"\\ >2012-12-01\\ </datacite:\\ date></\\ datacite:\\ dates>\end{tabular} & date type                                                           \\ \hline
+\begin{tabular}[c]{@{}l@{}}Language\\ (Língua)\end{tabular}                                         & \begin{tabular}[c]{@{}l@{}}dc:\\ language\end{tabular}               & \begin{tabular}[c]{@{}l@{}}Idioma do \\ conteúdo do \\ recurso\end{tabular}                                                                                                                                                                                                                     & \begin{tabular}[c]{@{}l@{}}eng \\ (Inglês)\end{tabular}                                   & \begin{tabular}[c]{@{}l@{}}<dc:langua\\ ge>eng</dc:\\ language>\end{tabular}                                                                                                                                                                       & \begin{tabular}[c]{@{}l@{}}IETF BCP \\ 47\end{tabular}              \\ \hline
+\begin{tabular}[c]{@{}l@{}}Publisher \\ (Publicador)\end{tabular}                                   & \begin{tabular}[c]{@{}l@{}}dc:\\ publisher\end{tabular}              & \begin{tabular}[c]{@{}l@{}}O publicador do \\ recurso, usar \\ apenas nome \\ completo.\end{tabular}                                                                                                                                                                                            & \begin{tabular}[c]{@{}l@{}}John \\ Wiley \&\\ amp; \\ Sons, \\ Inc. (US)\end{tabular}     & \begin{tabular}[c]{@{}l@{}}<dc:\\ publisher>\\ John Wiley \\ \&amp; Sons\\ , Inc. (US)</\\ dc:publisher\\ >\end{tabular}                                                                                                                           &                                                                     \\ \hline
 \end{tabular}
 \end{table}
 
@@ -2932,30 +3062,41 @@ Campo                                                                           
 \begin{table}[H]
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
-\begin{tabular}[c]{@{}l@{}}Embargo \\ Period Date \\ (Período de \\ embago)\end{tabular} & \begin{tabular}[c]{@{}l@{}}datacite:\\ date\end{tabular}  & \begin{tabular}[c]{@{}l@{}}Datas relevantes \\ para descrever o \\ período de \\ embargo. O \\ campo direitos \\ \\ \\ de acesso deve \\ estar como \\ “embargoed \\ access” e devem \\ ser utilizados as \\ datas de início e \\ fim do período \\ de embargo além \\ dos atributos \\ dateType\end{tabular} & \begin{tabular}[c]{@{}l@{}}2011-12-01\\ 2012-12-01\end{tabular}                                            & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:\\ dates\textgreater \textless{}d\\ atacite:date \\ dateType="\\ Accepted"\textgreater\\ 2011-12-01\textless\\ /datacite:date\\ \textgreater{}\textless{}datacite:\\ date dateType\\ ="Available"\\ \textgreater{}2012-12-01\\ \textless{}/datacite:\\ date\textgreater{}\textless{}/\\ datacite:dates\\ \textgreater{}\end{tabular} & date type                                              \\ \hline
-\begin{tabular}[c]{@{}l@{}}Language\\ (Língua)\end{tabular}                              & \begin{tabular}[c]{@{}l@{}}dc:\\ language\end{tabular}    & \begin{tabular}[c]{@{}l@{}}Idioma do \\ conteúdo do \\ recurso\end{tabular}                                                                                                                                                                                                                                   & eng (Inglês)                                                                                               & \begin{tabular}[c]{@{}l@{}}\textless{}dc:language\\ \textgreater{}eng\textless{}/dc:\\ language\textgreater{}\end{tabular}                                                                                                                                                                                                                                                          & \begin{tabular}[c]{@{}l@{}}IETF \\ BCP 47\end{tabular} \\ \hline
-\begin{tabular}[c]{@{}l@{}}Publisher \\ (Publicador)\end{tabular}                        & \begin{tabular}[c]{@{}l@{}}dc:\\ publisher\end{tabular}   & \begin{tabular}[c]{@{}l@{}}O publicador do \\ recurso, usar \\ apenas nome \\ completo.\end{tabular}                                                                                                                                                                                                          & \begin{tabular}[c]{@{}l@{}}John \\ Wiley \&\\ amp; Sons, \\ Inc. (US)\end{tabular}                         & \begin{tabular}[c]{@{}l@{}}\textless{}dc:publisher\\ \textgreater{}John Wiley \\ \&amp; Sons, \\ Inc. (US)\textless{}/dc\\ :publisher\textgreater{}\end{tabular}                                                                                                                                                                                                                    &                                                        \\ \hline
-\begin{tabular}[c]{@{}l@{}}Description \\ (Descrição)\end{tabular}                       & \begin{tabular}[c]{@{}l@{}}dc:\\ description\end{tabular} & \begin{tabular}[c]{@{}l@{}}Um texto \\ descrevendo o \\ conteúdo do \\ recurso\end{tabular}                                                                                                                                                                                                                   & \begin{tabular}[c]{@{}l@{}}Um número \\ de problemas\\ no estado \\ quântico são \\ abordados\end{tabular} & \begin{tabular}[c]{@{}l@{}}\textless{}dc:\\ description\\  xml:lang="en-\\ US"\textgreater{}Um \\ número \\ de problemas\\ no estado \\ quântico são \\ abordados\\ \textless{}/dc:\\ description\textgreater{}\end{tabular}                                                                                                                                                        &                                                        \\ \hline
-\end{tabular}
-\end{table}
-
-\newpage
-
-\begin{table}[H]
-\begin{tabular}{|l|l|l|l|l|l|}
-\hline
-\begin{tabular}[c]{@{}l@{}}Subject \\ (Assunto)\end{tabular}                         & \begin{tabular}[c]{@{}l@{}}datacite:\\ subject\end{tabular} & \begin{tabular}[c]{@{}l@{}}Assunto geral, palavra-chave, \\ ou qualquer outro código ou \\ termo que representa o \\ recurso, se utilizar algum \\ código utilizar o atributo \\ subjectScheme\end{tabular} & \begin{tabular}[c]{@{}l@{}}Earth \\ sciences \\ and geology\\ (Ciências da\\ terra e \\ geologia).\end{tabular}                       & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:\\ subject\textgreater{}Earth\\  sciences and \\ geology\textless{}/\\ datacite:\\ subject\textgreater{}\end{tabular}                                                                                                                                &  \\ \hline
-\begin{tabular}[c]{@{}l@{}}File Location \\ (Localização \\ do arquivo)\end{tabular} & oaire:file                                                  & \begin{tabular}[c]{@{}l@{}}referência para desambiguação \\ do arquivo, utilizar um HTTP \\ URI\end{tabular}                                                                                                & \begin{tabular}[c]{@{}l@{}}http://purl.\\ org/coar/\\ access\_\\ right/c\_\\ abf2" \\ mimeType\\ ="\\ application/\\ pdf\end{tabular} & \begin{tabular}[c]{@{}l@{}}\textless{}oaire:file \\ accessRights\\ URI="http://\\ purl.org/coar/\\ access\_right/c\\ \_abf2" mime\\ Type="\\ application/\\ pdf" object\\ Type="fulltext\\ "\textgreater{}http://link-\\ to-the-fulltext.\\ org\textless{}/oaire:file\\ \textgreater{}\end{tabular} &  \\ \hline
+\begin{tabular}[c]{@{}l@{}}Description \\ (Descrição)\end{tabular}                  & \begin{tabular}[c]{@{}l@{}}dc:\\ descriptio\\ n\end{tabular} & \begin{tabular}[c]{@{}l@{}}Um texto \\ descrevendo o \\ conteúdo do \\ recurso\end{tabular}                                                                                                                       & \begin{tabular}[c]{@{}l@{}}Um \\ número de \\ \\ problemas\\ no estado \\ quântico \\ são \\ abordados\end{tabular}                 & \begin{tabular}[c]{@{}l@{}}<dc:\\ description\\  xml:lang=\\ "en-\\ US">Um \\ número de\\ problemas\\ no estado \\ quântico são \\ abordados\\ </dc:\\ description>\end{tabular}                                                                    & {\color[HTML]{FFFFFF} aaaaaaaaa} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Subject \\ (Assunto)\end{tabular}                        & \begin{tabular}[c]{@{}l@{}}datacite:\\ subject\end{tabular}  & \begin{tabular}[c]{@{}l@{}}Assunto geral, \\ palavra-chave, ou\\ qualquer outro \\ código ou termo\\ que representa o \\ recurso, se utilizar\\ algum código \\ utilizar o atributo \\ subjectScheme\end{tabular} & \begin{tabular}[c]{@{}l@{}}Earth \\ sciences \\ and geology\\ (Ciências da\\ terra e \\ geologia)\end{tabular}                      & \begin{tabular}[c]{@{}l@{}}<datacite:\\ subject>\\ Earth\\  sciences \\ and \\ geology</\\ datacite:\\ subject>\end{tabular}                                                                                                                        &                                  \\ \hline
+\begin{tabular}[c]{@{}l@{}}File Location\\ (Localização do\\  arquivo)\end{tabular} & oaire:file                                                   & \begin{tabular}[c]{@{}l@{}}referência para \\ desambiguação do\\ arquivo, utilizar \\ um HTTP URI\end{tabular}                                                                                                    & \begin{tabular}[c]{@{}l@{}}http://purl.\\ org/coar/\\ access\_\\ right/c\_\\ abf2" \\ mimeType\\ ="\\ application/\\ pdf\end{tabular} & \begin{tabular}[c]{@{}l@{}}<oaire:file \\ accessRights\\ URI="http://\\ purl.org/coar\\ /access\_right\\ /c\_abf2" mi\\ meType="\\ application/\\ pdf" object\\ Type="fullte\\ xt">http://lin\\ k-to-the-fullt\\ ext.org</oair\\ e:file>\end{tabular} &                                  \\ \hline
 \end{tabular}
 \end{table}
 
 A próxima tabela se trata dos campos Recomendados (R) :
 
 \begin{table}[H]
+\caption{Metadados Recomendados}
+\label{tab:my-table}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
-Campo                                                                                             & Metadado                                                                   & Definição                                                                                                                                                                                                & Exemplo        & \begin{tabular}[c]{@{}l@{}}Exemplo de \\ aplicação\end{tabular}                                                                                                                                                                                                                                                                                       & \begin{tabular}[c]{@{}l@{}}Vocabulário \\ controlado\end{tabular}      \\ \hline
-\begin{tabular}[c]{@{}l@{}}Alternate \\ Identifier \\ (Identificador \\ alternativo)\end{tabular} & \begin{tabular}[c]{@{}l@{}}datacite:\\ alternate\\ Identifier\end{tabular} & \begin{tabular}[c]{@{}l@{}}Outro \\ identificador \\ que não seja o \\ principal. Caso \\ esse campo seja \\ utilizado é \\ obrigatório o uso \\ do atributo \\ alternateIdentifier\\ Type.\end{tabular} & http://someUrl & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:\\ alternate\\ Identifiers\textgreater\\ \textless{}datacite:\\ alternate\\ Identifier \\ alternate\\ IdentifierType\\ ="URL"\textgreater{}http\\ ://someUrl\textless{}/\\ datacite:\\ alternate\\ Identifier\textgreater\\ \textless{}/datacite:\\ alternate\\ Identifiers\textgreater{}\end{tabular} & \begin{tabular}[c]{@{}l@{}}alternate\\ Identifier \\ type\end{tabular} \\ \hline
+Campo                                                                                                & Metadado                                                                   & Definição                                                                                                                                                                                                                                                                                                            & Exemplo                                                    & \begin{tabular}[c]{@{}l@{}}Exemplo de \\ aplicação\end{tabular}                                                                                                                                                                                                                  & \begin{tabular}[c]{@{}l@{}}Vocabulário\\ controlado\end{tabular}                                                         \\ \hline
+\begin{tabular}[c]{@{}l@{}}Alternate \\ Identifier \\(Identificador \\ alternativo)\end{tabular} & \begin{tabular}[c]{@{}l@{}}datacite:\\ alternate\\ Identifier\end{tabular} & \begin{tabular}[c]{@{}l@{}}Outro \\ identificador que\\ não seja o \\ principal. Caso \\ esse campo seja \\ utilizado é \\ obrigatório o uso\\ do atributo \\ alternateIdentifier\\ Type\end{tabular}                                                                                                                & \begin{tabular}[c]{@{}l@{}}http://some \\ Url\end{tabular}  & \begin{tabular}[c]{@{}l@{}}<datacite:\\ alternate\\ Identifiers\\ ><datacite\\ :alternate\\ Identifier \\ alternate\\ Identifier\\ Type="\\ URL">\\ http://som\\ eUrl</da\\ tacite:alter\\ nateIden\\ tifier></da\\ tacite:al\\ ternateI\\ dentifiers>\end{tabular}              & \begin{tabular}[c]{@{}l@{}}alternate\\ Identifier \\ type\end{tabular}                                                   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Related \\ Identifier \\ (Identificador \\ relacionado)\end{tabular}   & \begin{tabular}[c]{@{}l@{}}oaire:\\ funding\\ Reference\end{tabular}       & \begin{tabular}[c]{@{}l@{}}Identificador de \\ um outro recurso \\ associado ao \\ recurso principal \\ descrito. \\ Obrigatório o uso\\ do atributo \\ relatedIdentifier\\ Type \\ (vocabulário \\ controlado \\ disponível) e o \\ uso do atributo \\ relationType \\ (também utiliza \\ vocabulário)\end{tabular} & \begin{tabular}[c]{@{}l@{}}http://some\\ Url\end{tabular}  & \begin{tabular}[c]{@{}l@{}}<datacite:\\ related\\ Identifiers>\\ <datacite:\\ related\\ Identifier \\ related\\ Identifier\\ Type="URL"\\  relationType\\ ="HasPart">\\ http://someUr\\ l</datacite:\\ related\\ Identifier></\\ datacite:\\ related\\ Identifiers>\end{tabular} & \begin{tabular}[c]{@{}l@{}}related\\ Identifier \\ type,\\ relation \\ type e \\ resource\\ type \\ general\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Format \\ (Formato)\end{tabular}                                          & dc:format                                                                  & \begin{tabular}[c]{@{}l@{}}Manifestação \\ física ou digital \\ do recurso\end{tabular}                                                                                                                                                                                                                              & \begin{tabular}[c]{@{}l@{}}application/\\ xml\end{tabular} & \begin{tabular}[c]{@{}l@{}}<dc:format>\\ application/\\ xml</dc:\\ format>\end{tabular}                                                                                                                                                                                          &                                                                                                                          \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+
+
+\newpage
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\begin{tabular}[c]{@{}l@{}}Source \\ (Fonte)\end{tabular}                                & dc:source                                                            & \begin{tabular}[c]{@{}l@{}}Referência à \\ outro recurso do\\ qual o original \\ descrito é \\ derivado\end{tabular}                          & \begin{tabular}[c]{@{}l@{}}Ecology  \\ Letters \\ (1461023X)  \\ vol.4 (2001)\end{tabular}     & \begin{tabular}[c]{@{}l@{}}<dc:source>\\ Ecology  \\ Letters \\ (1461023X)  \\ vol.4 (2001)\\ </dc:source>\end{tabular}                                                                                                                                   &                                                                       \\ \hline
+\begin{tabular}[c]{@{}l@{}}License \\ Condition \\ (Condição \\ da licença)\end{tabular} & \begin{tabular}[c]{@{}l@{}}oaire:\\ license\\ Condition\end{tabular} & \begin{tabular}[c]{@{}l@{}}Informações \\ sobre direitos e \\ licença como \\ uso e acesso ao\\  recurso\end{tabular}                         & \begin{tabular}[c]{@{}l@{}}Creative \\ Commons \\ Attribution-\\ Non\\ Commercial\end{tabular} & \begin{tabular}[c]{@{}l@{}}<oaire:license\\ Condition s\\ tartDate="\\ 2019-02-01" \\ uri="http://\\ creative\\ commons.org/\\ licenses/by-nc/\\ 4.0/">Creative \\ Commons \\ Attribution-\\ Non\\ Commercial</\\ oaire:license\\ Condition>\end{tabular} &                                                                       \\ \hline
+\begin{tabular}[c]{@{}l@{}}Coverage \\ (Cobertura)\end{tabular}                          & \begin{tabular}[c]{@{}l@{}}dc:\\ coverage\end{tabular}               & \begin{tabular}[c]{@{}l@{}}O escopo ou \\ abrangência do \\ conteúdo recurso\end{tabular}                                                     & 2000-2010                                                                                      & \begin{tabular}[c]{@{}l@{}}<dc:coverage>\\ 2000-2010</dc\\ :coverage>\end{tabular}                                                                                                                                                                        &                                                                       \\ \hline
+\begin{tabular}[c]{@{}l@{}}Resource \\ Version \\ (Versão do \\ recurso)\end{tabular}    & \begin{tabular}[c]{@{}l@{}}oaire:\\ version\end{tabular}             & \begin{tabular}[c]{@{}l@{}}Dependendo do \\ tipo de recurso \\ pode indicar, o \\ número da \\ versão ou status \\ da publicação\end{tabular} & 1.0.3                                                                                          & \begin{tabular}[c]{@{}l@{}}<oaire:version>\\ 1.0.3</oaire:\\ version>\end{tabular}                                                                                                                                                                        & \begin{tabular}[c]{@{}l@{}}COAR \\ Version \\ Vocabulary\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Citation \\  Title (Título \\ para citação)\end{tabular}      & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ Title\end{tabular}    & \begin{tabular}[c]{@{}l@{}}Título de onde o \\ recurso está \\ inserido \\ conforme \\ constará na \\ citação \\ bibliográfica\end{tabular}   & Jornal Title                                                                                   & \begin{tabular}[c]{@{}l@{}}<oaire:citation\\ Title>some \\ Journal Title</\\ oaire:citation\\ Title>\end{tabular}                                                                                                                                         &                                                                       \\ \hline
+\begin{tabular}[c]{@{}l@{}}Citation \\ Volume \\ (Volume \\ para citação)\end{tabular}   & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ Volume\end{tabular}   & \begin{tabular}[c]{@{}l@{}}Volume \\ conforme \\ constará na \\ citação \\ bibliográfica\end{tabular}                                         & 10                                                                                             & \begin{tabular}[c]{@{}l@{}}<oaire:citation\\ Volume>10</\\ oaire:citation\\ Volume>\end{tabular}                                                                                                                                                          &                                                                       \\ \hline
 \end{tabular}
 \end{table}
 
@@ -2964,36 +3105,12 @@ Campo                                                                           
 \begin{table}[H]
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
-\begin{tabular}[c]{@{}l@{}}Related \\ Identifier \\ (Identificador \\ relacionado)\end{tabular} & \begin{tabular}[c]{@{}l@{}}oaire:\\ funding\\ Reference\end{tabular} & \begin{tabular}[c]{@{}l@{}}Identificador de \\ um outro recurso \\ associado ao \\ recurso principal \\ descrito. \\ Obrigatório o uso \\ do atributo \\ relatedIdentifier\\ Type (vocabulário \\ controlado \\ disponível) e o \\ uso do atributo \\ relationType \\ (também utiliza \\ vocabulário)\end{tabular} & http://someUrl                                                                                 & \begin{tabular}[c]{@{}l@{}}\textless{}datacite:\\ related\\ Identifiers\textgreater\\ \textless{}datacite:\\ related\\ Identifier \\ related\\ Identifier\\ Type="URL"\\  relationType\\ ="HasPart"\textgreater\\ http://someUr\\ l\textless{}/datacite:\\ related\\ Identifier\textgreater{}\textless{}/\\ datacite:\\ related\\ Identifiers\textgreater{}\end{tabular} & \begin{tabular}[c]{@{}l@{}}related\\ Identifier \\ type,\\ relation type\\ e resource\\ type general\end{tabular} \\ \hline
-\begin{tabular}[c]{@{}l@{}}Format \\ (Formato)\end{tabular}                                     & dc:format                                                            & \begin{tabular}[c]{@{}l@{}}Manifestação \\ física ou digital do \\ \\ \\ recurso\end{tabular}                                                                                                                                                                                                                      & \begin{tabular}[c]{@{}l@{}}application/\\ xml\end{tabular}                                     & \begin{tabular}[c]{@{}l@{}}\textless{}dc:format\textgreater\\ application/\\ xml\textless{}/dc:\\ format\textgreater{}\end{tabular}                                                                                                                                                                                                                                      &                                                                                                                   \\ \hline
-\begin{tabular}[c]{@{}l@{}}Source \\ (Fonte)\end{tabular}                                       & dc:source                                                            & \begin{tabular}[c]{@{}l@{}}Referência à outro \\ recurso do qual o \\ original descrito é \\ derivado.\end{tabular}                                                                                                                                                                                                & \begin{tabular}[c]{@{}l@{}}Ecology  \\ Letters \\ (1461023X)  \\ vol.4 (2001)\end{tabular}     & \begin{tabular}[c]{@{}l@{}}\textless{}dc:source\textgreater\\ Ecology  \\ Letters \\ (1461023X)  \\ vol.4 (2001)\\ \textless{}/dc:source\textgreater{}\end{tabular}                                                                                                                                                                                                      &                                                                                                                   \\ \hline
-\begin{tabular}[c]{@{}l@{}}License \\ Condition \\ (Condição \\ da licença)\end{tabular}        & \begin{tabular}[c]{@{}l@{}}oaire:\\ license\\ Condition\end{tabular} & \begin{tabular}[c]{@{}l@{}}Informações sobre \\ direitos e licença \\ como uso e acesso \\ ao recurso.\end{tabular}                                                                                                                                                                                                & \begin{tabular}[c]{@{}l@{}}Creative \\ Commons \\ Attribution-\\ Non\\ Commercial\end{tabular} & \begin{tabular}[c]{@{}l@{}}\textless{}oaire:license\\ Condition s\\ tartDate="\\ 2019-02-01" \\ uri="http://\\ creative\\ commons.org/\\ licenses/by-nc/\\ 4.0/"\textgreater{}Creative \\ Commons \\ Attribution-\\ Non\\ Commercial\textless{}/\\ oaire:license\\ Condition\textgreater{}\end{tabular}                                                                  &                                                                                                                   \\ \hline
-\end{tabular}
-\end{table}
-
-\newpage
-
-\begin{table}[H]
-\begin{tabular}{|l|l|l|l|l|l|}
-\hline
-\begin{tabular}[c]{@{}l@{}}Coverage \\ (Cobertura)\end{tabular}                                                      & \begin{tabular}[c]{@{}l@{}}dc:\\ coverage\end{tabular}                         & \begin{tabular}[c]{@{}l@{}}O escopo ou \\ abrangência do \\ conteúdo recurso\end{tabular}                                                     & 2000-2010    & \begin{tabular}[c]{@{}l@{}}\textless{}dc:coverage\textgreater\\ 2000-2010\textless{}/dc\\ :coverage\textgreater{}\end{tabular}                                           &                                                                       \\ \hline
-\begin{tabular}[c]{@{}l@{}}Resource \\ Version \\ (Versão do \\ recurso)\end{tabular}                                & \begin{tabular}[c]{@{}l@{}}oaire:\\ version\end{tabular}                       & \begin{tabular}[c]{@{}l@{}}Dependendo do \\ tipo de recurso \\ pode indicar, o \\ número da \\ versão ou status \\ da publicação\end{tabular} & 1.0.3        & \begin{tabular}[c]{@{}l@{}}\textless{}oaire:version\textgreater\\ 1.0.3\textless{}/oaire:\\ version\textgreater{}\end{tabular}                                           & \begin{tabular}[c]{@{}l@{}}COAR \\ Version \\ Vocabulary\end{tabular} \\ \hline
-\begin{tabular}[c]{@{}l@{}}Citation \\  Title (Título \\ para citação)\end{tabular}                                  & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ Title\end{tabular}              & \begin{tabular}[c]{@{}l@{}}Título de onde o \\ recurso está \\ inserido conforme \\ constará na \\ citação \\ bibliográfica\end{tabular}      & Jornal Title & \begin{tabular}[c]{@{}l@{}}\textless{}oaire:citation\\ Title\textgreater{}some \\ Journal Title\textless{}/\\ oaire:citation\\ Title\textgreater{}\end{tabular}          &                                                                       \\ \hline
-\begin{tabular}[c]{@{}l@{}}Citation \\ Volume \\ (Volume \\ para citação)\end{tabular}                               & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ Volume\end{tabular}             & \begin{tabular}[c]{@{}l@{}}Volume conforme \\ constará na \\ citação \\ bibliográfica\end{tabular}                                            & 10           & \begin{tabular}[c]{@{}l@{}}\textless{}oaire:citation\\ Volume\textgreater{}10\textless{}/\\ oaire:citation\\ Volume\textgreater{}\end{tabular}                           &                                                                       \\ \hline
-\begin{tabular}[c]{@{}l@{}}Citation \\ Issue \\ (Exemplar de\\  citação)\end{tabular}                                & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ Issue\end{tabular}              & \begin{tabular}[c]{@{}l@{}}Exemplar \\ conforme \\ constará na \\ citação \\ bibliográfica\end{tabular}                                       & 1            & \begin{tabular}[c]{@{}l@{}}\textless{}oaire:citation\\ Issue\textgreater{}1\textless{}/oaire\\ :citationIssue\textgreater{}\end{tabular}                                 &                                                                       \\ \hline
-\begin{tabular}[c]{@{}l@{}}Citation Start \\ Page (Página \\ inicial para \\ citação)\end{tabular}                   & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ StartPage\end{tabular}          & \begin{tabular}[c]{@{}l@{}}Página inicial \\ conforme constará \\ na citação \\ bibliográfica\end{tabular}                                    & 100          & \begin{tabular}[c]{@{}l@{}}\textless{}oaire:citation\\ StartPage\textgreater{}100\\ \textless{}/oaire:citation\\ StartPage\textgreater{}\end{tabular}                    &                                                                       \\ \hline
-\begin{tabular}[c]{@{}l@{}}Citation End \\ Page (Página \\ final para \\ citação)\end{tabular}                       & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ EndPage\end{tabular}            & \begin{tabular}[c]{@{}l@{}}Página final \\ conforme constará \\ na citação \\ bibliográfica\end{tabular}                                      & 105          & \begin{tabular}[c]{@{}l@{}}\textless{}oaire:citation\\ EndPage\textgreater{}105\\ \textless{}/oaire:citation\\ EndPage\textgreater{}\end{tabular}                        &                                                                       \\ \hline
-\begin{tabular}[c]{@{}l@{}}Citation \\ Edition \\ (Edição para \\ citação)\end{tabular}                              & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ Edition\end{tabular}            & \begin{tabular}[c]{@{}l@{}}Edição conforme \\ constará na \\ citação \\ bibliográfica\end{tabular}                                            & 2            & \begin{tabular}[c]{@{}l@{}}\textless{}oaire:citation\\ Edition\textgreater{}2\textless{}/\\ oaire:citation\\ Edition\textgreater{}\end{tabular}                          &                                                                       \\ \hline
-\begin{tabular}[c]{@{}l@{}}Citation \\ Conference \\ Place (Local \\ da \\ Conferência \\ para citação)\end{tabular} & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ Conference\\ Place\end{tabular} & \begin{tabular}[c]{@{}l@{}}Local da \\ conferência \\ conforme \\ constará na \\ citação \\ bibliográfica\end{tabular}                        & Berlin       & \begin{tabular}[c]{@{}l@{}}\textless{}oaire:citation\\ Conference\\ Place\textgreater{}Berlin\textless\\ /oaire:citation\\ Conference\\ Place\textgreater{}\end{tabular} &                                                                       \\ \hline
-\end{tabular}
-\end{table}
-
-\newpage
-
-\begin{table}[H]
-\begin{tabular}{|l|l|l|l|l|l|}
-\hline
-\begin{tabular}[c]{@{}l@{}}Citation \\ Conference \\ Date (Data \\ da \\ Conferência \\ para citação)\end{tabular} & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ Conference\\ Date\end{tabular} & \begin{tabular}[c]{@{}l@{}}Data da \\ conferência \\ conforme constará \\ na citação \\ bibliográfica, deve \\ ser conforme as \\ regras W3C\end{tabular} & 2013-10-22 & \begin{tabular}[c]{@{}l@{}}\textless{}oaire:citation\\ Conference\\ Date\textgreater\\ 2013-10-22\textless{}/\\ oaire:citation\\ Conference\\ Date\textgreater{}\end{tabular} &  \\ \hline
+\begin{tabular}[c]{@{}l@{}}Citation \\ Issue \\ (Exemplar \\ de citação)\end{tabular}                                & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ Issue\end{tabular}              & \begin{tabular}[c]{@{}l@{}}Exemplar \\ conforme \\ constará na \\ citação \\ bibliográfica\end{tabular}                                                     & 1          & \begin{tabular}[c]{@{}l@{}}<oaire:citation\\ Issue>1</\\ oaire:citation\\ Issue>\end{tabular}                                                            & {\color[HTML]{FFFFFF} aaaaaaaaaa} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Citation Start \\ Page (Página \\ inicial para \\ citação)\end{tabular}                   & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ StartPage\end{tabular}          & \begin{tabular}[c]{@{}l@{}}Página inicial \\ conforme \\ constará na \\ citação \\ bibliográfica\end{tabular}                                               & 100        & \begin{tabular}[c]{@{}l@{}}<oaire:citation\\ StartPage>100\\ </oaire:citation\\ StartPage>\end{tabular}                                                  &                                   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Citation End \\ Page (Página \\ final para \\ citação)\end{tabular}                       & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ EndPage\end{tabular}            & \begin{tabular}[c]{@{}l@{}}Página final \\ conforme \\ constará na\\ citação \\ bibliográfica\end{tabular}                                                  & 105        & \begin{tabular}[c]{@{}l@{}}<oaire:citation\\ EndPage>105\\ </oaire:citation\\ EndPage>\end{tabular}                                                      &                                   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Citation \\ Edition \\ (Edição para \\ citação)\end{tabular}                              & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ Edition\end{tabular}            & \begin{tabular}[c]{@{}l@{}}Edição conforme \\ constará na \\ citação \\ bibliográfica\end{tabular}                                                          & 2          & \begin{tabular}[c]{@{}l@{}}<oaire:citation\\ Edition>2</\\ oaire:citation\\ Edition>\end{tabular}                                                        &                                   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Citation \\ Conference \\ Place (Local \\ da \\ Conferência \\ para citação)\end{tabular} & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ Conferen\\ cePlace\end{tabular} & \begin{tabular}[c]{@{}l@{}}Local da \\ conferência \\ conforme \\ constará na \\ citação \\ bibliográfica\end{tabular}                                      & Berlin     & \begin{tabular}[c]{@{}l@{}}<oaire:citation\\ Conference\\ Place>Berlin<\\ /oaire:citation\\ Conference\\ Place>\end{tabular}                             &                                   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Citation \\ Conference \\ Date (Data \\ da \\ Conferência \\ para citação)\end{tabular}   & \begin{tabular}[c]{@{}l@{}}oaire:\\ citation\\ Conferen\\ ceDate\end{tabular}  & \begin{tabular}[c]{@{}l@{}}Data da \\ conferência \\ conforme \\ constará na \\ citação \\ bibliográfica, \\ deve ser conforme\\ as regras W3C\end{tabular} & 2013-10-22 & {\color[HTML]{FFFFFF} \begin{tabular}[c]{@{}l@{}}<oaire:citati\\ onConferen\\ ceDate>\\ 2013-10-22\\ </oaire:citati\\ onConferen\\ ceDate>\end{tabular}} &                                   \\ \hline
 \end{tabular}
 \end{table}
 
@@ -3001,6 +3118,8 @@ Por fim a tabela com os campos opcionais (O):
 
 
 \begin{table}[H]
+\caption{Metadados Opcionais}
+\label{tab:my-table}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
 Campo                                                                           & Metadado                                                           & Definição                                                                                                                                                                                                                                                                                                                                       & Exemplo                                                                   & \begin{tabular}[c]{@{}l@{}}Exemplo de \\ aplicação\end{tabular}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           & \begin{tabular}[c]{@{}l@{}}Vocabulário \\ controlado\end{tabular} \\ \hline
@@ -3014,7 +3133,7 @@ Campo                                                                           
 
 \subsection{Planejando seu repositório de dados}
 
-\qquad Assim como um repositório qualquer o repositório de dados se beneficia de um planejamento bem estruturado e completo. Um planejamento de um repositório de dados deve então abarcar aspectos como:
+\qquad Assim como qualquer repositório, o repositório de dados se beneficia de um planejamento bem estruturado e completo. Um planejamento de um repositório de dados deve então abarcar aspectos como:
 
 \begin{itemize}
     \item Objetivos e Missão
@@ -3027,7 +3146,7 @@ Campo                                                                           
 
 \subsection{Política de dados}
 
-\qquad Ao desenvolver uma política de dados para seu repositório deve inicialmente \\conhecer os atores envolvidos no processo como um todo, para isso deve-se perguntar:
+\qquad Ao desenvolver uma política de dados para seu repositório deve inicialmente conhecer os atores envolvidos no processo como um todo, para isso deve-se perguntar:
 
 \begin{itemize}
     \item Quem produzirá os dados e com qual motivo?
@@ -3035,32 +3154,32 @@ Campo                                                                           
     \item Quem poderá se interessar e utilizar os dados depositados?
 \end{itemize}
 
-Respondendo essas perguntas já se terá um conhecimento inicial para orientar as decisões que formarão sua política de dados. Outras informações importantes a se \\conhecer antes de se iniciar o desenvolvimento de uma política de dados é o conteúdo de outras políticas institucionais garantindo assim a concordância, algumas políticas que podem ser importantes: as políticas da biblioteca, a política de preservação, política do repositório institucional, entre outras.\\
+A partir  destas respostas se terá um conhecimento inicial para orientar as decisões que formarão sua política de dados. Outras informações importantes a se conhecer antes de se iniciar o desenvolvimento de uma política de dados é o conteúdo de outras políticas institucionais garantindo assim a concordância, algumas políticas que podem ser importantes: as políticas da biblioteca, a política de preservação, política do repositório institucional, entre outras.\\
 
 Alguns tópicos são então essenciais à uma política de dados:
 
 \begin{itemize}
-    \item Definição clara dos atores envolvidos, e que papéis irão desempenhar (workflows e tutoriais detalhados dos processos serão de grande valia aqui, como por exemplo manual de depósito, fluxo de curadoria, entre outros)
-    \item Definição de terminologia  e objetos importantes (como por exemplo: Conjunto de dados, dado de pesquisa, dado para pesquisa, etc)
-    \item Descrição do ciclo de vida do dado desde sua ingestão até descarte (ou outro) incluindo em especial a questão sobre embargo
-    \item Descrição dos metadados utilizados e diretrizes adotadas
+    \item Definição clara dos atores envolvidos, e que papéis irão desempenhar (workflows e tutoriais detalhados dos processos serão de grande valia aqui, como por exemplo manual de depósito, fluxo de curadoria, entre outros);
+    \item Definição de terminologia  e objetos importantes (como por exemplo: Conjunto de dados, dado de pesquisa, dado para pesquisa, etc);
+    \item Descrição do ciclo de vida do dado desde sua ingestão até descarte (ou outro) incluindo em especial a questão sobre embargo;
+    \item Descrição dos metadados utilizados e diretrizes adotadas.
 \end{itemize}
 
 Além dos tópicos acima mencionados vale destacar que pode ser importante para uma política de dados dependendo da instituição a orientação de elaboração dos chamados Plano de Gestão de Dados (PGD).
 
 \subsection{Plano de Gestão de Dados (PGD)}
 
-\qquad O plano de gestão de dados é um documento que deverá esclarecer o modo como os dados foram criados, quem poderá os acessar, quem será responsável por sua preservação e curadoria, o modo como serão documentados, onde e como serão armazenados e condições d epartilha e reuso bem como quaisquer outra informação que o pesquisador julgar importante como por exemplo software para acesso, objetivo e etc. Se percebe uma considerável semelhança entre o PGD e a política de dados de uma instituição porém a grande diferença entre uma política de dados e um plano de gestão de dados é sua autoria, na primeira os dados são tratados em um âmbito institucional enquanto na última ps dados são tratados enquanto no encargo do pesquisador ou coletor.
+\qquad O plano de gestão de dados é um documento que deverá esclarecer o modo como os dados foram criados, quem poderá os acessar, quem será responsável por sua preservação e curadoria, o modo como serão documentados, onde e como serão armazenados e condições de partilha e reuso bem como quaisquer outra informação que o pesquisador julgar importante como por exemplo software para acesso, objetivo, etc. Se percebe uma considerável semelhança entre o PGD e a política de dados de uma instituição, porém a grande diferença entre uma política de dados e um plano de gestão de dados é sua autoria, na primeira os dados são tratados em um âmbito institucional enquanto na última os dados são tratados enquanto no encargo do pesquisador ou coletor.
 
-O Data Curation Center (DCC) desenvolveu o DMPonline, que é uma ferramenta gratuita de desenvolvimento de planos de gestão de dados. Ele fornece orientação e exemplos personalizados para ajudar os pesquisadores a elaborar planos de gerenciamento de dados. EM seu template básico podemos encontrar as seguintes questões orientadoras:
+O Data Curation Center (DCC) desenvolveu o DMPonline, que é uma ferramenta gratuita de desenvolvimento de planos de gestão de dados. Ele fornece orientação e exemplos personalizados para ajudar os pesquisadores a elaborar planos de gerenciamento de dados. Em seu template básico podemos encontrar as seguintes questões orientadoras:
 
 \begin{itemize}
     \item Quais dados você coletará ou criará?
     \item Como os dados serão coletados ou criados?
     \item Que documentação e metadados acompanharão os dados?
     \item Como você gerenciará problemas éticos?
-    \item Como você gerenciará questões de direitos autorais e direitos de propriedade intelectual (DPI)?
-    \item Como os dados serão armazenados e armazenados em backup durante a pesquisa?
+    \item Como você gerenciará questões de direitos autorais e direitos de propriedade \\intelectual (DPI)?
+    \item Como os dados serão armazenados e haverá backup durante a pesquisa?
     \item Como você gerenciará o acesso e a segurança?
     \item Quais dados são de valor a longo prazo e devem ser retidos, compartilhados e / ou preservados?
     \item Qual é o plano de preservação de longo prazo para o conjunto de dados?
@@ -3072,7 +3191,7 @@ O Data Curation Center (DCC) desenvolveu o DMPonline, que é uma ferramenta grat
 
 \subsection{Checklist EIFL}
 
-\qquad A organização não lucrativa EIFL (Electronic Information for Libraries/(Informações eletrônicas para bibliotecas) desenvolveu um checklist voltado para a melhoria de \\repositórios DSpace de acesso aberto. Porém as orientações podem ser adaptadas para a realidade dos repositórios de dados, mais especificamente em Dataverse. As orientações se resumem então em:
+\qquad A organização não lucrativa EIFL (Electronic Information for Libraries/(Informações eletrônicas para bibliotecas) desenvolveu um checklist voltado para a melhoria de repositórios DSpace de acesso aberto. Porém as orientações podem ser adaptadas para a realidade dos repositórios de dados, mais especificamente em Dataverse. As orientações se resumem então em:
 
 \begin{itemize}
 
@@ -3097,25 +3216,24 @@ O Data Curation Center (DCC) desenvolveu o DMPonline, que é uma ferramenta grat
 
 \vspace{10.5cm}
 
-DataCite Metadata Working Group. DataCite Metadata Schema Documentation for the
-Publication and Citation of Research Data. Version 4.1. 2017. DataCite e.V. 10.5438/0014. 72 p.\\
+DATACITE, DataCite Metadata Working Group. \textbf{DataCite Metadata Schema Documentation for the
+Publication and Citation of Research Data}. v. 4.1. 2017. DataCite e.V. 10.5438/0014. 72 p. Disponível em: https://schema.datacite.org/meta/kernel-4.0/doc/\\DataCite-Meta
+dataKernel\_v4.0.pdf. Acesso em: 31 out. 2019.\\
 
-\noindent Dataverse project,  Institute for Quantitative Social Science. Dataverse 4.16 Guides. 2019.\\
+\noindent DATAVERSE PROJECT,  Institute for Quantitative Social Science. \textbf{Dataverse Documentation}. v. 4.17. 2019. Disponível em: http://guides.dataverse.org/en/latest/. Acesso em: 31 out. 2019.\\
 
-\noindent DCC, DMPOnline. DCC Template. 2010.\\
+\noindent DCC, DMPOnline. \textbf{Digital Curation Centre}: DCC Template. 2018. Disponível em: https://dmponline.dcc.ac.uk/template\_export/1638514350.pdf 2010. Acesso em: 31 out. 2019.\\
 
-\noindent FOSTER. Planos de Gestão de Dados no Horizonte 2020. 2019.\\
+\noindent FOSTER, Facilitate Open Science Training for European Research. \textbf{Planos de Gestão de Dados no Horizonte 2020}. Disponível em: https://www.fosteropenscience.eu/node/\\26432019. Acesso em: 31 out. 2019.\\
 
-\noindent KUCHMA,Iryna. EIFL CHECKLIST: HOW TO MAKE YOUR DSPACE OPEN ACCESS REPOSITORY WORK REALLY WELL. 2019. 14 p.\\
+\noindent KUCHMA, Iryna. \textbf{EIFL Checklist}: how to make your DSpace Open Access repositpory work really well. 2019. 14 p. Disponível em: https://www.eifl.net/system/files/\\resources/201907/repositories\_checklist\_july\_2019\_\_0.pdf. Acesso em: 31 out. 2019.\\
 
-\noindent LEITE, Fernando César Lima. Como gerenciar e ampliar a visibilidade da informação científica brasileira: repositórios institucionais de acesso aberto. Brasília: Ibict, 2009. 120 p., il.\\
+\noindent LEITE, Fernando César Lima. \textbf{Como gerenciar e ampliar a visibilidade da informação científica brasileira}: repositórios institucionais de acesso aberto. Brasília: Ibict, 2009. 120 p., il. Disponível em: http://livroaberto.ibict.br/bitstream/1/775/4/Como\%20\\gerenciar\%20e\%20ampliar\%20a\%20visibilidade\%20da\%20informa\%C3\%A7\%C3\%A3o\\\%20cient\%C3\%ADfica\%20brasileira.pdf. Acesso em: 31 out. 2019.\\
 
-\noindent OpenAIRE. OpenAIRE Guidelines for Literature Repository Managers v4. 2018.\\
+\noindent OPENAIRE, Open Access Infrastructure for Research in Europe. \textbf{OpenAIRE Guidelines for Literature Repository Managers}. v. 4. 2018. Disponível em: https://openaire-guidelines-for-literature-repository-managers.readthedocs.io/en/v4.0.0/introduction.\\html. Acesso em: 31 out. 2019.\\
 
-\noindent RDP Brasil. ACESSO ABERTO A DADOS
-DE PESQUISA NO BRASIL: Planejamento para Implantação de Comunidade Produtora de
-Dados para o Repositório Rede de Dados de Pesquisa – RDP Brasil de Dados. 2019. 40 p.\\
+\noindent RDP Brasil. \textbf{Acesso aberto a dados de pesquisa no Brasil}: planejamento para implantação de Comunidade Produtora de Dados para o Repositório Rede de Dados de Pesquisa – RDP Brasil de Dados. 2019. 40 p. Disponível em: https://lume.ufrgs.br/bitstream/handle/\\10183/185195/001082283.pdf?sequence\=1\&isAllowed\=y. Acesso em: 31 out. 2019.\\
 
-\noindent ROSA, Juliane Alves, et al. Manual para o gerenciamento de repositórios digitais criados em DSpace. Brasília: Ibict, 2016. 132 p., il.\\
+\noindent ROSA, Juliane Alves, et al. \textbf{Manual para o gerenciamento de repositórios digitais criados em DSpace}. Brasília: Ibict, 2016. 132 p., il. Disponível em: https://wiki.duraspace.org/\\download/attachments/112528241/Manual\_Gerenciamento\_de\_reposit\%C3\%B3rios\_\\digitais\_DSpace\_final\_2016.pdf?version=1\&modificationDate=1556132200816\&api=v2. \\Acesso em: 31 out. 2019.\\
 
 \end{document}

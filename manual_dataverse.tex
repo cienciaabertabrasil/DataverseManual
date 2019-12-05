@@ -451,11 +451,7 @@
     apt-get update
             \end{minted}
 \newpage
-            Em seguida, deve ser instalado alguns pacotes básicos do sistema operacional,
-            \begin{minted}{bash}
-    apt-get install linux-headers
-            \end{minted}
-            e programas básicos, que seram utilizado durante a instalação, como o editor de texto vim, o descompactador unzip, o programa para download web wget e o programa para download no github git,
+            Em seguida, deve ser instalado alguns pacotes básicos do sistema operacional e programas básicos, que seram utilizado durante a instalação, como o editor de texto vim, o descompactador unzip, o programa para download web wget e o programa para download no github git,
             \begin{minted}{bash}
     apt-get install vim unzip wget git
             \end{minted}
@@ -499,7 +495,7 @@
             
         \subsubsection{Glassfish}
         
-        \qquad O programa Glassfish não precisa ser instalado, ele é uma programa executavel diretamente do diretório do pacote. Por questão de organização, vamos criar um usuário glassfish.
+        \qquad O programa Glassfish não precisa ser instalado, a aplicaçao e executada diretamente do diretório do pacote. Por questão de organização, vamos criar um usuário glassfish.
         \begin{minted}{bash}
     useradd glassfish
         \end{minted}
@@ -747,10 +743,22 @@
     password: admin
         \end{minted}
     
-%    \subsection{Configurações Adicionais}
+        \subsection{Configurações}
         
-%        \subsubsection{Modificação e adição de metadados}
-%        
+        \subsubsection{Provedor Doi }
+        
+    O Dataverse vem com a opção de vinculação do dataset a um número de registro pertinente, DOI. Existe a opção de utilizar o DataCite e o EZID. A baixo, segue o comando para ativação do provedor do DOI, para exemplificar, o comando segue com o provedor DataCite seja escolhido o Dataccite
+        \begin{minted}{bash}
+    curl -X PUT -d DataCite http://localhost:8080/api/admin/settings/:DoiProvider
+        \end{minted}
+        
+        Caso a instituição, de forma porvisória ou nem queira contratar nenhum provedor, mas existe a necessidade de publicação dos dados, como por exemplo, para a coleta das informações dos dados. O Dataverse possibilida a ativação, no qual é utilizado um provedor DOI falso. Para isso, no comando, é necessário subistituir o nome do provedor por "FAKE", da forma que é mostrado abaixo.
+        
+        \begin{minted}{bash}
+    curl -X PUT -d FAKE http://localhost:8080/api/admin/settings/:DoiProvider
+        \end{minted}
+        
+        %        
 %        \begin{minted}{bash}
 %            curl http://localhost:8080/api/admin/datasetfield/load -H 
 %            "Content-type: text/tab-separated-values" -X POST --upload-file 
@@ -940,7 +948,7 @@ Quando estiver na página do conjunto de dados, você verá o título, a citaç�
 \begin{figure}[H]
 \caption{Página principal}
 \centering
-    \includegraphics[width=1.0\textwidth]{USAAAA.png}
+    \includegraphics[width=1.0\textwidth]{imagens/USAAAA.png}
     \label{print1}
 \end{figure}
 \noindent  {\small Fonte: Elaboração própria}
@@ -952,7 +960,7 @@ Quando estiver na página do conjunto de dados, você verá o título, a citaç�
 \begin{figure}[H]
 \caption{Citar dados}
 \centering
-    \includegraphics[width=1.0\textwidth]{PFVFU.png}
+    \includegraphics[width=1.0\textwidth]{imagens/PFVFU.png}
     \label{print2}
 \end{figure}
 
@@ -1024,7 +1032,7 @@ Depois que um usuário cria um dataverse, por padrão, ele se torna o administra
 \begin{figure}[H]
 \caption{Diagrama esquemático}
 \centering
-    \includegraphics[width=0.8\textwidth]{Dataverse-Diagram.png}
+    \includegraphics[width=0.8\textwidth]{imagens/Dataverse-Diagram.png}
     \label{Diagrama dataverse}
 \end{figure}
 \noindent {\small Fonte: DATAVERSE PROJECT, 2019}
@@ -1123,7 +1131,7 @@ Os administradores de um dataverse podem atribuir funções e permissões aos us
 \begin{figure}[H]
 \caption{Permissões}
 \centering
-    \includegraphics[width=1.0\textwidth]{prt1.png}
+    \includegraphics[width=1.0\textwidth]{imagens/prt1.png}
     
     \label{Permissões}
 \end{figure}
@@ -1132,7 +1140,7 @@ Os administradores de um dataverse podem atribuir funções e permissões aos us
 \begin{figure}[H]
 \caption{Página permissões}
 \centering
-    \includegraphics[width=1.0\textwidth]{NOVOTIR.png}
+    \includegraphics[width=1.0\textwidth]{Prints/NOVOTIR.png}
     \label{Permissões 2}
 \end{figure}
 \noindent {\small Fonte: DATAVERSE PROJECT, 2019}\\
@@ -1152,7 +1160,7 @@ Ao acessar a página de permissões de um dataverse, você visualizará três se
   \begin{figure}[H]
   \caption{Tipos de permissão}
          \centering
-    \includegraphics[scale=0.4]{prt3.png}
+    \includegraphics[scale=0.4]{imagens/prt3.png}
     \label{Acesso}
     \end{figure}
   \noindent {\small Fonte: DATAVERSE PROJECT, 2019}\\
@@ -1170,7 +1178,7 @@ Essa função, no entanto, não teria a permissão "PublishDataset" e, portanto,
 \begin{figure}[H]
   \caption{Papéis}
         \centering
-     \includegraphics[scale=0.4]{prt4.png}
+     \includegraphics[scale=0.4]{imagens/prt4.png}
             \label{Acesso 2}
         \end{figure}
 \noindent {\small Fonte: DATAVERSE PROJECT, 2019}\\
@@ -1179,7 +1187,7 @@ Observe que a função Criador do conjunto de dados e a função Colaborador às
 
 \begin{figure}[H]
  \caption{Designando papéis}
-                \centering           \includegraphics[scale=0.4]{prt5.png}
+                \centering           \includegraphics[scale=0.4]{imagens/prt5.png}
             \label{Acesso 3}
         \end{figure}
 \noindent {\small Fonte: DATAVERSE PROJECT, 2019}\\
@@ -1282,7 +1290,7 @@ Da mesma forma que a vinculação de conjuntos de dados, a vinculação de datav
 \begin{figure}[H]
  \caption{Esquema de um Dataset}
                 \centering
-             \includegraphics[scale=0.5]{dtset.png}
+             \includegraphics[scale=0.5]{imagens/dtset.png}
             \label{Dataset}
         \end{figure}
 \noindent {\small Fonte: DATAVERSE PROJECT, 2019}
@@ -1362,7 +1370,7 @@ Opções de download adicionais disponíveis para dados tabulares (encontradas n
 \begin{figure}[H]
 \caption{Download}
                 \centering
-             \includegraphics[scale=0.3]{dttab.png}
+             \includegraphics[scale=0.3]{imagens/dttab.png}
             \label{Tabulares}
         \end{figure}
     \noindent {\small Fonte: DATAVERSE PROJECT, 2019}
@@ -1413,7 +1421,7 @@ Se houver mais de um arquivo no conjunto de dados e uma vez que pelo menos um de
 \begin{figure}[H]
              \caption{Visualização}
                 \centering
-         \includegraphics[scale=0.5]{cam.png}
+         \includegraphics[scale=0.5]{imagens/cam.png}
             \label{Caminho}
         \end{figure}
   \noindent {\small Fonte: DATAVERSE PROJECT, 2019}
@@ -1481,7 +1489,7 @@ O Dataverse aceita informações de proveniência de duas formas: um Arquivo de 
   \begin{figure}[H]
      \caption{Proveniência}
                 \centering
-         \includegraphics[scale=0.5]{prov.png}
+         \includegraphics[scale=0.5]{imagens/prov.png}
             \label{Proveniência}
         \end{figure}
    \noindent {\small Fonte: DATAVERSE PROJECT, 2019}\\
@@ -1490,7 +1498,7 @@ Isso abrirá uma janela onde você pode adicionar seu arquivo de proveniência e
     
  \begin{figure}[H]
                  \caption{Arquivo de proveniência}
-                \centering                \includegraphics[scale=0.7]{prov1.png}
+                \centering                \includegraphics[scale=0.7]{imagens/prov1.png}
             \label{Proveniência1}
         \end{figure}
 \noindent {\small Fonte: DATAVERSE PROJECT, 2019}\\
@@ -1574,7 +1582,7 @@ Para desativar um URL privado e revogar o acesso, siga as mesmas etapas acima at
 \begin{figure}[H]
     \caption{Versões}
     \centering
-      \includegraphics[scale=0.4]{ver.png}
+      \includegraphics[scale=0.4]{imagens/ver.png}
     \label{Versão}
  \end{figure}
 \noindent Fonte: DATAVERSE PROJECT\\
@@ -1662,24 +1670,24 @@ Na parte logo acima da descrição tem o item \textit{OAI Server}. Este item est
 \label{img0203}
 \end{figure}
 
-Para verificar se foi modificado, acesse o endereço \textit{http://\color[red]{URL DO DATAVERSE}/oai}. Caso a página seja parecida com a figura \ref{img06.png}, o OAI server está habilitado.
+Para verificar se foi modificado, acesse o endereço \textit{http:// \textcolor{red}{URL DO DATAVERSE} /oai}. Caso a página seja parecida com a figura \ref{img06.png}, o OAI server está habilitado.
 
 \begin{figure}[!htp]
     \centering
       \includegraphics[scale=0.2]{imagens/06.png}
-        \caption{Dashboard}
+        \caption{Página de verificação do OAI server}
     \label{img06.png}
  \end{figure}
 
  \begin{figure}[ht]
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.45\textwidth}
   \centering
   % include first image
   \includegraphics[width=.9\linewidth]{imagens/03.png}  
   \caption{Adicionar uma coleta}
   \label{img04.png}
 \end{subfigure}
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.45\textwidth}
   \centering
   % include second image
   \includegraphics[width=.9\linewidth]{imagens/05.png}  

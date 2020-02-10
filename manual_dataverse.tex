@@ -747,7 +747,7 @@
         
         \subsubsection{Provedor Doi }
         
-    O Dataverse vem com a opção de vinculação do dataset a um número de registro pertinente, DOI. Existe a opção de utilizar o DataCite e o EZID. A baixo, segue o comando para ativação do provedor do DOI, para exemplificar, o comando segue com o provedor DataCite seja escolhido o Dataccite
+    \qquad O Dataverse vem com a opção de vinculação do dataset a um número de registro pertinente, DOI. Existe a opção de utilizar o DataCite e o EZID. A baixo, segue o comando para ativação do provedor do DOI, para exemplificar, o comando segue com o provedor DataCite seja escolhido o Datacite
         \begin{minted}{bash}
     curl -X PUT -d DataCite http://localhost:8080/api/admin/settings/:DoiProvider
         \end{minted}
@@ -758,48 +758,49 @@
     curl -X PUT -d FAKE http://localhost:8080/api/admin/settings/:DoiProvider
         \end{minted}
         
-        %        
+               
 %        \begin{minted}{bash}
 %            curl http://localhost:8080/api/admin/datasetfield/load -H 
 %            "Content-type: text/tab-separated-values" -X POST --upload-file 
 %            /tmp/novo_bloco.tsv
 %        \end{minted}
+
+
+        \subsubsection{Google Analytics}
         
-%        \subsubsection{Google Analytics}
-%        
-%        
-%        \begin{minted}{bash}
-%    cd /var/www/
-%    mkdir dataverse/branding
-%        \end{minted}
-%        
-%        
-%        \begin{minted}{bash}
-%    vim /analytics-code.html
-%        \end{minted}
-%        
-%        
-%        \begin{minted}{bash}
-%            <!-- Global Site Tag (gtag.js) - Google Analytics -->
-%            <script async="async" src="https://www.googletagmanager.com/
-%            gtag/js?id=YOUR-ACCOUNT-CODE"></script>
-%            <script>
-%                //<![CDATA[
-%                window.dataLayer = window.dataLayer || [];
-%                function gtag(){dataLayer.push(arguments);}
-%                gtag('js', new Date());
-%    
-%                gtag('config', 'YOUR-ACCOUNT-CODE');
-%                //]]>
-%            </script>
-%         \end{minted}
-%    
-%        \begin{minted}{bash}
-%            curl -X PUT -d '/var/www/dataverse/branding/analytics-code.html' 
-%            http://localhost:8080/api/admin/settings/:WebAnalyticsCode
-%        \end{minted}
         
-%        \subsubsection{OAI-PMH}
+        \begin{minted}{bash}
+    cd /var/www/
+    mkdir dataverse/branding
+        \end{minted}
+        
+        
+        \begin{minted}{bash}
+    vim /analytics-code.html
+        \end{minted}
+        
+        
+        \begin{minted}{bash}
+            <!-- Global Site Tag (gtag.js) - Google Analytics -->
+            <script async="async" src="https://www.googletagmanager.com/
+            gtag/js?id=YOUR-ACCOUNT-CODE"></script>
+            <script>
+                //<![CDATA[
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+    
+                gtag('config', 'YOUR-ACCOUNT-CODE');
+                //]]>
+            </script>
+         \end{minted}
+    
+        \begin{minted}{bash}
+            curl -X PUT -d '/var/www/dataverse/branding/analytics-code.html' 
+            http://localhost:8080/api/admin/settings/:WebAnalyticsCode
+        \end{minted}
+        
+        
        
 
         
@@ -1132,7 +1133,6 @@ Os administradores de um dataverse podem atribuir funções e permissões aos us
 \caption{Permissões}
 \centering
     \includegraphics[width=1.0\textwidth]{imagens/prt1.png}
-    
     \label{Permissões}
 \end{figure}
 \noindent {\small Fonte: DATAVERSE PROJECT, 2019}
@@ -1679,6 +1679,8 @@ Para verificar se foi modificado, acesse o endereço \textit{http:// \textcolor{
     \label{img06.png}
  \end{figure}
 
+Adicionar 
+
  \begin{figure}[ht]
 \begin{subfigure}{.45\textwidth}
   \centering
@@ -2066,7 +2068,7 @@ Usaremos este comando novamente abaixo para atualizar o esquema Solr para acomod
 
 \qquad Vários arquivos TSV são carregados no Dataverse a cada nova instalação, que se tornam os blocos de metadados que você vê na interface do usuário.
 
-Junto com o arquivo TSV, há arquivos de propriedades ResourceBundle correspondentes com o par chave = valor.lang.directory e inclua um arquivo, por exemplo: “citation\_lang.properties” no caminho especificado para a opção da JVM 
+Junto com o arquivo TSV, há arquivos de propriedades ResourceBundle correspondentes com o par chave = valor.lang.directory e inclua um arquivo, por exemplo: “citation lang.properties” no caminho especificado para a opção da JVM 
 \textbf{dataverse.lang.directory} e, em seguida, reinicie o Glassfish.
 
 Se você estiver alterando um bloco de metadados existente, o processo de instalação do Dataverse carregará o TSV para você, assumindo que você editou o arquivo TSV no local. O arquivo TSV para o bloco de metadados Citation, por exemplo, pode ser encontrado em  \textbf{scripts / api / data / metadatablocks / citation.tsv}. Se algum dos valores de propriedade mencionados abaixo for alterado, o arquivo de propriedade ResourceBundle correspondente deverá ser editado e armazenado no local \textbf{dataverse.lang.directory}

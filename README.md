@@ -1,8 +1,14 @@
 # Manual do Dataverse
 Manual do Dataverse
 
+
 ---
-layout: default
+Contribuidores:
+
+Lucas N. Paganine - lucaspaganine@ibict.br
+Vanderlino C. Barreto Neto - vanderlinoneto@ibict.br
+Luciana dos Santos Nahuz - luciananahuz@ibict.br
+Washington L. R. de C. Segundo - washingtonsegundo@ibict.br
 ---
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.

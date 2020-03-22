@@ -2,17 +2,17 @@
 Manual do Dataverse
 
 
----
-Contribuidores:
+# Contribuidores
 
-Lucas N. Paganine - lucaspaganine@ibict.br
+_Lucas N. Paganine_ - lucaspaganine@ibict.br
 
-Vanderlino C. Barreto Neto - vanderlinoneto@ibict.br
+_Vanderlino C. Barreto Neto_ - vanderlinoneto@ibict.br
 
-Luciana dos Santos Nahuz - luciananahuz@ibict.br
+_Luciana dos S. Nahuz_ - luciananahuz@ibict.br
 
 Washington L. R. de C. Segundo - washingtonsegundo@ibict.br
----
+
+
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 

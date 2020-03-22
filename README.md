@@ -6,8 +6,11 @@ Manual do Dataverse
 Contribuidores:
 
 Lucas N. Paganine - lucaspaganine@ibict.br
+
 Vanderlino C. Barreto Neto - vanderlinoneto@ibict.br
+
 Luciana dos Santos Nahuz - luciananahuz@ibict.br
+
 Washington L. R. de C. Segundo - washingtonsegundo@ibict.br
 ---
 

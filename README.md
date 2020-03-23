@@ -8,7 +8,14 @@ Manual do Dataverse
 
 
 
-# Header 1
+# Instalação
+
+## Pré-requisitos
+
+O Sistema Operacional utilizado neste tutorial de instalação foi o Linux, distribuição **Debian 10**. 
+Esse sistema operacional foi escolhido por ser um dos mais utilizado em servidores de instituições acadêmicas. 
+Os programas são instalados utilizando o programa gestor de pacotes _APT_, 
+ contudo, por conta de problemas de compatibilidade, alguns programas serão instalados manualmente.
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 

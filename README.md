@@ -4,7 +4,7 @@ Manual do Dataverse
 
 ## Contribuidores
 
-[Lista completa dos contribuidores](./contribs.html).
+[Lista completa de contribuidores](./contribs.md).
 
 
 

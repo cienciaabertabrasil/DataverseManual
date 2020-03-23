@@ -22,12 +22,20 @@ com isso, recomenda-se estar logado como _root_ durante a instalação, ou possu
 Todos os comandos com permissão especial serão executados com _sudo_ a frente. Exemplo:
 
 ```linux
-sudo apt update
+$ sudo apt update
 ```
 
-Caso seja necessário a mudança de usuário, haverá uma instrução. Para acessar como superusuário, tendo conhecimento da senha, pode-se usar o comando 
-\textbf{su}.
+Uma forma alternativa de execução de comandos como _superusuário_ é, tendo conhecimento da senha de _root_, executar o comando: 
 
+```linux
+$ su -
+```
+
+Para retornar ao usuário comum, basta executar:
+
+```linux
+# exit
+```
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 

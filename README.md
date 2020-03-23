@@ -37,6 +37,45 @@ Para retornar ao usuário comum, basta executar:
 # exit
 ```
 
+A primeira coisa a se fazer, depois de acessar como superusuário, é atualizar a base de dados do gestor de pacotes:
+
+```linux
+$ sudo apt update
+$ sudo apt upgrade
+```
+
+
+
+Em seguida, devem ser instalados alguns pacotes e programas básicos, que serão utilizados durante a instalação, como o descompactador _unzip_,  o programa para versionamento de código _git_:
+
+```linux
+$ sudo apt install unzip git
+```
+
+
+
+Crie um usuário de nome _dataverse_ para vinculá-lo aos pacotes baixados e à instalação da instância do Dataverse:
+
+```linux
+$ sudo useradd -m dataverse
+```
+
+
+
+Ao se criar o usuário, também será criada uma pasta no diretório _/home/_ como o nome _dataverse_. Acesse a pasta _/home/dataverse_ e crie um diretório temporário _temp_, onde serão baixados alguns dos programas e pacotes necessários para a instalação.
+
+```linux
+$ cd /home/dataverse
+$ mkdir temp 
+$ cd temp
+```
+
+ O pacote _Java_ 8 pode ser instalado utilizando o programa _apt_, contudo, por questão de compatibilidade, recomendamos baixar este pacote diretamente do sítio da _Oracle_. Acesse a página de downloads https://www.oracle.com/java/technologies/javase-jdk8-downloads.html. Faça o download da versão mais recente do pacote _jdk-8uxxx-linux-x64.tar.gz_ e transfira-o para a pasta recém-criada _/home/dataverse/temp_.
+
+
+
+
+
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
 There should be whitespace between paragraphs.
@@ -153,3 +192,5 @@ Long, single-line code blocks should not wrap. They should horizontally scroll i
 The final element.
 ```
 
+
+```

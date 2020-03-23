@@ -49,7 +49,7 @@ $ sudo apt upgrade
 Em seguida, devem ser instalados alguns pacotes e programas básicos, que serão utilizados durante a instalação, como o descompactador _unzip_,  o programa para versionamento de código _git_:
 
 ```linux
-$ sudo apt install unzip git
+$ sudo apt install git postgresql jq 
 ```
 
 
@@ -62,7 +62,13 @@ $ sudo useradd -m dataverse
 
 
 
-Ao se criar o usuário, também será criada uma pasta no diretório _/home/_ como o nome _dataverse_. Acesse a pasta _/home/dataverse_ e crie um diretório temporário _temp_, onde serão baixados alguns dos programas e pacotes necessários para a instalação.
+Ao se criar o usuário, também será criada uma pasta no diretório _/home/_ como o nome _dataverse_.  É necessário mudar as permissões da pasta _/home/dataverse_ para que o usuário que executa a instalação possa salvar arquivos e realizar modificações neste diretório. Substitua _user_ pelo nome do usuário que executa a instalação e proceda com o seguinte comando:
+
+```linux
+$ chown -R user:user /home/dataverse
+```
+
+Acesse a pasta _/home/dataverse_ e crie um diretório temporário _temp_, onde serão baixados alguns dos programas e pacotes necessários para a instalação.
 
 ```linux
 $ cd /home/dataverse
@@ -70,7 +76,36 @@ $ mkdir temp
 $ cd temp
 ```
 
- O pacote _Java_ 8 pode ser instalado utilizando o programa _apt_, contudo, por questão de compatibilidade, recomendamos baixar este pacote diretamente do sítio da _Oracle_. Acesse a página de downloads https://www.oracle.com/java/technologies/javase-jdk8-downloads.html. Faça o download da versão mais recente do pacote _jdk-8uxxx-linux-x64.tar.gz_ e transfira-o para a pasta recém-criada _/home/dataverse/temp_.
+
+
+### Java Oracle (JDK 8)
+
+O pacote _Java_ 8 pode ser instalado utilizando o programa _apt_, contudo, por questão de compatibilidade, recomendamos baixar este pacote diretamente do sítio da _Oracle_. Acesse a página de downloads:
+
+> [https://www.oracle.com/java/technologies/javase-jdk8-downloads.html](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html)
+
+ Faça o download da versão mais recente do pacote _jdk-8uxxx-linux-x64.tar.gz_ e transfira-o para a pasta recém-criada _/home/dataverse/temp_.
+
+> Infelizmente, é necessário ter uma conta de acesso configurada na _Oracle_ para concluir o download.
+
+Descompacte o arquivo _jdk-8uxxx-linux-x64.tar.gz_ transferido (lembre-se de substituir _xxx_ pelo número correto da versão baixada.
+
+```linux
+$ cd temp
+$ tar -vzxf jdk-8uxxx-linux-x64.tar.gz
+```
+
+Crie a pasta de instalação da JDK.
+
+```linux
+$ sudo mkdir /usr/java
+```
+
+Mova a pasta criada da descompactação do arquivo (_jdk1.8.xxx/_) para dentro da pasta recém-criada (_/usr/java_).
+
+```linux
+$ sudo mv jdk1.8.xxx/ /usr/java/
+```
 
 
 
@@ -192,5 +227,7 @@ Long, single-line code blocks should not wrap. They should horizontally scroll i
 The final element.
 ```
 
+
+```
 
 ```

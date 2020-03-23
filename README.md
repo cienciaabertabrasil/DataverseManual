@@ -4,7 +4,7 @@ Manual do Dataverse
 
 ## Contribuidores
 
-[Lista completa de contribuidores](./contribs.md).
+[Lista completa de contribuidores](./contribs.md){:target="_blank" rel="noopener"}.
 
 
 
@@ -17,6 +17,16 @@ Os programas são instalados utilizando o programa gestor de pacotes _APT_,
 
 ## Pré-requisitos
 
+É necessário a autorização de administrador ou de _superusuário_ em algumas etapas da instalação, 
+com isso, recomenda-se estar logado como _root_ durante a instalação, ou possuir usuário com _sudo_ configurado. 
+Todos os comandos com permissão especial serão executados com _sudo_ a frente. Exemplo:
+
+```linux
+sudo apt update
+```
+
+Caso seja necessário a mudança de usuário, haverá uma instrução. Para acessar como superusuário, tendo conhecimento da senha, pode-se usar o comando 
+\textbf{su}.
 
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.

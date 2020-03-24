@@ -15,10 +15,12 @@ Esse sistema operacional foi escolhido por ser um dos mais utilizado em servidor
 Os programas são instalados utilizando o programa gestor de pacotes _APT_, 
  contudo, por conta de problemas de compatibilidade, alguns programas serão instalados manualmente.
 
+>O procedimento de instalação do Dataverse descrito a seguir exige noções básicas de redes de computadores e comandos executados no terminal do Sistema Operacional Linux.
+
 ## Pré-requisitos
 
 É necessário a autorização de administrador ou de _superusuário_ em algumas etapas da instalação, 
-com isso, recomenda-se estar logado como _root_ durante a instalação, ou possuir usuário com _sudo_ configurado. 
+com isso, recomenda-se estar logado como `root` durante a instalação, ou possuir usuário com `sudo` configurado. 
 Todos os comandos com permissão especial serão executados com _sudo_ a frente. Exemplo:
 
 ```linux
@@ -44,15 +46,11 @@ $ sudo apt update
 $ sudo apt upgrade
 ```
 
-
-
 Em seguida, devem ser instalados alguns pacotes e programas básicos, que serão utilizados durante a instalação, como o descompactador _unzip_,  o programa para versionamento de código _git_:
 
 ```linux
-$ sudo apt install git postgresql jq 
+$ sudo apt install git postgresql jq curl
 ```
-
-
 
 Crie um usuário de nome _dataverse_ para vinculá-lo aos pacotes baixados e à instalação da instância do Dataverse:
 
@@ -60,9 +58,7 @@ Crie um usuário de nome _dataverse_ para vinculá-lo aos pacotes baixados e à 
 $ sudo useradd -m dataverse
 ```
 
-
-
-Ao se criar o usuário, também será criada uma pasta no diretório _/home/_ como o nome _dataverse_.  É necessário mudar as permissões da pasta _/home/dataverse_ para que o usuário que executa a instalação possa salvar arquivos e realizar modificações neste diretório. Substitua _user_ pelo nome do usuário que executa a instalação e proceda com o seguinte comando:
+Ao se criar o usuário, também será criada uma pasta no diretório `/home/` como o nome `dataverse`.  É necessário mudar as permissões da pasta `/home/dataverse` para que o usuário que executa a instalação possa salvar arquivos e realizar modificações neste diretório. Substitua `user` pelo nome do usuário que executa a instalação e proceda com o seguinte comando:
 
 ```linux
 $ chown -R user:user /home/dataverse
@@ -80,15 +76,15 @@ $ cd temp
 
 ### Java Oracle (JDK 8)
 
-O pacote _Java_ 8 pode ser instalado utilizando o programa _apt_, contudo, por questão de compatibilidade, recomendamos baixar este pacote diretamente do sítio da _Oracle_. Acesse a página de downloads:
+O pacote _Java_ 8 pode ser instalado utilizando o programa _APT_, contudo, por questão de compatibilidade, recomendamos baixar este pacote diretamente do sítio da _Oracle_. Acesse a página de downloads:
 
 > [https://www.oracle.com/java/technologies/javase-jdk8-downloads.html](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html)
 
- Faça o download da versão mais recente do pacote _jdk-8uxxx-linux-x64.tar.gz_ e transfira-o para a pasta recém-criada _/home/dataverse/temp_.
+ Faça o download da versão mais recente do pacote `jdk-8uxxx-linux-x64.tar.gz` e transfira-o para a pasta recém-criada `/home/dataverse/temp`.
 
 > Infelizmente, é necessário ter uma conta de acesso configurada na _Oracle_ para concluir o download.
 
-Descompacte o arquivo _jdk-8uxxx-linux-x64.tar.gz_ transferido (lembre-se de substituir _xxx_ pelo número correto da versão baixada.
+Descompacte o arquivo `jdk-8uxxx-linux-x64.tar.gz` transferido (lembre-se de substituir _xxx_ pelo número correto da versão baixada.
 
 ```linux
 $ cd temp
@@ -101,11 +97,101 @@ Crie a pasta de instalação da JDK.
 $ sudo mkdir /usr/java
 ```
 
-Mova a pasta criada da descompactação do arquivo (_jdk1.8.xxx/_) para dentro da pasta recém-criada (_/usr/java_).
+Mova a pasta criada da descompactação do arquivo (`jdk1.8.xxx/`) para dentro da pasta recém-criada (`/usr/java`).
 
 ```linux
 $ sudo mv jdk1.8.xxx/ /usr/java/
 ```
+
+Ative o pacote JDK 8 por meio dos comandos:
+
+```linux
+$sudo update-alternatives --install /usr/bin/java java /usr/java/jdk1.8.xxx/bin/java 100
+
+$ sudo update-alternatives --install /usr/bin/javac javac /usr/java/jdk1.8.xxx/bin/javac 100
+```
+
+
+
+### Glassfish
+
+Para instalar o servidor web _Glassfish_ é necessário proceder com o roteiro dado a seguir.
+
+Primeiro, baixe o programa _Glassfish_,  versão 4.1, dentro da pasta `/home/dataverse/temp`.
+
+```linux
+$ cd /home/dataverse/temp/
+
+$ wget http://download.oracle.com/glassfish/4.1/release/glassfish-4.1.zip
+```
+
+Descompacte o arquivo baixado.
+
+```linux
+$ unzip glassfish-4.1.zip
+```
+
+Mova a pasta automaticamente criada `glassfish4` para `/home/dataverse`.
+
+```linux
+$ mv glassfish4 /home/dataverse/
+```
+
+Remova o arquivo `weld-osgi-bundle.jar`, localizado no diretório `/home/dataverse/glassfish4/glassfish/modules/`.
+
+```linux
+$ rm /home/dataverse/glassfish4/glassfish/modules/weld-osgi-bundle.jar
+```
+
+Baixe a nova versão do arquivo removido dentro de `/home/dataverse/temp`.
+
+```linux
+$ curl -L -O https://search.maven.org/remotecontent?filepath=org/jboss/weld/weld-osgi-bundle/2.2.10.Final/weld-osgi-bundle-2.2.10.Final-glassfish4.jar
+```
+
+Copie o novo arquivo baixado `weld-osgi-bundle-2.2.10.Final-glassfish4.jar` para dentro do diretório `/home/dataverse/glassfish4/glassfish/modules/`.
+
+```linux
+$ cp weld-osgi-bundle-2.2.10.Final-glassfish4.jar /home/dataverse/glassfish4/glassfish/modules/
+```
+
+Edite o arquivo  `domain.xml` localizado na pasta `/home/dataverse/glassfish4/glassfish/domains/domain1/config/`, alterando de `-client` para `-server` a tag `<jvm-options>-client</jvm-options>`.
+
+```linux
+$ nano /home/dataverse/glassfish4/glassfish/domains/domain1/config/domain.xml
+```
+
+Alterar de:
+
+```xml
+        <jvm-options>-client</jvm-options>
+```
+
+Para:
+
+```xml
+        <jvm-options>-server</jvm-options>
+```
+
+Copie os certificados de segurança atualizados no pacote _JDK_ 8 baixado para dentro da pasta `/home/dataverse/glassfish4/glassfish/domains/domain1/config/`.
+
+```linux
+$ cp /usr/java/jdk1.8.xxx/jre/lib/security/cacerts /home/dataverse/glassfish4/glassfish/domains/domain1/config/cacerts.jks
+```
+
+Inicie a execução do _Glassfish_.
+
+```linux
+$ /home/dataverse/glassfish4/bin/asadmin start-domain
+```
+
+Verifique a versão do progrma _Weld_ em execução,
+
+```linux
+$ /home/dataverse/glassfish4/bin/asadmin osgi lb | grep 'Weld OSGi Bundle'
+```
+
+
 
 
 

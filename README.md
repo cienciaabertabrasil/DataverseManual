@@ -60,7 +60,7 @@ $ sudo apt upgrade
 Em seguida, devem ser instalados alguns pacotes e programas básicos, que serão utilizados durante a instalação, tais como a ferramenta de transferência de dados _curl_:
 
 ```shell
-$ sudo apt install curl postgresql postgresql-contrib jq imagemagick
+$ sudo apt install curl postgresql postgresql-contrib jq imagemagick gfortran libreadline-dev xorg-dev libbz2-dev liblzma-dev libblas-dev libpcre++-dev libcurl4-gnutls-dev
 ```
 
 
@@ -94,12 +94,14 @@ $ cd temp
 ### Baixando o pacote de instalação do Dataverse
 
 O pacote de instalação do Dataverse deve ser baixado e descompactado dentro da pasta ``/home/dataverse/temp``.
-
-Via _browser_, acesse [https://github.com/IQSS/dataverse/releases](https://github.com/IQSS/dataverse/releases){:target="_blank" rel="noopener"} e procure pelo arquivo ``dvinstall.zip`` da última versão do Dataverse. Faça o download deste arquivo e copie-o para dentro de ``/home/dataverse/temp``. Estando dentro desta pasta descompacte o arquivo baixado e mova a pasta recém-criada ``dvinstall`` para dentro de ``/home/dataverse/`` . 
-
 ```shell
 $ cd /home/dataverse/temp
 
+$ curl -L -O https://github.com/IQSS/dataverse/releases/download/v4.19/dvinstall.zip
+```
+
+Mova a pasta recém-criada ``dvinstall`` para dentro do diretório ``/home/dataverse/`` . 
+```shell
 $ unzip dvinstall.zip
 
 $ mv dvinstall /home/dataverse/
@@ -155,10 +157,6 @@ $ sudo update-alternatives --install /usr/bin/javac javac /usr/java/jdk1.8.xxx/b
 
 
 ### Glassfish
-
-Para instalar o servidor web _Glassfish_ é necessário proceder com o roteiro dado a seguir.
-
-
 
 Primeiro, baixe o programa _Glassfish_,  versão 4.1, dentro da pasta `/home/dataverse/temp`.
 
@@ -316,7 +314,7 @@ $ cp /home/dataverse/dvinstall/solrconfig.xml /home/dataverse/solr/server/solr/c
 
 
 
-Inicie o _Apache-Solr_ e criei as coleções que serão utilizadas pelo Datverse.
+Inicie o _Apache-Solr_ e crie as coleções que serão utilizadas pelo Dataverse.
 
 ```shell
 $ /home/dataverse/solr/bin/solr start
@@ -326,7 +324,50 @@ $ /home/dataverse/solr/bin/solr create_core -c collection1 -d /home/dataverse/so
 
 
 
-### R-server
+### R
+
+Baixe e descompacte o pacote _R_ dentro da pasta ``/home/dataverse/temp``.
+
+```shell
+$ cd /home/dataverse/temp
+
+$ curl -L -O https://cran.rstudio.com/src/base/R-3/R-3.6.1.tar.gz
+
+$ tar -vzxf R-3.6.1.tar.gz
+```
+
+
+
+Mova a pasta recém-criada ``R-3.6.1``, renomeando-a para ``R``, para dentro do diretório ``/home/dataverse``.
+
+```shell
+$ mv R-3.6.1 /home/dataverse/R
+```
+
+
+
+Configure a instalação do pacote _R_ baixado.
+
+```shell
+$ cd /home/dataverse/R
+
+$ ./configure
+```
+
+
+
+Realize a compilação e instalação do pacote _R_.
+
+```shell
+$ make
+$ sudo make install
+```
+
+
+
+
+
+
 
 
 

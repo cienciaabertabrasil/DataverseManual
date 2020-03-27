@@ -60,7 +60,7 @@ $ sudo apt upgrade
 Em seguida, devem ser instalados alguns pacotes e programas básicos, que serão utilizados durante a instalação, tais como a ferramenta de transferência de dados _curl_:
 
 ```shell
-$ sudo apt install curl postgresql postgresql-contrib jq
+$ sudo apt install curl postgresql postgresql-contrib jq imagemagick
 ```
 
 
@@ -309,14 +309,24 @@ Copie os arquivos de configuração padrão e do  Dataverse para a pasta ``colle
 ```shell
 $ cp -r /home/dataverse/solr/server/solr/configsets/_default /home/dataverse/solr/server/solr/collection1
 
-$ cp /home/dataverse/dvinstall/schema.xml /home/dataverse/solr/server/solr/collection1/conf
+$ cp /home/dataverse/dvinstall/schema*.xml /home/dataverse/solr/server/solr/collection1/conf
 
 $ cp /home/dataverse/dvinstall/solrconfig.xml /home/dataverse/solr/server/solr/collection1/conf
 ```
 
 
 
+Inicie o _Apache-Solr_ e criei as coleções que serão utilizadas pelo Datverse.
 
+```shell
+$ /home/dataverse/solr/bin/solr start
+
+$ /home/dataverse/solr/bin/solr create_core -c collection1 -d /home/dataverse/solr/server/solr/collection1/conf/
+```
+
+
+
+### R-server
 
 
 

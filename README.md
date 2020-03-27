@@ -18,6 +18,8 @@ Os programas são instalados utilizando o programa gestor de pacotes _APT_,
 
 >**O procedimento de instalação do Dataverse descrito a seguir exige noções básicas de redes de computadores e comandos executados no terminal do Sistema Operacional Linux**.
 
+
+
 ## Pré-requisitos
 
 É necessário a autorização de administrador ou de _superusuário_ em algumas etapas da instalação, 
@@ -28,11 +30,15 @@ Todos os comandos com permissão especial serão executados com _sudo_ a frente.
 $ sudo apt update
 ```
 
+
+
 Uma forma alternativa de execução de comandos como _superusuário_ é, tendo conhecimento da senha de _root_, executar o comando: 
 
 ```shell
 $ su -
 ```
+
+
 
 Para retornar ao usuário comum, basta executar:
 
@@ -40,24 +46,32 @@ Para retornar ao usuário comum, basta executar:
 # exit
 ```
 
-A primeira coisa a se fazer, depois de acessar como superusuário, é atualizar a base de dados do gestor de pacotes:
+
+
+A primeira coisa a se fazer, depois de acessar como _superusuário_, é atualizar a base de dados do gestor de pacotes:
 
 ```shell
 $ sudo apt update
 $ sudo apt upgrade
 ```
 
-Em seguida, devem ser instalados alguns pacotes e programas básicos, que serão utilizados durante a instalação, como o descompactador _unzip_,  o programa para versionamento de código _git_:
+
+
+Em seguida, devem ser instalados alguns pacotes e programas básicos, que serão utilizados durante a instalação, tais como a ferramenta de transferência de dados _curl_:
 
 ```shell
-$ sudo apt install git curl postgresql postgresql-contrib jq
+$ sudo apt install curl postgresql postgresql-contrib jq
 ```
 
-Crie um usuário de nome _dataverse_ para vinculá-lo aos pacotes baixados e à instalação da instância do Dataverse:
+
+
+Crie um usuário de nome ``dataverse``  para vinculá-lo aos pacotes baixados e à instalação da instância do Dataverse:
 
 ```shell
 $ sudo useradd -m dataverse
 ```
+
+
 
 Ao se criar o usuário, também será criada uma pasta no diretório `/home/` como o nome `dataverse`.  É necessário mudar as permissões da pasta `/home/dataverse` para que o usuário que executa a instalação possa salvar arquivos e realizar modificações neste diretório. Substitua `user` pelo nome do usuário que executa a instalação e proceda com o seguinte comando:
 
@@ -65,12 +79,30 @@ Ao se criar o usuário, também será criada uma pasta no diretório `/home/` co
 $ chown -R user:user /home/dataverse
 ```
 
-Acesse a pasta _/home/dataverse_ e crie um diretório temporário _temp_, onde serão baixados alguns dos programas e pacotes necessários para a instalação.
+
+
+Acesse a pasta `` /home/dataverse``  e crie um diretório temporário ``temp``, onde serão baixados alguns dos programas e pacotes necessários para a instalação.
 
 ```shell
 $ cd /home/dataverse
 $ mkdir temp 
 $ cd temp
+```
+
+
+
+### Baixando o pacote de instalação do Dataverse
+
+O pacote de instalação do Dataverse deve ser baixado e descompactado dentro da pasta ``/home/dataverse/temp``.
+
+Via _browser_, acesse [https://github.com/IQSS/dataverse/releases](https://github.com/IQSS/dataverse/releases){:target="_blank" rel="noopener"} e procure pelo arquivo ``dvinstall.zip`` da última versão do Dataverse. Faça o download deste arquivo e copie-o para dentro de ``/home/dataverse/temp``. Estando dentro desta pasta descompacte o arquivo baixado e mova a pasta recém-criada ``dvinstall`` para dentro de ``/home/dataverse/`` . 
+
+```shell
+$ cd /home/dataverse/temp
+
+$ unzip dvinstall.zip
+
+$ mv dvinstall /home/dataverse/
 ```
 
 
@@ -85,6 +117,8 @@ O pacote _Java_ 8 pode ser instalado utilizando o programa _APT_, contudo, por q
 
 > **Infelizmente, é necessário ter uma conta de acesso configurada na _Oracle_ para concluir o download**.
 
+
+
 Descompacte o arquivo `jdk-8uxxx-linux-x64.tar.gz` transferido (lembre-se de substituir `xxx` pelo número correto da versão baixada.
 
 ```shell
@@ -92,11 +126,15 @@ $ cd temp
 $ tar -vzxf jdk-8uxxx-linux-x64.tar.gz
 ```
 
+
+
 Crie a pasta de instalação da JDK.
 
 ```shell
 $ sudo mkdir /usr/java
 ```
+
+
 
 Mova a pasta criada da descompactação do arquivo (`jdk1.8.xxx/`) para dentro da pasta recém-criada (`/usr/java`).
 
@@ -104,7 +142,9 @@ Mova a pasta criada da descompactação do arquivo (`jdk1.8.xxx/`) para dentro d
 $ sudo mv jdk1.8.xxx/ /usr/java/
 ```
 
-Ative o pacote JDK 8 por meio dos comandos:
+
+
+Ative o pacote JDK 8 por meio dos seguintes comandos:
 
 ```shell
 $sudo update-alternatives --install /usr/bin/java java /usr/java/jdk1.8.xxx/bin/java 100
@@ -118,6 +158,8 @@ $ sudo update-alternatives --install /usr/bin/javac javac /usr/java/jdk1.8.xxx/b
 
 Para instalar o servidor web _Glassfish_ é necessário proceder com o roteiro dado a seguir.
 
+
+
 Primeiro, baixe o programa _Glassfish_,  versão 4.1, dentro da pasta `/home/dataverse/temp`.
 
 ```shell
@@ -126,11 +168,15 @@ $ cd /home/dataverse/temp/
 $ wget http://download.oracle.com/glassfish/4.1/release/glassfish-4.1.zip
 ```
 
+
+
 Descompacte o arquivo baixado.
 
 ```shell
 $ unzip glassfish-4.1.zip
 ```
+
+
 
 Mova a pasta automaticamente criada `glassfish4` para `/home/dataverse`.
 
@@ -138,11 +184,15 @@ Mova a pasta automaticamente criada `glassfish4` para `/home/dataverse`.
 $ mv glassfish4 /home/dataverse/
 ```
 
+
+
 Remova o arquivo `weld-osgi-bundle.jar`, localizado no diretório `/home/dataverse/glassfish4/glassfish/modules/`.
 
 ```shell
 $ rm /home/dataverse/glassfish4/glassfish/modules/weld-osgi-bundle.jar
 ```
+
+
 
 Baixe a nova versão do arquivo removido dentro de `/home/dataverse/temp`.
 
@@ -150,11 +200,15 @@ Baixe a nova versão do arquivo removido dentro de `/home/dataverse/temp`.
 $ curl -L -O https://search.maven.org/remotecontent?filepath=org/jboss/weld/weld-osgi-bundle/2.2.10.Final/weld-osgi-bundle-2.2.10.Final-glassfish4.jar
 ```
 
+
+
 Copie o novo arquivo baixado `weld-osgi-bundle-2.2.10.Final-glassfish4.jar` para dentro do diretório `/home/dataverse/glassfish4/glassfish/modules/`.
 
 ```shell
 $ cp weld-osgi-bundle-2.2.10.Final-glassfish4.jar /home/dataverse/glassfish4/glassfish/modules/
 ```
+
+
 
 Edite o arquivo  `domain.xml` localizado na pasta `/home/dataverse/glassfish4/glassfish/domains/domain1/config/`, alterando de `-client` para `-server` a tag `<jvm-options>-client</jvm-options>`.
 
@@ -174,11 +228,15 @@ Para:
         <jvm-options>-server</jvm-options>
 ```
 
+
+
 Copie os certificados de segurança atualizados no pacote _JDK_ 8 baixado para dentro da pasta `/home/dataverse/glassfish4/glassfish/domains/domain1/config/`.
 
 ```shell
 $ cp /usr/java/jdk1.8.xxx/jre/lib/security/cacerts /home/dataverse/glassfish4/glassfish/domains/domain1/config/cacerts.jks
 ```
+
+
 
 Inicie a execução do _Glassfish_.
 
@@ -222,7 +280,45 @@ Reinicie o _PostgresSQL_ por meio do seguinte comando.
 $ sudo /etc/init.d/postgresql restart
 ```
 
+
+
 ### Apache-Solr
+
+O programa _Apache-Solr_  deve ser baixado e descompactado na pasta ``/home/dataverse/temp``.
+
+```shell
+$ cd /home/dataverse/temp
+
+$ curl -L -O https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz
+
+$ tar -vzxf solr-7.3.1.tgz
+```
+
+
+
+Mova pasta recém-criada ``solr-7.3.1``, renomeando-a somente para ``solr``, para dentro da pasta ``/home/dataverse/`` .
+
+```shell
+$ mv solr-7.3.1/ /home/dataverse/solr
+```
+
+
+
+Copie os arquivos de configuração padrão e do  Dataverse para a pasta ``collection1`` da aplicação _Apache-Solr_.
+
+```shell
+$ cp -r /home/dataverse/solr/server/solr/configsets/_default /home/dataverse/solr/server/solr/collection1
+
+$ cp /home/dataverse/dvinstall/schema.xml /home/dataverse/solr/server/solr/collection1/conf
+
+$ cp /home/dataverse/dvinstall/solrconfig.xml /home/dataverse/solr/server/solr/collection1/conf
+```
+
+
+
+
+
+
 
 
 

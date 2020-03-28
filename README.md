@@ -365,6 +365,28 @@ $ sudo make install
 
 
 
+Para o funcionamento do Dataverse, é necessário a instalação de alguns pacotes do programa R. Acesse o programa R e instale os pacotes utilizando os comando a seguir, sempre respondendo `` y`` para as perguntas realizadas.
+
+```shell
+$ R
+```
+
+```R
+> install.packages("R2HTML", repos="https://cloud.r-project.org/")
+
+> install.packages("rjson", repos="https://cloud.r-project.org/", lib="/usr/lib64/R/library")
+
+> install.packages("DescTools", repos="https://cloud.r-project.org/", lib="/usr/lib64/R/library")
+
+> install.packages("Rserve", repos="https://cloud.r-project.org/", lib="/usr/lib64/R/library")
+
+> install.packages("haven", repos="https://cloud.r-project.org/", lib="/usr/lib64/R/library")
+```
+
+
+
+## Procedimentos finais de instalação
+
 
 
 

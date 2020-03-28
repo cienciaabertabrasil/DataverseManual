@@ -60,7 +60,7 @@ $ sudo apt upgrade
 Em seguida, devem ser instalados alguns pacotes e programas básicos, que serão utilizados durante a instalação, tais como a ferramenta de transferência de dados _curl_:
 
 ```shell
-$ sudo apt install curl postgresql postgresql-contrib jq imagemagick gfortran libreadline-dev xorg-dev libbz2-dev liblzma-dev libblas-dev libpcre++-dev libcurl4-gnutls-dev
+$ sudo apt install curl postgresql postgresql-contrib jq imagemagick gfortran libreadline-dev xorg-dev libbz2-dev liblzma-dev libblas-dev libpcre++-dev libcurl4-gnutls-dev python-pip
 ```
 
 
@@ -91,20 +91,29 @@ $ cd temp
 
 
 
-### Baixando o pacote de instalação do Dataverse
+### Baixando o pacote de instalação e o código fonte do Dataverse
 
 O pacote de instalação do Dataverse deve ser baixado e descompactado dentro da pasta ``/home/dataverse/temp``.
 ```shell
 $ cd /home/dataverse/temp
 
 $ curl -L -O https://github.com/IQSS/dataverse/releases/download/v4.19/dvinstall.zip
-```
 
-Mova a pasta recém-criada ``dvinstall`` para dentro do diretório ``/home/dataverse/`` . 
-```shell
+$ curl -L -O https://github.com/IQSS/dataverse/archive/v4.19.zip
+
 $ unzip dvinstall.zip
 
+$ unzip v4.19.zip
+```
+
+
+
+Mova a pasta recém-criada ``dvinstall`` para dentro do diretório ``/home/dataverse/`` . 
+
+```shell
 $ mv dvinstall /home/dataverse/
+
+$ mv dataverse-4.19 /home/dataverse/
 ```
 
 
@@ -176,18 +185,18 @@ $ unzip glassfish-4.1.zip
 
 
 
-Mova a pasta automaticamente criada `glassfish4` para `/home/dataverse`.
+Mova a pasta automaticamente criada `glassfish4` para `/usr/local`.
 
 ```shell
-$ mv glassfish4 /home/dataverse/
+$ mv glassfish4 /usr/local/
 ```
 
 
 
-Remova o arquivo `weld-osgi-bundle.jar`, localizado no diretório `/home/dataverse/glassfish4/glassfish/modules/`.
+Remova o arquivo `weld-osgi-bundle.jar`, localizado no diretório `/usr/local/glassfish4/glassfish/modules/`.
 
 ```shell
-$ rm /home/dataverse/glassfish4/glassfish/modules/weld-osgi-bundle.jar
+$ rm /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar
 ```
 
 
@@ -200,18 +209,18 @@ $ curl -L -O https://search.maven.org/remotecontent?filepath=org/jboss/weld/weld
 
 
 
-Copie o novo arquivo baixado `weld-osgi-bundle-2.2.10.Final-glassfish4.jar` para dentro do diretório `/home/dataverse/glassfish4/glassfish/modules/`.
+Copie o novo arquivo baixado `weld-osgi-bundle-2.2.10.Final-glassfish4.jar` para dentro do diretório `/usr/local/glassfish4/glassfish/modules/`.
 
 ```shell
-$ cp weld-osgi-bundle-2.2.10.Final-glassfish4.jar /home/dataverse/glassfish4/glassfish/modules/
+$ cp weld-osgi-bundle-2.2.10.Final-glassfish4.jar /usr/local/glassfish4/glassfish/modules/
 ```
 
 
 
-Edite o arquivo  `domain.xml` localizado na pasta `/home/dataverse/glassfish4/glassfish/domains/domain1/config/`, alterando de `-client` para `-server` a tag `<jvm-options>-client</jvm-options>`.
+Edite o arquivo  `domain.xml` localizado na pasta `/usr/local/glassfish4/glassfish/domains/domain1/config/`, alterando de `-client` para `-server` a tag `<jvm-options>-client</jvm-options>`.
 
 ```shell
-$ nano /home/dataverse/glassfish4/glassfish/domains/domain1/config/domain.xml
+$ nano /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml
 ```
 
 Alterar de:
@@ -228,10 +237,22 @@ Para:
 
 
 
-Copie os certificados de segurança atualizados no pacote _JDK_ 8 baixado para dentro da pasta `/home/dataverse/glassfish4/glassfish/domains/domain1/config/`.
+Copie os certificados de segurança atualizados no pacote _JDK_ 8 baixado para dentro da pasta `/usr/local/glassfish4/glassfish/domains/domain1/config/`.
 
 ```shell
-$ cp /usr/java/jdk1.8.xxx/jre/lib/security/cacerts /home/dataverse/glassfish4/glassfish/domains/domain1/config/cacerts.jks
+$ cp /usr/java/jdk1.8.xxx/jre/lib/security/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
+```
+
+
+
+Crie o usuário ``glassfish`` e ajuste as permissões dor arquivos armazenados na pasta ``/usr/local/glassfish4/``.
+
+```shell
+$ sudo useradd glassfish
+
+$ sudo chown -R root:root /usr/local/glassfish4
+
+$ sudo chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
 ```
 
 
@@ -239,13 +260,13 @@ $ cp /usr/java/jdk1.8.xxx/jre/lib/security/cacerts /home/dataverse/glassfish4/gl
 Inicie a execução do _Glassfish_.
 
 ```shell
-$ /home/dataverse/glassfish4/bin/asadmin start-domain
+$ sudo /usr/local/glassfish4/bin/asadmin start-domain
 ```
 
 Verifique a versão do programa _Weld_ em execução,
 
 ```shell
-$ /home/dataverse/glassfish4/bin/asadmin osgi lb | grep 'Weld OSGi Bundle'
+$ sudo /usr/local/glassfish4/bin/asadmin osgi lb | grep 'Weld OSGi Bundle'
 ```
 
 
@@ -324,7 +345,7 @@ $ /home/dataverse/solr/bin/solr create_core -c collection1 -d /home/dataverse/so
 
 
 
-### R
+### Programa de análise e visualização de dados R
 
 Baixe e descompacte o pacote _R_ dentro da pasta ``/home/dataverse/temp``.
 
@@ -368,7 +389,7 @@ $ sudo make install
 Para o funcionamento do Dataverse, é necessário a instalação de alguns pacotes do programa R. Acesse o programa R e instale os pacotes utilizando os comando a seguir, sempre respondendo `` y`` para as perguntas realizadas.
 
 ```shell
-$ R
+$ sudo -i R
 ```
 
 ```R
@@ -381,6 +402,18 @@ $ R
 > install.packages("Rserve", repos="https://cloud.r-project.org/", lib="/usr/lib64/R/library")
 
 > install.packages("haven", repos="https://cloud.r-project.org/", lib="/usr/lib64/R/library")
+
+> exit()
+```
+
+
+
+Configure o _Rserve_ por meio do script no pacote de instalação.
+
+```shell
+$ cd /home/dataverse/dataverse-4.19/scripts/r/rserve/
+
+$ sudo bash ./rserve-setup.sh
 ```
 
 
@@ -389,7 +422,42 @@ $ R
 
 
 
+Execute o script final de instalação do Dataverse.
 
+```shell
+$ cd /home/dvinstall/
+
+$ sudo bash ./install
+```
+
+Responder ``n`` para a primeira pergunta e seguir respondendo às perguntas realizadas conforme tabela abaixo.
+
+| head1        | head two          | three |
+| :----------- | :---------------- | :---- |
+| ok           | good swedish fish | nice  |
+| out of stock | good and plenty   | nice  |
+| ok           | good `oreos`      | hmm   |
+| ok           | good `zoute` drop | yumm  |
+
+Acessar o endereço ``http://[ip-do-servidor]:8080 `` .
+
+```shell
+username: dataverseAdmin
+password: admin
+```
+
+
+## Procedimentos de ajustes pós-instalação
+
+- Alterar permissões do Glassfish
+- Alterar parâmetros de memória do Solr e Glassfish
+- Alterar JVM
+
+- Alterar porta de acesso com proxy apache
+
+- Alterar senha de acesso de administrador
+
+  
 
 
 

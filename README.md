@@ -21,23 +21,26 @@ Os programas são instalados utilizando o programa gestor de pacotes _APT_,
 
 É necessário a autorização de administrador ou de _superusuário_ em algumas etapas da instalação, 
 com isso, recomenda-se estar logado como `root` durante a instalação, ou possuir usuário com `sudo` configurado. 
-Todos os comandos com permissão especial serão executados com _sudo_ a frente. Exemplo:
-
-```shell
-$ sudo apt update
-```
 
 
 
-Uma forma alternativa de execução de comandos como _superusuário_ é, tendo conhecimento da senha de _root_, executar o comando: 
+Para instalar e configurar o ``sudo``, basta executar passos descritos a seguir.
 
 ```shell
 $ su -
 ```
 
+Inserir a senha de ``root`` e executar.
 
+```shell
+# apt install sudo
 
-Para retornar ao usuário comum, basta executar:
+# nano /etc/sudoers
+```
+
+Acrescentar abaixo de ``root    ALL=(ALL:ALL) ALL`` a linha ``user    ALL=(ALL:ALL) ALL``.
+
+Agora saia do usuário de ``root``.
 
 ```shell
 # exit
@@ -45,7 +48,7 @@ Para retornar ao usuário comum, basta executar:
 
 
 
-A primeira coisa a se fazer, depois de acessar como _superusuário_, é atualizar a base de dados do gestor de pacotes:
+A primeira coisa a se fazer é atualizar a base de dados do gestor de pacotes:
 
 ```shell
 $ sudo apt update
@@ -54,10 +57,12 @@ $ sudo apt upgrade
 
 
 
-Em seguida, devem ser instalados alguns pacotes e programas básicos, que serão utilizados durante a instalação, tais como a ferramenta de transferência de dados _curl_:
+Em seguida, devem ser instalados os pacotes e programas básicos, que serão utilizados durante a instalação, tais como a ferramenta de transferência de dados _curl_:
 
 ```shell
-$ sudo apt install curl postgresql postgresql-contrib jq imagemagick gfortran libreadline-dev xorg-dev libbz2-dev liblzma-dev libblas-dev libpcre++-dev libcurl4-gnutls-dev python-pip
+$ sudo apt install dirmngr --install-recommends
+
+$ sudo apt install curl postgresql postgresql-contrib jq imagemagick gfortran libreadline-dev xorg-dev libbz2-dev liblzma-dev libblas-dev libpcre++-dev libcurl4-gnutls-dev default-jdk software-properties-common apt-transport-https
 ```
 
 
@@ -115,50 +120,21 @@ $ mv dataverse-4.19 /home/dataverse/
 
 
 
-### Java Oracle (JDK 8)
+### Java Oracle (JDK)
 
-O pacote _Java_ 8 pode ser instalado utilizando o programa _APT_, contudo, por questão de compatibilidade, recomendamos baixar este pacote diretamente do sítio da _Oracle_. Acesse a página de downloads:
-
-> [https://www.oracle.com/java/technologies/javase-jdk8-downloads.html](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html)
-
- Faça o download da versão mais recente do pacote `jdk-8uxxx-linux-x64.tar.gz` e transfira-o para a pasta recém-criada `/home/dataverse/temp`.
-
-> **Infelizmente, é necessário ter uma conta de acesso configurada na _Oracle_ para concluir o download**.
+O pacote JDK já foi instalado no passo anterior de instalação de pacotes básicos via APT
 
 
 
-Descompacte o arquivo `jdk-8uxxx-linux-x64.tar.gz` transferido (lembre-se de substituir `xxx` pelo número correto da versão baixada.
-
-```shell
-$ cd temp
-$ tar -vzxf jdk-8uxxx-linux-x64.tar.gz
+```shell 
+$ sudo update-alternatives --config java
 ```
 
 
 
-Crie a pasta de instalação da JDK.
-
-```shell
-$ sudo mkdir /usr/java
-```
 
 
 
-Mova a pasta criada da descompactação do arquivo (`jdk1.8.xxx/`) para dentro da pasta recém-criada (`/usr/java`).
-
-```shell
-$ sudo mv jdk1.8.xxx/ /usr/java/
-```
-
-
-
-Ative o pacote JDK 8 por meio dos seguintes comandos:
-
-```shell
-$sudo update-alternatives --install /usr/bin/java java /usr/java/jdk1.8.xxx/bin/java 100
-
-$ sudo update-alternatives --install /usr/bin/javac javac /usr/java/jdk1.8.xxx/bin/javac 100
-```
 
 
 
@@ -245,7 +221,7 @@ $ cp /usr/java/jdk1.8.xxx/jre/lib/security/cacerts /usr/local/glassfish4/glassfi
 Crie o usuário ``glassfish`` e ajuste as permissões dor arquivos armazenados na pasta ``/usr/local/glassfish4/``.
 
 ```shell
-$ sudo useradd glassfish
+$ sudo useradd -m glassfish
 
 $ sudo chown -R root:root /usr/local/glassfish4
 
@@ -345,12 +321,6 @@ $ /home/dataverse/solr/bin/solr create_core -c collection1 -d /home/dataverse/so
 ### Programa de análise e visualização de dados R
 
 ```shell
-$ sudo apt install dirmngr --install-recommends
-
-$ sudo apt install software-properties-common
-
-$ sudo apt install apt-transport-https
-
 $ sudo apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF'
 ```
 

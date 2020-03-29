@@ -344,63 +344,58 @@ $ /home/dataverse/solr/bin/solr create_core -c collection1 -d /home/dataverse/so
 
 ### Programa de análise e visualização de dados R
 
-Baixe e descompacte o pacote _R_ dentro da pasta ``/home/dataverse/temp``.
+```shell
+$ sudo apt install dirmngr --install-recommends
+
+$ sudo apt install software-properties-common
+
+$ sudo apt install apt-transport-https
+
+$ sudo apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF'
+```
+
+Saída do terminal:
 
 ```shell
-$ cd /home/dataverse/temp
-
-$ curl -L -O https://cran.rstudio.com/src/base/R-3/R-3.6.1.tar.gz
-
-$ tar -vzxf R-3.6.1.tar.gz
+Executing: /tmp/apt-key-gpghome.y6W4E0Gtfp/gpg.1.sh --keyserver keys.gnupg.net --recv-key E19F5F87128899B192B1A2C2AD5F960A256A04AF
+gpg: key AD5F960A256A04AF: 4 signatures not checked due to missing keys
+gpg: key AD5F960A256A04AF: public key "Johannes Ranke (Wissenschaftlicher Berater) <johannes.ranke@jrwb.de>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
 ```
 
 
 
-Mova a pasta recém-criada ``R-3.6.1``, renomeando-a para ``R``, para dentro do diretório ``/home/dataverse``.
-
 ```shell
-$ mv R-3.6.1 /home/dataverse/R
+$ sudo add-apt-repository 'deb http://cloud.r-project.org/bin/linux/debian buster-cran35/'
+
+$ sudo apt update
+
+$ sudo apt install r-base r-base-dev
 ```
 
 
 
-Configure a instalação do pacote _R_ baixado.
-
-```shell
-$ cd /home/dataverse/R
-
-$ ./configure
-```
 
 
-
-Realize a compilação e instalação do pacote _R_.
-
-```shell
-$ make
-$ sudo make install
-```
-
-
-
-Para o funcionamento do Dataverse, é necessário a instalação de alguns pacotes do programa R. Acesse o programa R e instale os pacotes utilizando os comando a seguir, sempre respondendo `` y`` para as perguntas realizadas.
+Para o funcionamento do Dataverse, é necessário a instalação de alguns pacotes do programa _R_. Acesse o programa _R_ e instale os pacotes utilizando os comando a seguir.
 
 ```shell
 $ sudo -i R
 ```
 
 ```R
-> install.packages("R2HTML", repos="https://cloud.r-project.org/")
+> install.packages("R2HTML", repos="https://cloud.r-project.org/", lib="/usr/lib/R/library")
 
-> install.packages("rjson", repos="https://cloud.r-project.org/", lib="/usr/lib64/R/library")
+> install.packages("rjson", repos="https://cloud.r-project.org/", lib="/usr/lib/R/library")
 
-> install.packages("DescTools", repos="https://cloud.r-project.org/", lib="/usr/lib64/R/library")
+> install.packages("DescTools", repos="https://cloud.r-project.org/", lib="/usr/lib/R/library")
 
-> install.packages("Rserve", repos="https://cloud.r-project.org/", lib="/usr/lib64/R/library")
+> install.packages("Rserve", repos="https://cloud.r-project.org/", lib="/usr/lib/R/library")
 
-> install.packages("haven", repos="https://cloud.r-project.org/", lib="/usr/lib64/R/library")
+> install.packages("haven", repos="https://cloud.r-project.org/", lib="/usr/lib/R/library")
 
-> exit()
+> q()
 ```
 
 

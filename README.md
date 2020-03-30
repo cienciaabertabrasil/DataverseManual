@@ -31,6 +31,7 @@ Os programas são instalados utilizando o programa gestor de pacotes _APT_,
 | ImageMagick         | 8:6.9            | 8:6.9               |
 | R                   | >= 3.0.0         | 3.6.3               |
 | Counter Processor   | >= 0.0.1         | 0.0.1               |
+| Python              | >= 3.6           | 3.7.3-1             |
 
 
 
@@ -87,7 +88,7 @@ Em seguida, devem ser instalados os pacotes e programas básicos, que serão uti
 ```shell
 $ sudo apt install dirmngr --install-recommends
 
-$ sudo apt install curl postgresql postgresql-contrib jq imagemagick gfortran libreadline-dev xorg-dev libbz2-dev liblzma-dev libblas-dev libpcre++-dev libcurl4-gnutls-dev software-properties-common apt-transport-https
+$ sudo apt install curl postgresql postgresql-contrib jq imagemagick gfortran libreadline-dev xorg-dev libbz2-dev liblzma-dev libblas-dev libpcre++-dev libcurl4-gnutls-dev software-properties-common apt-transport-https python3 python3-pip python3-peewee python3-geoip2 python3-dateutil python3-yaml
 ```
 
 
@@ -312,8 +313,6 @@ Resposta esperada no terminal:
 
 
 
-
-
 ### PostgreSQL ###
 
 Se este tutorial está sendo seguido desde seu início, o gerenciador de banco de dados _PostgreSQL_ já foi instalado via a ferramenta _APT_. No entanto algumas configurações adicionais são necessárias para seu correto funcionamento. Edite o arquivo `pg_hba.conf` localizado na pasta `/etc/postgresql/[versão do postgresql]/main/`.
@@ -448,9 +447,17 @@ $ sudo bash ./rserve-setup.sh
 
 
 
+Inicie a execução do _RServe_
+
+```shell
+$ sudo R CMD Rserve 
+```
+
+
+
 ### Counter Processor
 
-
+Baixe o pacote do _Counter Processor_ dentro da pasta ``/home/dataverse/temp``, descompacte o arquivo baixado e mova a pasta recém-criada ``counter-processor-0.0.1`` para dentro do diretório ``/usr/local`` . 
 
 
 
@@ -466,14 +473,30 @@ $ sudo mv counter-processor-0.0.1/ /usr/local
 
 
 
-```shell
-$ curl -L -O https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz
+> É necessário criar _login_ no site https://dev.maxmind.com/geoip/geoip2/geolite2/ para fazer download do arquivo ``GeoLite2-Country_AAAAMMDD.tar.gz``.
 
-$ cd /usr/local/counter-processor-0.0.1
+
+
+Transfira o arquivo  ``GeoLite2-Country_AAAAMMDD.tar.gz`` para a pasta `` /home/dataverse/temp``.
+
+Descompacte o arquivo baixado e copie o arquivo ```GeoLite2-Country.mmdb``` para dentro da pasta ```/usr/local/counter-processor-0.0.1/```.
+
+```shell
+$ cd /home/dataverse/temp/
 
 $ tar -vzxf GeoLite2-Country*.tar.gz
 
-$ cp /home/dataverse/temp/GeoLite2-Country_*/GeoLite2-Country.mmdb maxmind_geoip
+$ cp /home/dataverse/temp/GeoLite2-Country_*/GeoLite2-Country.mmdb /usr/local/counter-processor-0.0.1/maxmind_geoip
+```
+
+
+
+Criei o usuário ``counter`` e ajuste as permissões da pasta  ``/usr/local/counter-processor-0.0.1/``.
+
+```shell
+$ sudo useradd counter
+
+$ sudo chown -R counter:counter /usr/local/counter-processor-0.0.1
 ```
 
 
@@ -487,28 +510,49 @@ Execute o script final de instalação do Dataverse.
 ```shell
 $ cd /home/dvinstall/
 
-$ sudo bash ./install
+$ sudo ./install
 ```
 
 Responder ``n`` para a primeira pergunta e seguir respondendo às perguntas realizadas conforme tabela abaixo.
 
-| head1        | head two          | three |
-| :----------- | :---------------- | :---- |
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
 
-Acessar o endereço ``http://[ip-do-servidor]:8080 `` .
+| Pergunta     | Descrição         | Resposta |
+| :----------- | :---------------- | :------- |
+|       | good swedish fish | nice     |
+| out of stock | good and plenty   | nice     |
+| ok           | good `oreos`      | hmm      |
+| ok           | good `zoute` drop | yumm     |
+
 
 ```shell
-username: dataverseAdmin
-password: admin
+Fully Qualified Domain Name of your host: debian
+Glassfish service account username: root
+Glassfish Directory: /usr/local/glassfish4
+Administrator email address for this Dataverse: wtonribeiro@gmail.com
+SMTP (mail) server (and port) to relay notification messages: smtp.gmail.com:465
+Postgres Server Address: 127.0.0.1
+Postgres Server Port: 5432
+Postgres ADMIN password: secret
+Name of the Postgres Database: dvndb
+Name of the Postgres User: dvnapp
+Postgres user password: dvnapp
+Remote SOLR indexing service: LOCAL
+Rserve Server: localhost
+Rserve Server Port: 6311
+Rserve User Name: rserve
+Rserve User Password: rserve
+Datacite username: dataciteuser
+Datacite password: datacitepassword
+Datacite URL: https://mds.test.datacite.org
+Datacite MakeDataCount URL: https://api.test.datacite.org
 ```
 
 
+Acessar no _browser_ o endereço ``http://[ip-do-servidor]:8080 `` . A tela acessada deverá ser a exibida abaixo.
 
-###  
+### ![dataverselogin](imagens/dataverselogin.png)
+
+
 
 
 
@@ -517,7 +561,9 @@ password: admin
 ## Procedimentos de ajustes pós-instalação
 
 - Alterar permissões do Glassfish
+
 - Alterar parâmetros de memória do Solr e Glassfish
+
 - Alterar JVM
 
 - Alterar porta de acesso com proxy apache
@@ -525,128 +571,15 @@ password: admin
 - Alterar senha de acesso de administrador
 
   
+  
+  ```shell
+  username: dataverseAdmin
+  password: admin
+  ```
+  
+  
+  
+- Instalar Apache2 para realizar proxy
 
+- Gerar scripts de inicialização automática para o Glassfish, Solr e Rserve
 
-
-
-
-Text can be **bold**, _italic_, or ~~strikethrough~~.
-
-There should be whitespace between paragraphs.
-
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
-
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-
-## Header 2
-
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
-
-### Header 3
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
-
-#### Header 4
-
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
-
-
-### Definition lists can be used with HTML syntax.
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
-```
-
-
-```
-
-```

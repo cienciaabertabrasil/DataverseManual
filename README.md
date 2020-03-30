@@ -17,6 +17,23 @@ Os programas são instalados utilizando o programa gestor de pacotes _APT_,
 
 
 
+## Tabela com  as versões dos sistemas e programas utilizados
+
+| Sistema/Programa    | Versão requerida | Versão utilizada    |
+| :------------------ | :--------------- | :------------------ |
+| Sistema operacional | Linux            | Debian 10.3.0 Amd64 |
+| Dataverse           | >= 4.11          | 4.19                |
+| Java (JDK)          | >= 1.8.0         | openjdk 11.0.6      |
+| Glassfish           | 4.1              | 4.1                 |
+| PostgreSQL          | >=10.0           | 11.7                |
+| Apache-Sorl         | 7.3.1            | 7.3.1               |
+| jq                  | 1.5              | 1.5                 |
+| ImageMagick         | 8:6.9            | 8:6.9               |
+| R                   | >= 3.0.0         | 3.6.3               |
+| Counter Processor   | >= 0.0.1         | 0.0.1               |
+
+
+
 ## Pré-requisitos
 
 É necessário a autorização de administrador ou de _superusuário_ em algumas etapas da instalação, 
@@ -38,7 +55,15 @@ Inserir a senha de ``root`` e executar.
 # nano /etc/sudoers
 ```
 
+
+
+> Nos comandos e edições dadas abaixo, substitua o nome ``user`` pelo nome do usuário que está realizando o procedimento de  instalação.
+
+
+
 Acrescentar abaixo de ``root    ALL=(ALL:ALL) ALL`` a linha ``user    ALL=(ALL:ALL) ALL``.
+
+
 
 Agora saia do usuário de ``root``.
 
@@ -57,7 +82,7 @@ $ sudo apt upgrade
 
 
 
-Em seguida, devem ser instalados os pacotes e programas básicos, que serão utilizados durante a instalação, tais como a ferramenta de transferência de dados _curl_:
+Em seguida, devem ser instalados os pacotes e programas básicos, que serão utilizados durante a instalação, tais como a ferramenta de transferência de dados _curl_. Responda sempre ``S`` as perguntas realizadas.
 
 ```shell
 $ sudo apt install dirmngr --install-recommends
@@ -120,7 +145,7 @@ $ mv dataverse-4.19 /home/dataverse/
 
 
 
-### Java Oracle (JDK)
+### Java  (JDK)
 
 O pacote JDK já foi instalado no passo anterior de instalação de pacotes básicos via APT
 
@@ -129,12 +154,6 @@ O pacote JDK já foi instalado no passo anterior de instalação de pacotes bás
 ```shell 
 $ sudo update-alternatives --config java
 ```
-
-
-
-
-
-
 
 
 
@@ -382,8 +401,6 @@ $ sudo bash ./rserve-setup.sh
 
 ## Procedimentos finais de instalação
 
-
-
 Execute o script final de instalação do Dataverse.
 
 ```shell
@@ -407,6 +424,13 @@ Acessar o endereço ``http://[ip-do-servidor]:8080 `` .
 username: dataverseAdmin
 password: admin
 ```
+
+
+
+###  Counter Processor
+
+
+
 
 
 ## Procedimentos de ajustes pós-instalação

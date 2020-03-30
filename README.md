@@ -275,7 +275,7 @@ Para:
 Copie os certificados de segurança atualizados no pacote _JDK_ 11 instalado para dentro da pasta `/usr/local/glassfish4/glassfish/domains/domain1/config/`.
 
 ```shell
-$ cp /usr/lib/jvm/java-11-openjdk-amd64/lib/security/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
+$ cp /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/jre/lib/security/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
 ```
 
 
@@ -303,6 +303,14 @@ Verifique a versão do programa _Weld_ em execução,
 ```shell
 $ sudo /usr/local/glassfish4/bin/asadmin osgi lb | grep 'Weld OSGi Bundle'
 ```
+
+Resposta esperada no terminal:
+
+```shell
+50|Resolved   |    1|Weld OSGi Bundle (2.2.10.Final)
+```
+
+
 
 
 
@@ -380,7 +388,7 @@ $ /home/dataverse/solr/bin/solr create_core -c collection1 -d /home/dataverse/so
 
 
 
-### Programa de análise e visualização de dados R
+### Programa para análise e visualização de dados R
 
 ```shell
 $ sudo apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF'
@@ -405,8 +413,6 @@ $ sudo apt update
 
 $ sudo apt install r-base r-base-dev
 ```
-
-
 
 
 
@@ -442,6 +448,38 @@ $ sudo bash ./rserve-setup.sh
 
 
 
+### Counter Processor
+
+
+
+
+
+```shell
+$ /home/dataverse/temp
+
+$ curl -L -O https://github.com/CDLUC3/counter-processor/archive/v0.0.1.tar.gz
+
+$ tar -vzxf v0.0.1.tar.gz
+
+$ sudo mv counter-processor-0.0.1/ /usr/local
+```
+
+
+
+```shell
+$ curl -L -O https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz
+
+$ cd /usr/local/counter-processor-0.0.1
+
+$ tar -vzxf GeoLite2-Country*.tar.gz
+
+$ cp /home/dataverse/temp/GeoLite2-Country_*/GeoLite2-Country.mmdb maxmind_geoip
+```
+
+
+
+
+
 ## Procedimentos finais de instalação
 
 Execute o script final de instalação do Dataverse.
@@ -470,7 +508,7 @@ password: admin
 
 
 
-###  Counter Processor
+###  
 
 
 

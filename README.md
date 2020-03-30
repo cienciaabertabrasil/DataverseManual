@@ -23,7 +23,7 @@ Os programas são instalados utilizando o programa gestor de pacotes _APT_,
 | :------------------ | :--------------- | :------------------ |
 | Sistema operacional | Linux            | Debian 10.3.0 Amd64 |
 | Dataverse           | >= 4.11          | 4.19                |
-| Java (JDK)          | >= 1.8.0         | openjdk 11.0.6      |
+| Java (JDK)          | >= 1.8.0_u74     | openjdk 1.8.0_u242  |
 | Glassfish           | 4.1              | 4.1                 |
 | PostgreSQL          | >=10.0           | 11.7                |
 | Apache-Sorl         | 7.3.1            | 7.3.1               |
@@ -87,7 +87,7 @@ Em seguida, devem ser instalados os pacotes e programas básicos, que serão uti
 ```shell
 $ sudo apt install dirmngr --install-recommends
 
-$ sudo apt install curl postgresql postgresql-contrib jq imagemagick gfortran libreadline-dev xorg-dev libbz2-dev liblzma-dev libblas-dev libpcre++-dev libcurl4-gnutls-dev default-jdk software-properties-common apt-transport-https
+$ sudo apt install curl postgresql postgresql-contrib jq imagemagick gfortran libreadline-dev xorg-dev libbz2-dev liblzma-dev libblas-dev libpcre++-dev libcurl4-gnutls-dev software-properties-common apt-transport-https
 ```
 
 
@@ -147,13 +147,44 @@ $ mv dataverse-4.19 /home/dataverse/
 
 ### Java  (JDK)
 
-O pacote _JDK_ já foi instalado no passo anterior de instalação de pacotes básicos via _APT_. Caso exista mais de uma opção de _Java_ disponível, é necessário selecionar a opção recém-instalada por meio do comando:
+O pacote _JDK_ é instalado via _APT_, mas necessita de uma atualização na lista de fontes de pacotes.  Execute a seguinte lista de comandos:
+
+```shell
+$ cd /home/dataverse/temp
+
+$ wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
+
+$ sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
+
+$ sudo apt update
+
+$ sudo apt install adoptopenjdk-8-hotspot
+```
+
+
+
+Caso exista mais de uma opção de _JDK_, é necessário selecionar a recém-instalada por meio do comando:
 
 ```shell 
 $ sudo update-alternatives --config java
 ```
 
-Se a seleção estiver correta, ao se executar o comando 
+Um exemplo de reposta no terminal é:
+
+```shell
+Existem 3 escolhas para a alternativa java (disponibiliza /usr/bin/java).
+
+  Selecção   Caminho                                             Prioridade Estado
+------------------------------------------------------------
+  0            /usr/lib/jvm/java-11-openjdk-amd64/bin/java          1111      modo automático
+  1            /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java   1081      modo manual
+  2            /usr/lib/jvm/java-11-openjdk-amd64/bin/java          1111      modo manual
+* 3            /usr/lib/jvm/jdk-13.0.2/bin/java                     2         modo manual
+```
+
+Nesse caso deve-se selecionar a opção ``3``.
+
+Se a opção selecionada estiver correta, ao se executar o comando: 
 
 ```shell
 $ java -version
@@ -162,9 +193,9 @@ $ java -version
 o terminal deverá fornecer como resposta:
 
 ```shell
-openjdk version "11.0.6" 2020-01-14
-OpenJDK Runtime Environment (build 11.0.6+10-post-Debian-1deb10u1)
-OpenJDK 64-Bit Server VM (build 11.0.6+10-post-Debian-1deb10u1, mixed mode, sharing)
+openjdk version "1.8.0_242"
+OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_242-b08)
+OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.242-b08, mixed mode)
 ```
 
 

@@ -147,12 +147,24 @@ $ mv dataverse-4.19 /home/dataverse/
 
 ### Java  (JDK)
 
-O pacote JDK já foi instalado no passo anterior de instalação de pacotes básicos via APT
-
-
+O pacote _JDK_ já foi instalado no passo anterior de instalação de pacotes básicos via _APT_. Caso exista mais de uma opção de _Java_ disponível, é necessário selecionar a opção recém-instalada por meio do comando:
 
 ```shell 
 $ sudo update-alternatives --config java
+```
+
+Se a seleção estiver correta, ao se executar o comando 
+
+```shell
+$ java -version
+```
+
+o terminal deverá fornecer como resposta:
+
+```shell
+openjdk version "11.0.6" 2020-01-14
+OpenJDK Runtime Environment (build 11.0.6+10-post-Debian-1deb10u1)
+OpenJDK 64-Bit Server VM (build 11.0.6+10-post-Debian-1deb10u1, mixed mode, sharing)
 ```
 
 
@@ -164,7 +176,7 @@ Primeiro, baixe o programa _Glassfish_,  versão 4.1, dentro da pasta `/home/dat
 ```shell
 $ cd /home/dataverse/temp/
 
-$ wget http://download.oracle.com/glassfish/4.1/release/glassfish-4.1.zip
+$ curl -L -O http://download.oracle.com/glassfish/4.1/release/glassfish-4.1.zip
 ```
 
 
@@ -180,7 +192,7 @@ $ unzip glassfish-4.1.zip
 Mova a pasta automaticamente criada `glassfish4` para `/usr/local`.
 
 ```shell
-$ mv glassfish4 /usr/local/
+$ sudo mv glassfish4 /usr/local/
 ```
 
 
@@ -229,10 +241,10 @@ Para:
 
 
 
-Copie os certificados de segurança atualizados no pacote _JDK_ 8 baixado para dentro da pasta `/usr/local/glassfish4/glassfish/domains/domain1/config/`.
+Copie os certificados de segurança atualizados no pacote _JDK_ 11 instalado para dentro da pasta `/usr/local/glassfish4/glassfish/domains/domain1/config/`.
 
 ```shell
-$ cp /usr/java/jdk1.8.xxx/jre/lib/security/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
+$ cp /usr/lib/jvm/java-11-openjdk-amd64/lib/security/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
 ```
 
 

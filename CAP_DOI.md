@@ -10,7 +10,20 @@
 
 
 # Configurar dataverse 
+```shell
+# curl -X PUT -d DataCite http://localhost:8080/api/admin/settings/:DoiProvider
+```
 
+```shell
+# curl -X PUT -d 10.xxxx http://localhost:8080/api/admin/settings/:Authority
+```
+```shell
+# curl -X PUT -d doi http://localhost:8080/api/admin/settings/:Protocol
+```
+
+```shell
+# curl -X PUT -d "MyShoulder/" http://localhost:8080/api/admin/settings/:Shoulder
+```
 ```shell
 # ./asadmin create-jvm-options '-Ddoi.mdcbaseurlstring=https\://api.datacite.org'
 ```
@@ -23,9 +36,7 @@
 # ./asadmin create-jvm-options '-Ddoi.password=YOUR_PASSWORD_HERE'
 ```
 
-```shell
-# curl -X PUT -d 10.xxxx http://localhost:8080/api/admin/settings/:Authority
-```
+
 
 - reiniciar o glassfish
 

@@ -9,24 +9,42 @@
 # Identificador Persistente e Publicação de Dataset
 
 
-# Configurar dataverse 
+# Configurar Dataverse 
+
+A configuração seguirá a implementação para o identificador persistente utilizando o serviço DataCite. As configurações serão realizadas via terminal, utilizando comando pro URL(curl).
+
+A escolha do provedor Doi deve ser explicitado como "DataCite" ou "Handle", nesse caso vamos utilizar a o "Datacite". Como apresentado no comando abaixo, é atribuido o termo "DataCite" à variavel DoiProvider.
+
 ```shell
 # curl -X PUT -d DataCite http://localhost:8080/api/admin/settings/:DoiProvider
 ```
 
-```shell
-# curl -X PUT -d 10.xxxx http://localhost:8080/api/admin/settings/:Authority
-```
+O protocolo "doi" ou "hdl" são os possíveis protocolos utilizado no Dataverse. O comando abaixo atribui o valor "doi" a variável Protocol.
+
 ```shell
 # curl -X PUT -d doi http://localhost:8080/api/admin/settings/:Protocol
 ```
 
+
 ```shell
-# curl -X PUT -d "MyShoulder/" http://localhost:8080/api/admin/settings/:Shoulder
+# ./asadmin delete-jvm-options '-Ddoi.mdcbaseurlstring=https\://api.test.datacite.org'
 ```
+
 ```shell
 # ./asadmin create-jvm-options '-Ddoi.mdcbaseurlstring=https\://api.datacite.org'
 ```
+A autorização do serviço é número prefix selecionado no serviço Datacite. O prefixo inicia com "10.", seguindo por mais digitos, o comando logo abaixo mostra como deve ser atribuido o valor "10.xxxx" à varrável Authority, lembrando que o "10.xxxx" deve ser substituido pelo o prefix individual do repositório.
+
+```shell
+# curl -X PUT -d 10.xxxx http://localhost:8080/api/admin/settings/:Authority
+```
+
+O cabeça
+
+```shell
+# curl -X PUT -d "MyShoulder/" http://localhost:8080/api/admin/settings/:Shoulder
+```
+
 
 ```shell
 # ./asadmin create-jvm-options '-Ddoi.username=YOUR_USERNAME_HERE'

@@ -11,7 +11,11 @@
 -Opções 
 
 * name
+  Nome que será atribuido ao metadado e ao bloco de metadados
+* title
+  Nome do  
 * dataverseAlias
+  
 * displayName
 * blockURI
 * fieldType

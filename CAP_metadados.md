@@ -31,8 +31,15 @@
 * metadatablock_id	
 * termURI
 
+```shell
 # curl http://localhost:8080/api/admin/datasetfield/load -H "Content-type: text/tab-separated-values" -X POST --upload-file /tmp/new-metadata-block.tsv
-
+```
 Atualização do bloco de metadados Citation Metadata(citation.tsv)
 
+```shell
 # curl http://localhost:8080/api/admin/datasetfield/load -H "Content-type: text/tab-separated-values" -X POST --upload-file citation.tsv
+```
+
+```shell
+# curl http://localhost:8080/api/admin/index/solr/schema
+```

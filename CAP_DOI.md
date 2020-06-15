@@ -39,15 +39,25 @@ A autorização do serviço é número prefix selecionado no serviço Datacite. 
 # curl -X PUT -d 10.xxxx http://localhost:8080/api/admin/settings/:Authority
 ```
 
-O cabeça
+Os arquivos depositados no Dataverse carregam no registro DOI um endereço inicial, denominado shoulder. O shoulder é escolhido de forma arbitrairia, no exemplo abaixo o shoulder seria "Sigla"
 
 ```shell
-# curl -X PUT -d "MyShoulder/" http://localhost:8080/api/admin/settings/:Shoulder
+# curl -X PUT -d "Sigla/" http://localhost:8080/api/admin/settings/:Shoulder
 ```
 
 
 ```shell
+# ./asadmin delete-jvm-options '-Ddoi.username=YOUR_USERNAME_HERE'
+```
+
+```shell
 # ./asadmin create-jvm-options '-Ddoi.username=YOUR_USERNAME_HERE'
+```
+
+
+Primeiro é necessário verificar se já há alguma configuração 
+```shell
+# ./asadmin delete-jvm-options '-Ddoi.password=YOUR_PASSWORD_HERE'
 ```
 
 ```shell

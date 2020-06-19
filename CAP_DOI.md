@@ -42,27 +42,26 @@ Os arquivos depositados no Dataverse carregam no registro DOI um endereço inici
 # curl -X PUT -d "Sigla/" http://localhost:8080/api/admin/settings/:Shoulder
 ```
 
+As informações para a autenticação no Datacite são configuradas utilizando o bin asadmin, localizado no diretório bin do Glassfish(/usr/local/glassfish4/bin).
+Primeiro é necessário deletar as configuração padrão, caso houver alguma configuração 
 
 ```shell
 # ./asadmin delete-jvm-options '-Ddoi.username=YOUR_USERNAME_HERE'
 ```
 
 ```shell
-# ./asadmin create-jvm-options '-Ddoi.username=YOUR_USERNAME_HERE'
-```
-
-
-Primeiro é necessário verificar se já há alguma configuração 
-```shell
 # ./asadmin delete-jvm-options '-Ddoi.password=YOUR_PASSWORD_HERE'
+```
+Em seguinda, vamos criar os novos valores para as variáveis.
+
+```shell
+# ./asadmin create-jvm-options '-Ddoi.username=YOUR_USERNAME_HERE'
 ```
 
 ```shell
 # ./asadmin create-jvm-options '-Ddoi.password=YOUR_PASSWORD_HERE'
 ```
 
-
-
-- reiniciar o glassfish
+Finalizado reiniciar o glassfish
 
 # Depositar e publicar
